@@ -1,0 +1,5 @@
+site_name: Embedded systems
+theme: readthedocs
+nav:
+  - Home: index.md
+  - About: about.md
