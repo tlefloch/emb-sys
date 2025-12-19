@@ -1,17 +1,25 @@
-# Welcome to MkDocs
+# Welcome to the Embedded Systems course
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Definition
 
-## Commands
+An embedded system is a specialized computer system—a combination of a computer processor, computer memory, and input/output peripheral devices—that has a dedicated function within a larger mechanical or electronic system.  
+It is embedded as part of a complete device often including electrical or electronic hardware and mechanical parts. Because an embedded system typically controls physical operations of the machine that it is embedded within, it often has real-time computing constraints.  
+[@Wikipedia](https://en.wikipedia.org/wiki/Embedded_system)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Objectives
 
-## Project layout
+The main objective of this course is to learn how to create your own embedded image of Operating System (OS)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+![](img/tux-logo.png)
+
+Subjects include :
+
+- the configuration of the network interface of an embedded system
+- how to test and modify the embedded OS directly on your host machine (QEMU, mounting, etc)
+- containerization (Docker)
+
+## Credit
+
+Most of the content of this course was written by Benoît Zerr, the previous teacher, and is based on his slides.
+
+

@@ -1,5 +1,28 @@
 site_name: Embedded systems
-theme: readthedocs
+
+theme:
+  name: readthedocs
+  logo: img/tux-logo.png
+
+markdown_extensions:
+  - admonition
+
+extra_css:
+  - css/custom.css
+
 nav:
   - Home: index.md
-  - About: about.md
+  - Image:
+    - image/qemu.md
+    - TD/TP Setting-up Raspberry Pi OS Image:
+      - image/tp1/intro.md
+      - image/tp1/getting.md
+      - image/tp1/mounting.md
+      - image/tp1/increasing.md
+      - image/tp1/modifying.md
+      - image/tp1/executing.md
+    - TD/TP Running the Raspberry Pi OS on a virtual machine on host:
+      - image/tp2/intro.md
+      - image/tp2/getting.md
+  - Docker:
+    - docker
