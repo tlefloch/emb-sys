@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Introduction to QEMU - Embedded systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introduction to QEMU";
+        var mkdocs_page_input_path = "image/qemu.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Image</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction to QEMU</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-qemu-works">How QEMU works</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-qemu">Using QEMU</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../tp2/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../tp2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../docker">None</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Image</li>
+      <li class="breadcrumb-item active">Introduction to QEMU</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction-to-qemu">Introduction to QEMU</h1>
+<h2 id="introduction">Introduction</h2>
+<p><strong>QEMU</strong>, which stands for <strong>Quick Emulator</strong>, is an open-source
+software project that provides an emulation and virtualization
+framework. It is designed to run a variety of guest operating
+systems on a host operating system, and can emulate a wide range
+of hardware platforms.
+<strong>QEMU</strong> has been created by Fabrice Bellard (also known for
+ffmpeg)  </p>
+<p><strong>QEMU</strong> can be used for a variety of purposes, including:</p>
+<ul>
+<li>Running legacy operating systems or software on modern
+hardware.</li>
+<li>Running multiple operating systems on a single host machine
+for testing or development purposes.</li>
+<li>Providing a safe and isolated environment for running
+untrusted or potentially malicious code.</li>
+<li>Developing and testing software for embedded devices or
+other specialized hardware platforms.</li>
+</ul>
+<p>Visit <a href="https://www.qemu.org/">QEMU website</a> to learn more</p>
+<h2 id="how-qemu-works">How QEMU works</h2>
+<p><strong>QEMU</strong> works by emulating the hardware components of a
+computer, including the CPU, memory, storage devices, network
+adapters, and input/output devices.</p>
+<p>When a guest operating system is started, it runs on top of the
+emulated hardware, just as it would on a physical machine. The
+guest operating system sees the emulated hardware as if it were
+real, and interacts with it accordingly.</p>
+<p><strong>QEMU</strong> can also provide virtualization capabilities, allowing
+multiple operating systems to run on a single host machine with
+minimal performance overhead. In this mode, <strong>QEMU</strong> uses
+hardware virtualization extensions (such as Intel VT-x or AMD-V)
+to provide isolated environments for each guest operating system.</p>
+<h2 id="using-qemu">Using QEMU</h2>
+<p><strong>QEMU</strong> is a powerful and versatile tool that can be used for a
+variety of purposes, from running legacy software to testing new
+operating systems. With its ease of use and wide range of features,
+<strong>QEMU</strong> is a must-have tool for any system administrator or
+developer.</p>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">sudo apt-get install qemu-system qemu-user-static binfmt-support
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tp1/intro/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tp1/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

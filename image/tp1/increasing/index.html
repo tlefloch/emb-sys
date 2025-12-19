@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>C. Increasing size of Raspberry Pi OS image - Embedded systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C. Increasing size of Raspberry Pi OS image";
+        var mkdocs_page_input_path = "image/tp1/increasing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Image</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Increasing size of Raspberry Pi OS image</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../tp2/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tp2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../docker">None</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Image</li>
+          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+      <li class="breadcrumb-item active">C. Increasing size of Raspberry Pi OS image</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c-increasing-size-of-raspberry-pi-os-image">C. Increasing size of Raspberry Pi OS image</h1>
+<p>Suppose that we are in the rpilab folder, go to imgs subfolder :</p>
+<pre><code class="language-bash">cd imgs
+</code></pre>
+<p>Extend partition 2 (rootfs) with 2 GB (choose one of the two methods)</p>
+<p><strong>method 1</strong> :</p>
+<pre><code class="language-bash">truncate --size=+2G 2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p><strong>method 2</strong> : </p>
+<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2048 &gt;&gt; 2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>Check that partition 2 has not been resized yet</p>
+<pre><code class="language-bash">sudo fdisk -l 2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>Then, use <code>parted</code> to actually extend the partition 2</p>
+<pre><code class="language-bash">sudo parted 2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>On the command prompt,type:</p>
+<pre><code class="language-bash">p
+resizepart 2 -1
+p
+q
+</code></pre>
+<p>Mount the image in a loop device (we use /dev/loop50 as before)</p>
+<pre><code class="language-bash">sudo losetup -P /dev/loop50 2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>Check file system and extend file system to fully fill partition 2</p>
+<pre><code class="language-bash">sudo e2fsck -f /dev/loop50p2
+sudo resize2fs /dev/loop50p2
+</code></pre>
+<p>Detach cleanly</p>
+<pre><code class="language-bash">sudo losetup -d /dev/loop50
+</code></pre>
+<p>back to rpilab folder</p>
+<pre><code class="language-bash">cd ..
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../mounting/" class="btn btn-neutral float-left" title="B. Mounting the Raspberry Pi OS image on the host"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../modifying/" class="btn btn-neutral float-right" title="D. Modifying the Raspberry Pi OS image">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../mounting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../modifying/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

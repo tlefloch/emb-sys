@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/custom.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -30,7 +31,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> Embedded systems
+          <a href=".">
+          <img src="img/tux-logo.png" class="logo" alt="Logo"/>
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -42,16 +44,48 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a>
+    <li class="toctree-l2"><a class="reference internal" href="#definition">Definition</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a>
+    <li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#credit">Credit</a>
     </li>
     </ul>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">Image</span></p>
               <ul>
-                <li class="toctree-l1"><a class="" href="about.md">About</a>
+                  <li class="toctree-l1"><a class="reference internal" href="image/qemu/">Introduction to QEMU</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/intro/">Introduction</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp2/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="image/tp2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="docker">None</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -76,24 +110,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+                <h1 id="welcome-to-the-embedded-systems-course">Welcome to the Embedded Systems course</h1>
+<h2 id="definition">Definition</h2>
+<p>An embedded system is a specialized computer system—a combination of a computer processor, computer memory, and input/output peripheral devices—that has a dedicated function within a larger mechanical or electronic system.<br />
+It is embedded as part of a complete device often including electrical or electronic hardware and mechanical parts. Because an embedded system typically controls physical operations of the machine that it is embedded within, it often has real-time computing constraints.<br />
+<a href="https://en.wikipedia.org/wiki/Embedded_system">@Wikipedia</a></p>
+<h2 id="objectives">Objectives</h2>
+<p>The main objective of this course is to learn how to create your own embedded image of Operating System (OS)</p>
+<p><img alt="" src="img/tux-logo.png" /></p>
+<p>Subjects include :</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>the configuration of the network interface of an embedded system</li>
+<li>how to test and modify the embedded OS directly on your host machine (QEMU, mounting, etc)</li>
+<li>containerization (Docker)</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre>
+<h2 id="credit">Credit</h2>
+<p>Most of the content of this course was written by Benoît Zerr, the previous teacher, and is based on his slides.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="image/qemu/" class="btn btn-neutral float-right" title="Introduction to QEMU">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -116,6 +154,8 @@ docs/
     
     
     
+      <span><a href="image/qemu/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script src="js/jquery-3.6.0.min.js"></script>
@@ -134,5 +174,5 @@ docs/
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-12-16 13:02:21.806986+00:00
+Build Date UTC : 2025-12-19 16:31:08.851718+00:00
 -->

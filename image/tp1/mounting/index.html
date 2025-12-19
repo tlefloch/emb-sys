@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>B. Mounting the Raspberry Pi OS image on the host - Embedded systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "B. Mounting the Raspberry Pi OS image on the host";
+        var mkdocs_page_input_path = "image/tp1/mounting.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Image</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">B. Mounting the Raspberry Pi OS image on the host</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#first-method-intuitive">First method (Intuitive)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#second-method-recommended">Second method (Recommended)</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >TD/TP Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../tp2/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tp2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../docker">None</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Image</li>
+          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+      <li class="breadcrumb-item active">B. Mounting the Raspberry Pi OS image on the host</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="b-mounting-the-raspberry-pi-os-image-on-the-host">B. Mounting the Raspberry Pi OS image on the host</h1>
+<p>The Raspberry Pi OS image has 2 partitions : rootfs and boot. We will
+now mount these partitions on the host to get access to the files and
+folders in the image.</p>
+<p>The boot partition contains bootloader information (used at start).<br />
+The rootfs partition contains the file system of raspios bookworm.</p>
+<p><strong>Definition</strong>:<br />
+Mounting a partition is the act of making the filesystem on that partition accessible at a specific location in the directory tree so the operating system can read from and write to it.</p>
+<p>We will now mount the rootfs partition on our computer to have access
+to the file system of raspios bookworm.</p>
+<h2 id="first-method-intuitive">First method (Intuitive)</h2>
+<p>Get the starting point of the partitions</p>
+<pre><code class="language-bash">sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>You must get something like:</p>
+<pre><code class="language-bash">Disk imgs/2024-11-19-raspios-bookworm-arm64-lite.img: 2.57 GiB, 2755657728 bytes, 5382144 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x8a438930
+
+Device                                           Boot   Start     End Sectors  Size Id Type
+imgs/2024-11-19-raspios-bookworm-arm64-lite.img1         8192 1056767 1048576  512M  c W95 FAT32 (LBA)
+imgs/2024-11-19-raspios-bookworm-arm64-lite.img2      1056768 5382143 4325376  2.1G 83 Linux
+</code></pre>
+<p>Here, partition 1 (boot) starts at block 8192 and partition2 (rootfs) starts at block 1056768.<br />
+The block size is 512 bytes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Why does the first partition start at sector 8192 ?</strong><br />
+In order to leave space at the beginning for :  </p>
+<ul>
+<li>Bootloader data  </li>
+<li>Alignment (important for SD cards)  </li>
+</ul>
+<p>This is common in Raspberry Pi images</p>
+</div>
+<p>We first create an access file to mount the main partition (partition 2) on our computer</p>
+<pre><code class="language-bash">sudo mkdir -p /mnt/rpi
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>/mnt</code> mount directory is where external partitions are located when mounted on Linux Ubuntu.
+For example when you plug an external storage device (SSD, USB key, etc)</p>
+</div>
+<p>Then we will use the <code>mount</code> command to mount the partitions. This is
+the standard way to mount a partition, i.e. to give access to the folders
+and files on the partition.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>mount</code> automatically detect the partition type (linux ext4, dos, ntfs, ...).</p>
+</div>
+<p>We mount partition 2 with the root file system</p>
+<pre><code class="language-bash">sudo mount -o loop,offset=$((532480*512)) imgs/2024-11-19-raspios-bookworm-arm64-lite.img /mnt/rpi
+</code></pre>
+<p>We check that the file system of Raspberry PI OS is there :</p>
+<pre><code class="language-bash">ls /mnt/rpi
+</code></pre>
+<p>Then we unmount the partition</p>
+<pre><code class="language-bash">sudo umount /mnt/rpi
+</code></pre>
+<p>We create an access file to mount the other partition (partition 1)</p>
+<pre><code class="language-bash">sudo mkdir -p /mnt/rpi/boot
+sudo mount -o loop,offset=$((8192*512)) imgs/2024-11-19-raspios-bookworm-arm64-lite.img /mnt/rpi/boot
+</code></pre>
+<p>We can display the content of the boot folder :</p>
+<pre><code class="language-bash">ls /mnt/rpi/boot
+</code></pre>
+<p>and we unmount the partition to cleanly exit</p>
+<pre><code class="language-bash">sudo umount /mnt/rpi/boot
+sudo rmdir /mnt/rpi/boot
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The main problem of this method is that we cannot mount simultaneously the two
+partitions at the right places <code>/mnt/rpi</code> and <code>/mnt/rpi/boot</code> because an overlapping
+error occurs.</p>
+</div>
+<h2 id="second-method-recommended">Second method (Recommended)</h2>
+<p>loop devices are virtual block devices that map a file to a disk-like interface. They let Linux treat a regular file as if it were a real disk or partition.</p>
+<p>We search for a non used loop device (/dev/loop??), list existing loop devices :</p>
+<pre><code class="language-bash">lsblk
+</code></pre>
+<p>For example /dev/loop50 is not used on my computer, I will use it here. The <code>losetup</code> command allows controlling loop devices :</p>
+<pre><code class="language-bash">sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre>
+<p>The -P option find the 2 partitions and give them these names :
+partition 1 : /dev/loop50p1 (name: boot)
+partition 2 : /dev/loop50p2 (name: rootfs)</p>
+<p>We first create a folder to access the mount (already done before !!)</p>
+<pre><code class="language-bash">sudo mkdir -p /mnt/rpi
+</code></pre>
+<p>We then mount partition 2 with the root file system</p>
+<pre><code class="language-bash">sudo mount /dev/loop50p2 /mnt/rpi
+ls /mnt/rpi
+</code></pre>
+<p>we finally mount the boot folder at the right place in the root file system</p>
+<pre><code class="language-bash">sudo mount /dev/loop50p1 /mnt/rpi/boot
+ls /mnt/rpi/boot
+</code></pre>
+<p>and we unmount the partitions to cleanly exit</p>
+<pre><code class="language-bash">sudo umount /mnt/rpi/boot
+sudo umount /mnt/rpi
+sudo losetup -d /dev/loop50
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To cleanly exit : make the last 3 commands, in the right order, do not
+execute the next command if the previous has failed.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting/" class="btn btn-neutral float-left" title="A. Getting the Raspberry Pi OS image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../increasing/" class="btn btn-neutral float-right" title="C. Increasing size of Raspberry Pi OS image">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../getting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../increasing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
