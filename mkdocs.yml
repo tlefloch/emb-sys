@@ -24,5 +24,6 @@ nav:
     - TD/TP Running the Raspberry Pi OS on a virtual machine on host:
       - image/tp2/intro.md
       - image/tp2/getting.md
+      - image/tp2/installVM.md
   - Docker:
     - docker
