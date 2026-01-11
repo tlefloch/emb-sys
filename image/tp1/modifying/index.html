@@ -47,9 +47,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Image</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
                 </li>
@@ -68,6 +66,11 @@
     </ul>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -83,7 +86,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Image</li>
-          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+          <li class="breadcrumb-item">Lab 1 - Setting-up Raspberry Pi OS Image</li>
       <li class="breadcrumb-item active">D. Modifying the Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -94,22 +97,43 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="d-modifying-the-raspberry-pi-os-image">D. Modifying the Raspberry Pi OS image</h1>
-<p>First mount the image</p>
-<pre><code class="language-bash">sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-sudo mount /dev/loop50p2 /mnt/rpi
-</code></pre>
+<div class="admonition note">
+<p class="admonition-title">1 - Issue</p>
+<p>First mount the image's root file system as you have done before using <code>losetup</code> and <code>mount</code></p>
+</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+    sudo mount /dev/loop50p2 /mnt/rpi
+    ``` -->
+
 <p>Now the image is mounted, we can modify it (writing files, configuring parameters, etc).</p>
-<p>For example:<br />
-Change the name raspberry with the name of your choice</p>
-<pre><code class="language-bash">sudo nano /mnt/rpi/etc/hosts
-</code></pre>
-<p>Change the name raspberry with the name you have chosen before</p>
-<pre><code class="language-bash">sudo nano /mnt/rpi/etc/hostname
-</code></pre>
-<p>Clean end</p>
-<pre><code class="language-bash">sudo umount /mnt/rpi
-sudo losetup -d /dev/loop50
-</code></pre>
+<div class="admonition note">
+<p class="admonition-title">2 - Issue</p>
+<p>Change the name raspberrypi name with the name of your choice :</p>
+<ul>
+<li>In the <code>/etc/hosts</code> file of the Raspberry Pi OS image, which is used to translate the host name into its ip address.  </li>
+<li>In the <code>/etc/hostname</code> file of the Raspberry Pi OS image, which is used to define the hostname</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful not to modify your local OS' files, but those in <code>/mnt/rpi</code></p>
+</div>
+<!-- !!! Tip "2 - Solution"
+
+    Change the name raspberry with the name you have chosen before :
+    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hosts
+</code></pre></div>
+    ```bash
+    sudo nano /mnt/rpi/etc/hostname
+    ``` -->
+
+<p>Clean end
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi
+sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
+</code></pre></div></p>
               
             </div>
           </div><footer>

@@ -47,9 +47,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Image</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
                 </li>
@@ -68,6 +66,11 @@
     </ul>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -83,7 +86,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Image</li>
-          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+          <li class="breadcrumb-item">Lab 1 - Setting-up Raspberry Pi OS Image</li>
       <li class="breadcrumb-item active">A. Getting the Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -94,33 +97,65 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="a-getting-the-raspberry-pi-os-image">A. Getting the Raspberry Pi OS image</h1>
-<p>Create the working directory</p>
-<pre><code class="language-bash">mkdir rpilab &amp;&amp; cd rpilab
-</code></pre>
-<p>Create a folder for the images</p>
-<pre><code class="language-bash">mkdir imgs &amp;&amp; cd imgs
-</code></pre>
-<p>We choose the "lite" version of raspios <code>bookworm</code> (from 2024, November 19th)<br />
-Download the image in the lab from the official website:<br />
+<p>Create the working directory
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>rpilab<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rpilab
+</code></pre></div>
+Create a folder for the images
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>imgs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>imgs
+</code></pre></div></p>
+<p>Let's choose the "lite" version of raspios <code>bookworm</code> (from 2024, November 19th)</p>
+<div class="admonition note">
+<p class="admonition-title">1 - Issue</p>
+<p>Download the image in the lab from the official website:<br />
 <a href="https://www.raspberrypi.com/software/operating-systems/">https://www.raspberrypi.com/software/operating-systems/</a><br />
-Click on "View archive" to get this version, or use the command-line :</p>
-<pre><code class="language-bash">wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz
-</code></pre>
-<p>We now check the checksum to avoid any problem during the download</p>
-<pre><code class="language-bash">wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
-</code></pre>
-<p>We compute the checksum</p>
-<pre><code class="language-bash">sha256sum 2024-11-19-raspios-bookworm-arm64-lite.img.xz
-</code></pre>
-<p>We verify that the code is the same</p>
-<pre><code class="language-bash">cat 2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
-</code></pre>
-<p>We can now safely decrompress the image</p>
-<pre><code class="language-bash">xz -d 2024-11-19-raspios-bookworm-arm64-lite.img.xz
-</code></pre>
-<p>We go back in the lab folder</p>
-<pre><code class="language-bash">cd ..
-</code></pre>
+Click on "View archive" to get this version and download it using the <code>wget</code> command.</p>
+</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz
+    ``` -->
+
+<p>Now, we want to check the checksum to ensure data integrity and avoid any problem during the download</p>
+<div class="admonition note">
+<p class="admonition-title">2 - Issue</p>
+<ol>
+<li>Download the cheksum file (<code>.sha256</code> file) using <code>wget</code>  </li>
+<li>Compute the checksum using the <code>sha256sum</code> command  </li>
+<li>Verify that the resulting code is the same as the one contained in the <code>.sha256</code> file, using <code>cat</code> to display the file's content in the shell</li>
+</ol>
+</div>
+<!-- !!! Tip "2 - Solution"
+
+    First, we download the checksum file
+
+    <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
+</code></pre></div>
+
+    Then, we compute the checksum
+
+    <div class="highlight"><pre><span></span><code>sha256sum<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img.xz
+</code></pre></div>
+
+    Finally, we check that the code is the same
+
+    ```bash
+    cat 2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
+    ``` -->
+
+<div class="admonition note">
+<p class="admonition-title">3 - Issue</p>
+<p>We can now safely decrompress the image using <code>xz</code>.</p>
+</div>
+<!-- !!! Tip "3 - Solution"
+
+    ```bash
+    xz -d 2024-11-19-raspios-bookworm-arm64-lite.img.xz
+    ``` -->
+
+<p>We go back in the lab folder
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div></p>
               
             </div>
           </div><footer>

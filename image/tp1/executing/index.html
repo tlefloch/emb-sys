@@ -47,9 +47,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Image</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
                 </li>
@@ -96,6 +94,11 @@
     </ul>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -111,7 +114,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Image</li>
-          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+          <li class="breadcrumb-item">Lab 1 - Setting-up Raspberry Pi OS Image</li>
       <li class="breadcrumb-item active">E. Executing commands on the Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -127,44 +130,60 @@
 fairly easy (as seen before)<br />
 But what about running a command in the image on host?
 for example to change the password ?</p>
-<p><strong>Problem 1</strong> : host executes X86 code while image contains
-ARM executables<br />
+<div class="admonition warning">
+<p class="admonition-title">Problem 1</p>
+<p>Host executes X86 code while image contains ARM executables<br />
 <em>Solution</em> : emulating ARM on X86 with QEMU (created by
 Fabrice Bellard)<br />
 --&gt; Read <a href="../../qemu/">Introduction to QEMU</a></p>
-<p><strong>Problem 2</strong> : host commands are under / (ex /bin/bash) while
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Problem 2</p>
+<p>Host commands are under / (ex /bin/bash) while
 image commands are under /mnt/rpi (ex
 /mnt/rpi/bin/bash).<br />
 <em>Solution</em> : changing the root (/) using chroot, introduced
 in development of Version 7 Unix in 1979.</p>
+</div>
 <h2 id="starting-chroot">Starting chroot</h2>
 <h3 id="standard-process">Standard process</h3>
 <p>Prepare the Raspberry Pi OS image to be executed it on host ...
 First we need to mount the system folder the same way they are
-mount on the real Raspberry Pi board</p>
-<p>Mount the image in a loop device (we use /dev/loop50 as before)</p>
-<pre><code class="language-bash">sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p>Mount the partitions (as before)</p>
-<pre><code class="language-bash">sudo mount /dev/loop50p2 /mnt/rpi
-sudo mount /dev/loop50p1 /mnt/rpi/boot
-</code></pre>
+mounted on the real Raspberry Pi board</p>
+<p>Mount the image in a loop device (we use /dev/loop50 as before)
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p>Mount the partitions (as before)
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p1<span class="w"> </span>/mnt/rpi/boot
+</code></pre></div></p>
 <p>Mount the system folders to make them similar as
 if we were executing on the actual Raspberry board
 for example, /dev is an important folder that gives
-access to all the devices : /mnt/rpi/dev must be translated to /dev</p>
-<pre><code class="language-bash">sudo mount --bind /dev /mnt/rpi/dev/
-</code></pre>
-<p>we do the same for all the other system folders we need :</p>
-<pre><code class="language-bash">sudo mount --bind /sys /mnt/rpi/sys/
-sudo mount --bind /proc /mnt/rpi/proc/
-sudo mount --bind /dev/pts /mnt/rpi/dev/pts
-</code></pre>
+access to all the devices : /mnt/rpi/dev must be translated to /dev
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev<span class="w"> </span>/mnt/rpi/dev/
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">1 - Issue</p>
+<p>Do the same for all the other system folders we need :</p>
+<ul>
+<li><code>/sys</code></li>
+<li><code>/proc</code></li>
+<li><code>/dev/pts</code></li>
+</ul>
+</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo mount --bind /sys /mnt/rpi/sys/
+    sudo mount --bind /proc /mnt/rpi/proc/
+    sudo mount --bind /dev/pts /mnt/rpi/dev/pts
+    ``` -->
+
 <p>Then we need to disable some specific actions done solely on the
 real board. The <code>/etc/ld.so.preload</code> file tells what libraries should be
 loaded before the other. This does not work on the virtual
-Raspberry Pi, so we comment the content of this file (by adding #
-at the beginning of the lines).</p>
+Raspberry Pi.</p>
 <p>On modern Debian-based systems (including Raspberry Pi OS Bookworm = Debian 12) :</p>
 <ul>
 <li><code>/etc/ld.so.preload</code> is optional</li>
@@ -172,15 +191,15 @@ at the beginning of the lines).</p>
 <li>The dynamic linker only reads it if it exists</li>
 </ul>
 <p>The file <code>/etc/ld.so.preload</code> should only be executed on actual board.<br />
-Check if there is such a file :</p>
-<pre><code class="language-bash">ls /mnt/rpi/etc/ld.so.preload
-</code></pre>
-<p>It should return nothing. If it returns <code>/mnt/rpi/etc/ld.so.preload</code>, it means you are using an old version, then for safety keep a backup version and comment the content of <code>/mnt/rpi/etc/ld.so.preload</code>.</p>
+Check if there is such a file :
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/mnt/rpi/etc/ld.so.preload
+</code></pre></div>
+It should return nothing. If it returns <code>/mnt/rpi/etc/ld.so.preload</code>, it means you are using an old version, then for safety keep a backup version and comment the content of <code>/mnt/rpi/etc/ld.so.preload</code>.</p>
 <p>We also need to add QEMU to translate ARM code to X86 64
 code so it can be executed on the host computer. QEMU is added
-by just copying the emulator in the Raspberry Pi OS image :</p>
-<pre><code class="language-bash">sudo cp /usr/bin/qemu-arm-static /mnt/rpi/usr/bin/
-</code></pre>
+by just copying the emulator in the Raspberry Pi OS image :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/bin/qemu-arm-static<span class="w"> </span>/mnt/rpi/usr/bin/
+</code></pre></div></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Make sure you installed QEMU following <a href="../../qemu/">Introduction to QEMU</a> instructions</p>
@@ -190,46 +209,53 @@ by just copying the emulator in the Raspberry Pi OS image :</p>
 A practical example is the use of the packet manager with apt</p>
 <p>We need to copy some of the host configuration files (here
 /etc/resolv.conf) on the image before running chroot</p>
-<p>First save the current config as a backup</p>
-<pre><code class="language-bash">sudo cp /mnt/rpi/etc/resolv.conf /mnt/rpi/etc/resolv.conf.bck
-</code></pre>
-<p>Copy config from host</p>
-<pre><code class="language-bash">sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
-</code></pre>
+<p>First save the current config as a backup
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck
+</code></pre></div>
+Copy config from host
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
+</code></pre></div></p>
 <p>Now all should be prepared correctly.</p>
 <h3 id="start_chrootbash">start_chroot.bash</h3>
 <p>To avoid reapeating the previous series of commands and make more easy the use of chroot we can create a bash script
-to run before chroot : <code>start_chroot.bash</code> and <code>stop_chroot.bash</code>.</p>
-<p>Example of a starting script. Create the file <code>start_chroot.bash</code> in rpilab.</p>
-<pre><code class="language-bash">nano start_chroot.bash
-</code></pre>
-<p>And copy the following :</p>
-<pre><code class="language-bash">#!/bin/bash
+to run before chroot : <code>start_chroot.bash</code>.</p>
+<p>Example of a starting script. Create the file <code>start_chroot.bash</code> in rpilab.
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>start_chroot.bash
+</code></pre></div></p>
+<p>And copy the following :
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-# command parameter ($1) is the path to the RPI image file
-# example of use :
-# source start_chroot.bash imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-sudo losetup -P /dev/loop50 $1
-sudo mount /dev/loop50p2 /mnt/rpi
-sudo mount /dev/loop50p1 /mnt/rpi/boot
-sudo mount --bind /dev /mnt/rpi/dev/
-sudo mount --bind /sys /mnt/rpi/sys/
-sudo mount --bind /proc /mnt/rpi/proc/
-sudo mount --bind /dev/pts /mnt/rpi/dev/pts
-sudo cp /usr/bin/qemu-arm-static /mnt/rpi/usr/bin/
-sudo cp /mnt/rpi/etc/resolv.conf /mnt/rpi/etc/resolv.conf.bck
-sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
-</code></pre>
+<span class="c1"># command parameter ($1) is the path to the RPI image file</span>
+<span class="c1"># example of use :</span>
+<span class="c1"># source start_chroot.bash imgs/2024-11-19-raspios-bookworm-arm64-lite.img</span>
+sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span><span class="nv">$1</span>
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p1<span class="w"> </span>/mnt/rpi/boot
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev<span class="w"> </span>/mnt/rpi/dev/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/rpi/dev/pts
+sudo<span class="w"> </span>cp<span class="w"> </span>/usr/bin/qemu-arm-static<span class="w"> </span>/mnt/rpi/usr/bin/
+sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck
+sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
+</code></pre></div></p>
 <h2 id="run-chroot">Run chroot</h2>
-<p><strong>We can now chroot and run the RPI image as if it was on a actual board !</strong>
-/mnt/rpi will be our new /
-and we execute /bin/bash to start a terminal</p>
-<pre><code class="language-bash">sudo chroot /mnt/rpi /bin/bash
-</code></pre>
+<p><strong>We can now chroot and run the RPI image as if it was on a actual board !</strong></p>
+<p><code>/mnt/rpi</code> will be our new <code>/</code> and we execute /bin/bash to start a terminal</p>
+<div class="admonition note">
+<p class="admonition-title">2 - Issue</p>
+<p>Use <code>chroot</code> to make <code>/mnt/rpi</code> the new root and start a bash terminal</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>To leave this prompt, use  <code>Ctrl + D</code></p>
+<p>The <code>/bin/bash</code> command is used to open a new bash shell</p>
 </div>
+<!-- !!! Tip "2 - Solution"
+
+    ```bash
+    sudo chroot /mnt/rpi /bin/bash
+    ``` -->
+
 <p>We have now a root prompt # and we can execute commands on
 the RPI image, for example :</p>
 <ul>
@@ -240,6 +266,10 @@ the RPI image, for example :</p>
 network) for future use with real board (may be done later)</li>
 <li>run apt update</li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To leave the <code>chroot</code> shell, use  <code>Ctrl + D</code></p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>With some experience, we can do most of the setup of the RPI
@@ -251,17 +281,25 @@ Raspberry PI OS, and we will proceed in two steps :</p>
 <p>We will create a new user called ue41, password ue41.<br />
 (no need to answer all the
 questions !!! most of them can be left empty)</p>
-<pre><code class="language-bash">adduser ue41
-</code></pre>
+<div class="admonition note">
+<p class="admonition-title">3 - Issue</p>
+<p>Use <code>adduser</code> to create the ue41 user</p>
+</div>
+<!-- !!! Tip "2 - Solution"
+
+    ```bash
+    adduser ue41
+    ``` -->
+
 <p>Execute <code>visudo</code> command to give sudo permission to the
-created user</p>
-<pre><code class="language-bash">visudo
-</code></pre>
-<p>A file should open.<br />
-Add a line with ue41 user here :</p>
-<pre><code>%sudo   ALL=(ALL:ALL) ALL
+created user
+<div class="highlight"><pre><span></span><code>visudo
+</code></pre></div>
+A file should open.<br />
+Add a line with ue41 user here :
+<div class="highlight"><pre><span></span><code>%sudo   ALL=(ALL:ALL) ALL
 ue41    ALL=(ALL:ALL) ALL
-</code></pre>
+</code></pre></div></p>
 <p>Then write and save (nano commands)</p>
 <h2 id="enabling-the-rpi-console-for-debug-with-chroot">Enabling the RPI console for debug with chroot</h2>
 <p>The console is an easy tool for debug, it can be connected to the host via FTDI USB
@@ -276,9 +314,9 @@ mode,</li>
 <li>use raspi-config in chroot mode.</li>
 </ul>
 <p>As we have started chroot, we will use the raspi-config tool.</p>
-<p>Simply execute raspi-config under chroot prompt #</p>
-<pre><code class="language-bash">raspi-config
-</code></pre>
+<p>Simply execute raspi-config under chroot prompt <code>#</code>
+<div class="highlight"><pre><span></span><code>raspi-config
+</code></pre></div></p>
 <p>Then go in <code>Interface Options</code> and enable <code>Serial Port</code>. </p>
 <p>More details on <a href="https://www.raspberrypi.com/documentation/computers/configuration.html">raspi-config Documetation</a></p>
 <div class="admonition note">
@@ -295,42 +333,52 @@ mode,</li>
 <li>unmount all the RPI image system folders</li>
 <li>stop the loop device with RPI image</li>
 </ul>
-<p>Restore the network config</p>
-<pre><code class="language-bash">sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
-</code></pre>
-<p>Unmount all volumes at once</p>
-<pre><code class="language-bash">sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
-</code></pre>
-<p>Stop the loop device with RPI image</p>
-<pre><code class="language-bash">sudo losetup -d /dev/loop50
-</code></pre>
+<p>Restore the network config
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck<span class="w"> </span>/mnt/rpi/etc/resolv.conf
+</code></pre></div></p>
+<p>Unmount all volumes at once
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi/<span class="o">{</span>dev/pts,dev,sys,proc,boot,<span class="o">}</span>
+</code></pre></div>
+Stop the loop device with RPI image
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
+</code></pre></div></p>
 <h3 id="stop_chrootbash">stop_chroot.bash</h3>
-<p>Just like we did for starting chroot we can create a bash cript to run after chroot: <code>stop_chroot.bash</code></p>
-<p>Example of a stopping script. Create the file <code>stop_chroot.bash</code>.</p>
-<pre><code class="language-bash">nano stop_chroot.bash
-</code></pre>
-<p>And copy the following :</p>
-<pre><code class="language-bash">#!/bin/bash
+<p>Just like we did for starting chroot we can create a bash script to run after chroot: <code>stop_chroot.bash</code></p>
+<div class="admonition note">
+<p class="admonition-title">4 - Issue</p>
+<p>Write a <code>stop_chroot.bash</code> script to cleanly return to the standard host configuration.</p>
+</div>
+<!-- !!! Tip "4 - Solution"
 
-# usage :
-# source stop_chroot.bash
-sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
-sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
-sudo losetup -d /dev/loop50
-</code></pre>
+    Create the file `stop_chroot.bash`.
+    <div class="highlight"><pre><span></span><code>nano<span class="w"> </span>stop_chroot.bash
+</code></pre></div>
+    And copy the following :
+    ```bash
+    #!/bin/bash
+
+    # usage :
+    # source stop_chroot.bash
+    sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
+    sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
+    sudo losetup -d /dev/loop50
+    ``` -->
+
 <h2 id="run-apt-command-in-chroot">Run apt command in chroot</h2>
 <p>Now with the scripts you should be able to only use the following :</p>
-<pre><code class="language-bash">source start_chroot.bash imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-sudo chroot /mnt/rpi /bin/bash
-apt update
-# type ctrl-D to exit chroot
-source stop_chroot.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>start_chroot.bash<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+sudo<span class="w"> </span>chroot<span class="w"> </span>/mnt/rpi<span class="w"> </span>/bin/bash
+apt<span class="w"> </span>update
+<span class="c1"># type ctrl-D to exit chroot</span>
+<span class="nb">source</span><span class="w"> </span>stop_chroot.bash
+</code></pre></div>
+<p><strong>Congrats ! You successfully ended this lab !</strong></p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../modifying/" class="btn btn-neutral float-left" title="D. Modifying the Raspberry Pi OS image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../qemu/" class="btn btn-neutral float-right" title="Introduction to QEMU">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -355,6 +403,8 @@ source stop_chroot.bash
     
       <span><a href="../modifying/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../../qemu/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

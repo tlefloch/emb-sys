@@ -47,9 +47,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Image</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >TD/TP Setting-up Raspberry Pi OS Image</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
                 </li>
@@ -68,6 +66,11 @@
     </ul>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -83,7 +86,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Image</li>
-          <li class="breadcrumb-item">TD/TP Setting-up Raspberry Pi OS Image</li>
+          <li class="breadcrumb-item">Lab 1 - Setting-up Raspberry Pi OS Image</li>
       <li class="breadcrumb-item active">C. Increasing size of Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -95,40 +98,40 @@
               
                 <h1 id="c-increasing-size-of-raspberry-pi-os-image">C. Increasing size of Raspberry Pi OS image</h1>
 <p>Suppose that we are in the rpilab folder, go to imgs subfolder :</p>
-<pre><code class="language-bash">cd imgs
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>imgs
+</code></pre></div>
 <p>Extend partition 2 (rootfs) with 2 GB (choose one of the two methods)</p>
-<p><strong>method 1</strong> :</p>
-<pre><code class="language-bash">truncate --size=+2G 2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p><strong>method 2</strong> : </p>
-<pre><code class="language-bash">dd if=/dev/zero bs=1M count=2048 &gt;&gt; 2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p>Check that partition 2 has not been resized yet</p>
-<pre><code class="language-bash">sudo fdisk -l 2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p>Then, use <code>parted</code> to actually extend the partition 2</p>
-<pre><code class="language-bash">sudo parted 2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p>On the command prompt,type:</p>
-<pre><code class="language-bash">p
-resizepart 2 -1
+<p><strong>method 1</strong> :
+<div class="highlight"><pre><span></span><code>truncate<span class="w"> </span>--size<span class="o">=</span>+2G<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p><strong>method 2</strong> : 
+<div class="highlight"><pre><span></span><code>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">2048</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p>Check that partition 2 has not been resized yet
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p>Then, use <code>parted</code> to actually extend the partition 2
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>parted<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p>On the command prompt,type:
+<div class="highlight"><pre><span></span><code>p
+resizepart<span class="w"> </span><span class="m">2</span><span class="w"> </span>-1
 p
 q
-</code></pre>
-<p>Mount the image in a loop device (we use /dev/loop50 as before)</p>
-<pre><code class="language-bash">sudo losetup -P /dev/loop50 2024-11-19-raspios-bookworm-arm64-lite.img
-</code></pre>
-<p>Check file system and extend file system to fully fill partition 2</p>
-<pre><code class="language-bash">sudo e2fsck -f /dev/loop50p2
-sudo resize2fs /dev/loop50p2
-</code></pre>
+</code></pre></div></p>
+<p>Mount the image in a loop device (we use /dev/loop50 as before)
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div></p>
+<p>Check file system and extend file system to fully fill partition 2
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>e2fsck<span class="w"> </span>-f<span class="w"> </span>/dev/loop50p2
+sudo<span class="w"> </span>resize2fs<span class="w"> </span>/dev/loop50p2
+</code></pre></div></p>
 <p>Detach cleanly</p>
-<pre><code class="language-bash">sudo losetup -d /dev/loop50
-</code></pre>
-<p>back to rpilab folder</p>
-<pre><code class="language-bash">cd ..
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
+</code></pre></div>
+<p>back to rpilab folder
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div></p>
               
             </div>
           </div><footer>
