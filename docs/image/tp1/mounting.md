@@ -7,19 +7,34 @@ folders in the image.
 The boot partition contains bootloader information (used at start).  
 The rootfs partition contains the file system of raspios bookworm.
 
-**Definition**:  
-Mounting a partition is the act of making the filesystem on that partition accessible at a specific location in the directory tree so the operating system can read from and write to it.
+!!! Tip "Definition"
+    Mounting a partition is the act of making the filesystem on that partition accessible at a specific location in the directory tree so the operating system can read from and write to it.
 
 We will now mount the rootfs partition on our computer to have access
 to the file system of raspios bookworm.
 
+!!! Note
+    We will go throuhg 2 different methods.  
+    The first one will teach us more how the image is structured.  
+    The second one is more efficient and recommended.
+
 
 ## First method (Intuitive)
 
-Get the starting point of the partitions
-```bash
-sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-```
+
+!!! Note "1 - Issue"
+    Use the `fdisk` command with the correct option to display a list of partitions  
+    You may use `sudo` to get permission
+
+!!! Tip
+    Use `fdisk -h` to learn more about the existing options
+
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+    ``` -->
+
 
 You must get something like:
 ```bash
@@ -35,8 +50,12 @@ imgs/2024-11-19-raspios-bookworm-arm64-lite.img1         8192 1056767 1048576  5
 imgs/2024-11-19-raspios-bookworm-arm64-lite.img2      1056768 5382143 4325376  2.1G 83 Linux
 ```
 
+Get the starting point of the partitions contained in the image
+
 Here, partition 1 (boot) starts at block 8192 and partition2 (rootfs) starts at block 1056768.  
-The block size is 512 bytes
+The block size is 512 bytes.
+
+**Check yours**
 
 !!! Note
     **Why does the first partition start at sector 8192 ?**  
@@ -109,32 +128,52 @@ We search for a non used loop device (/dev/loop??), list existing loop devices :
 lsblk
 ```
 
-For example /dev/loop50 is not used on my computer, I will use it here. The `losetup` command allows controlling loop devices :
-```bash
-sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-```
-The -P option find the 2 partitions and give them these names :
-partition 1 : /dev/loop50p1 (name: boot)
-partition 2 : /dev/loop50p2 (name: rootfs)
+For example /dev/loop50 is not used on my computer, I will use it here.
 
-We first create a folder to access the mount (already done before !!)
-```bash
-sudo mkdir -p /mnt/rpi
-```
+!!! Note "2 - Issue"
+    The `losetup` command allows controlling loop devices. Learn how to use the `-P` option in order to create a partitioned loop device, say `/dev/loop50` from your Raspberry Pi OS image.
 
-We then mount partition 2 with the root file system
-```bash
-sudo mount /dev/loop50p2 /mnt/rpi
-ls /mnt/rpi
-```
+<!-- !!! Tip "2 - Solution"
 
-we finally mount the boot folder at the right place in the root file system
-```bash
-sudo mount /dev/loop50p1 /mnt/rpi/boot
-ls /mnt/rpi/boot
-```
+    ```bash
+    sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+    ``` -->
 
-and we unmount the partitions to cleanly exit
+The -P option find the 2 partitions and give them these names :  
+
+- partition 1 : /dev/loop50p1 (name: boot)
+- partition 2 : /dev/loop50p2 (name: rootfs)
+
+
+!!! Note "3 - Issue"
+    1. Create a folder to access the mount (already done before in method 1 !)
+    2. Then, mount partition 2 with the root file system using `mount` (no need for the `-o` option)
+    3. Finally, mount the boot partition at the right place in the root file system : look for a boot directory
+
+!!! Tip
+    You should use ```sudo mount <source> <directory>```
+
+
+<!-- !!! Tip "3 - Solution"
+
+    Create the folder to access the mount
+    ```bash
+    sudo mkdir -p /mnt/rpi
+    ```
+
+    Then mount the file system partition (rootfs)
+    ```bash
+    sudo mount /dev/loop50p2 /mnt/rpi
+    ls /mnt/rpi
+    ```
+
+    and mount the boot partition
+    ```bash
+    sudo mount /dev/loop50p1 /mnt/rpi/boot
+    ls /mnt/rpi/boot
+    ``` -->
+
+Finally, we unmount the partitions to cleanly exit
 ```bash
 sudo umount /mnt/rpi/boot
 sudo umount /mnt/rpi

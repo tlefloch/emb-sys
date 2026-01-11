@@ -6,3 +6,11 @@
 .wy-nav-content {
   max-width: 1000px;   /* default is ~800–900px */
 }
+
+/* Remove extra frame added when using pymdownx.superfences */
+.rst-content pre,
+.rst-content .highlight {
+  border: none !important;
+  border-radius: 0 !important;
+  background: inherit;
+}

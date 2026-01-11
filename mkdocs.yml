@@ -6,6 +6,7 @@ theme:
 
 markdown_extensions:
   - admonition
+  - pymdownx.superfences
 
 extra_css:
   - css/custom.css
@@ -13,17 +14,18 @@ extra_css:
 nav:
   - Home: index.md
   - Image:
-    - image/qemu.md
-    - TD/TP Setting-up Raspberry Pi OS Image:
+    - Lab 1 - Setting-up Raspberry Pi OS Image:
       - image/tp1/intro.md
       - image/tp1/getting.md
       - image/tp1/mounting.md
       - image/tp1/increasing.md
       - image/tp1/modifying.md
       - image/tp1/executing.md
-    - TD/TP Running the Raspberry Pi OS on a virtual machine on host:
-      - image/tp2/intro.md
-      - image/tp2/getting.md
-      - image/tp2/installVM.md
-  - Docker:
-    - docker
+    # - Lab 2 - Running the Raspberry Pi OS on a virtual machine on host:
+    #   - image/tp2/intro.md
+    #   - image/tp2/getting.md
+    #   - image/tp2/installVM.md
+  - QEMU:
+    - image/qemu.md
+  # - Docker:
+  #   - docker

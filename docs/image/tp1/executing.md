@@ -7,17 +7,18 @@ fairly easy (as seen before)
 But what about running a command in the image on host?
 for example to change the password ?
 
-**Problem 1** : host executes X86 code while image contains
-ARM executables  
-*Solution* : emulating ARM on X86 with QEMU (created by
-Fabrice Bellard)  
---> Read [Introduction to QEMU](../qemu.md)
+!!! Warning "Problem 1"
+    Host executes X86 code while image contains ARM executables  
+    *Solution* : emulating ARM on X86 with QEMU (created by
+    Fabrice Bellard)  
+    --> Read [Introduction to QEMU](../qemu.md)
 
-**Problem 2** : host commands are under / (ex /bin/bash) while
-image commands are under /mnt/rpi (ex
-/mnt/rpi/bin/bash).  
-*Solution* : changing the root (/) using chroot, introduced
-in development of Version 7 Unix in 1979.
+!!! Warning "Problem 2"
+    Host commands are under / (ex /bin/bash) while
+    image commands are under /mnt/rpi (ex
+    /mnt/rpi/bin/bash).  
+    *Solution* : changing the root (/) using chroot, introduced
+    in development of Version 7 Unix in 1979.
 
 ## Starting chroot
 
@@ -25,7 +26,7 @@ in development of Version 7 Unix in 1979.
 
 Prepare the Raspberry Pi OS image to be executed it on host ...
 First we need to mount the system folder the same way they are
-mount on the real Raspberry Pi board
+mounted on the real Raspberry Pi board
 
 Mount the image in a loop device (we use /dev/loop50 as before)
 ```bash
@@ -46,18 +47,25 @@ access to all the devices : /mnt/rpi/dev must be translated to /dev
 sudo mount --bind /dev /mnt/rpi/dev/
 ```
 
-we do the same for all the other system folders we need :
-```bash
-sudo mount --bind /sys /mnt/rpi/sys/
-sudo mount --bind /proc /mnt/rpi/proc/
-sudo mount --bind /dev/pts /mnt/rpi/dev/pts
-```
+!!! Note "1 - Issue"
+    Do the same for all the other system folders we need :
+    
+    - `/sys`
+    - `/proc`
+    - `/dev/pts`
+
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo mount --bind /sys /mnt/rpi/sys/
+    sudo mount --bind /proc /mnt/rpi/proc/
+    sudo mount --bind /dev/pts /mnt/rpi/dev/pts
+    ``` -->
 
 Then we need to disable some specific actions done solely on the
 real board. The `/etc/ld.so.preload` file tells what libraries should be
 loaded before the other. This does not work on the virtual
-Raspberry Pi, so we comment the content of this file (by adding #
-at the beginning of the lines).
+Raspberry Pi.
 
 On modern Debian-based systems (including Raspberry Pi OS Bookworm = Debian 12) :
 
@@ -104,13 +112,14 @@ Now all should be prepared correctly.
 ### start_chroot.bash
 
 To avoid reapeating the previous series of commands and make more easy the use of chroot we can create a bash script
-to run before chroot : `start_chroot.bash` and `stop_chroot.bash`.
+to run before chroot : `start_chroot.bash`.
 
 
 Example of a starting script. Create the file `start_chroot.bash` in rpilab.
 ```bash
 nano start_chroot.bash
 ```
+
 And copy the following :
 ```bash
 #!/bin/bash
@@ -133,14 +142,20 @@ sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
 ## Run chroot
 
 **We can now chroot and run the RPI image as if it was on a actual board !**
-/mnt/rpi will be our new /
-and we execute /bin/bash to start a terminal
-```bash
-sudo chroot /mnt/rpi /bin/bash
-```
+
+`/mnt/rpi` will be our new `/` and we execute /bin/bash to start a terminal
+
+!!! Note "2 - Issue"
+    Use `chroot` to make `/mnt/rpi` the new root and start a bash terminal
 
 !!! Tip
-    To leave this prompt, use  `Ctrl + D`
+    The `/bin/bash` command is used to open a new bash shell
+
+<!-- !!! Tip "2 - Solution"
+
+    ```bash
+    sudo chroot /mnt/rpi /bin/bash
+    ``` -->
 
 We have now a root prompt # and we can execute commands on
 the RPI image, for example :
@@ -151,6 +166,9 @@ the RPI image, for example :
 - to enable the console with raspi-config (to access the actual RPI board without
 network) for future use with real board (may be done later)
 - run apt update
+
+!!! Tip
+    To leave the `chroot` shell, use  `Ctrl + D`
 
 !!! Note
     With some experience, we can do most of the setup of the RPI
@@ -164,9 +182,16 @@ Raspberry PI OS, and we will proceed in two steps :
 We will create a new user called ue41, password ue41.  
 (no need to answer all the
 questions !!! most of them can be left empty)
-```bash
-adduser ue41
-```
+
+!!! Note "3 - Issue"
+    Use ``adduser`` to create the ue41 user
+
+<!-- !!! Tip "2 - Solution"
+
+    ```bash
+    adduser ue41
+    ``` -->
+
 Execute `visudo` command to give sudo permission to the
 created user
 ```bash
@@ -196,7 +221,7 @@ mode,
 
 As we have started chroot, we will use the raspi-config tool.
 
-Simply execute raspi-config under chroot prompt #
+Simply execute raspi-config under chroot prompt `#`
 ```bash
 raspi-config
 ```
@@ -238,23 +263,27 @@ sudo losetup -d /dev/loop50
 
 ### stop_chroot.bash
 
-Just like we did for starting chroot we can create a bash cript to run after chroot: `stop_chroot.bash`
+Just like we did for starting chroot we can create a bash script to run after chroot: `stop_chroot.bash`
 
-Example of a stopping script. Create the file `stop_chroot.bash`.
-```bash
-nano stop_chroot.bash
-```
+!!! Note "4 - Issue"
+    Write a `stop_chroot.bash` script to cleanly return to the standard host configuration.
 
-And copy the following :
-```bash
-#!/bin/bash
+<!-- !!! Tip "4 - Solution"
 
-# usage :
-# source stop_chroot.bash
-sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
-sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
-sudo losetup -d /dev/loop50
-```
+    Create the file `stop_chroot.bash`.
+    ```bash
+    nano stop_chroot.bash
+    ```
+    And copy the following :
+    ```bash
+    #!/bin/bash
+
+    # usage :
+    # source stop_chroot.bash
+    sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
+    sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
+    sudo losetup -d /dev/loop50
+    ``` -->
 
 
 ## Run apt command in chroot
@@ -268,3 +297,6 @@ apt update
 # type ctrl-D to exit chroot
 source stop_chroot.bash
 ```
+
+
+**Congrats ! You successfully ended this lab !**

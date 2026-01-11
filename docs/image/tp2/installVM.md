@@ -17,11 +17,12 @@ If problems with lmv2 during install
 ```bash
 sudo apt-get purge lvm2
 sudo apt-get install lvm2
+```
 When running Raspberry PI OS in the QEMU VM, we need the Linux
 kernel and drivers to be compatible with an execution on a QEMU VM
 instead of the actual RPI board. They are available here :
 https://github.com/dhruvvyas90/qemu-rpi-kernel
-```
+
 We assume that we are in the rpilab folder
 clone the git repo with kernels and drivers
 ```bash

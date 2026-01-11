@@ -18,7 +18,7 @@ Subjects include :
 - how to test and modify the embedded OS directly on your host machine (QEMU, mounting, etc)
 - containerization (Docker)
 
-## Credit
+## References
 
 Most of the content of this course was written by Benoît Zerr, the previous teacher, and is based on his slides.
 

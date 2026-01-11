@@ -64,3 +64,10 @@ starting linux : boot loader (bootcode.bin), Device Tree Blob
 configuration (config.txt) ...
 - The rootfs partition contains file system : /etc /lib /usr/lib,
 /bin /dev /opt /home ...
+
+## Lab presentation
+
+In this lab you are asked to follow given instructions. Sometimes, you will meet issues you need to solve.  
+There are tips to help you.  
+
+The solutions will be displayed after the class.
