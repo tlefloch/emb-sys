@@ -110,11 +110,12 @@ Create a folder for the images
 <a href="https://www.raspberrypi.com/software/operating-systems/">https://www.raspberrypi.com/software/operating-systems/</a><br />
 Click on "View archive" to get this version and download it using the <code>wget</code> command.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">1 - Solution</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz
-</code></pre></div>
-</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz
+    ``` -->
+
 <p>Now, we want to check the checksum to ensure data integrity and avoid any problem during the download</p>
 <div class="admonition note">
 <p class="admonition-title">2 - Issue</p>
@@ -124,27 +125,34 @@ Click on "View archive" to get this version and download it using the <code>wget
 <li>Verify that the resulting code is the same as the one contained in the <code>.sha256</code> file, using <code>cat</code> to display the file's content in the shell</li>
 </ol>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">2 - Solution</p>
-<p>First, we download the checksum file</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
+<!-- !!! Tip "2 - Solution"
+
+    First, we download the checksum file
+
+    <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
 </code></pre></div>
-<p>Then, we compute the checksum</p>
-<div class="highlight"><pre><span></span><code>sha256sum<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img.xz
+
+    Then, we compute the checksum
+
+    <div class="highlight"><pre><span></span><code>sha256sum<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img.xz
 </code></pre></div>
-<p>Finally, we check that the code is the same</p>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
-</code></pre></div>
-</div>
+
+    Finally, we check that the code is the same
+
+    ```bash
+    cat 2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
+    ``` -->
+
 <div class="admonition note">
 <p class="admonition-title">3 - Issue</p>
 <p>We can now safely decrompress the image using <code>xz</code>.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">3 - Solution</p>
-<div class="highlight"><pre><span></span><code>xz<span class="w"> </span>-d<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img.xz
-</code></pre></div>
-</div>
+<!-- !!! Tip "3 - Solution"
+
+    ```bash
+    xz -d 2024-11-19-raspios-bookworm-arm64-lite.img.xz
+    ``` -->
+
 <p>We go back in the lab folder
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div></p>
