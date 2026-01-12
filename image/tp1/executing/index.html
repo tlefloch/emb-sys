@@ -171,15 +171,31 @@ access to all the devices : /mnt/rpi/dev must be translated to /dev
 <li><code>/proc</code>, which is a virtual file system working as an interface to ongoing processes</li>
 </ul>
 </div>
-<!-- !!! Tip "1 - Solution"
-
-    ```bash
-    sudo mount --bind /sys /mnt/rpi/sys/
-    sudo mount --bind /proc /mnt/rpi/proc/
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A PTY (pseudo-terminal) is a kernel feature that lets programs behave as if they are attached to a real terminal.
+Examples of things that require PTYs:</p>
+<ul>
+<li>interactive shells (bash, sh)</li>
+<li>sudo</li>
+<li>ssh</li>
+<li>su</li>
+<li>screen, tmux</li>
+<li>apt / dpkg (often indirectly)</li>
+<li>systemctl</li>
+</ul>
+<p>So in a chroot, no PTYs = lots of weird failures.</p>
+</div>
 <p>PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi/dev/pts
+sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
+sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>pts/ptmx<span class="w"> </span>/mnt/rpi/dev/ptmx
 </code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -239,6 +255,7 @@ sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> 
 sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
 sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
 sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
+sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>pts/ptmx<span class="w"> </span>/mnt/rpi/dev/ptmx
 sudo<span class="w"> </span>cp<span class="w"> </span>/usr/bin/qemu-arm-static<span class="w"> </span>/mnt/rpi/usr/bin/
 sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck
 sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
