@@ -167,19 +167,22 @@ access to all the devices : /mnt/rpi/dev must be translated to /dev
 <p class="admonition-title">1 - Issue</p>
 <p>Do the same for all the other system folders we need :</p>
 <ul>
-<li><code>/sys</code></li>
-<li><code>/proc</code></li>
-<li><code>/dev/pts</code></li>
+<li><code>/sys</code>, which is an interface to the kernel</li>
+<li><code>/proc</code>, which is a virtual file system working as an interface to ongoing processus</li>
 </ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">1 - Solution</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
 sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
-sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/rpi/dev/pts
 </code></pre></div>
 </div>
-<p>Then we need to disable some specific actions done solely on the
+<p>PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We need to disable some specific actions done solely on the
 real board. The <code>/etc/ld.so.preload</code> file tells what libraries should be
 loaded before the other. This does not work on the virtual
 Raspberry Pi.</p>
@@ -194,6 +197,7 @@ Check if there is such a file :
 <div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/mnt/rpi/etc/ld.so.preload
 </code></pre></div>
 It should return nothing. If it returns <code>/mnt/rpi/etc/ld.so.preload</code>, it means you are using an old version, then for safety keep a backup version and comment the content of <code>/mnt/rpi/etc/ld.so.preload</code>.</p>
+</div>
 <p>We also need to add QEMU to translate ARM code to X86 64
 code so it can be executed on the host computer. QEMU is added
 by just copying the emulator in the Raspberry Pi OS image :
