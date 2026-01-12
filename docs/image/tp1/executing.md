@@ -300,3 +300,5 @@ source stop_chroot.bash
 
 
 **Congrats ! You successfully ended this lab !**
+
+Keep your modified image on your computer as it will be used in a next lab.
