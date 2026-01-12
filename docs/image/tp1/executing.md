@@ -137,7 +137,7 @@ sudo mount /dev/loop50p1 /mnt/rpi/boot
 sudo mount --bind /dev /mnt/rpi/dev/
 sudo mount --bind /sys /mnt/rpi/sys/
 sudo mount --bind /proc /mnt/rpi/proc/
-sudo mount --bind /dev/pts /mnt/rpi/dev/pts
+sudo mount -t devpts devpts /mnt/rpi/dev/pts
 sudo cp /usr/bin/qemu-arm-static /mnt/rpi/usr/bin/
 sudo cp /mnt/rpi/etc/resolv.conf /mnt/rpi/etc/resolv.conf.bck
 sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
