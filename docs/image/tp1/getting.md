@@ -18,11 +18,11 @@ Let's choose the "lite" version of raspios `bookworm` (from 2024, November 19th)
     Click on "View archive" to get this version and download it using the `wget` command.
 
 
-!!! Tip "1 - Solution"
+<!-- !!! Tip "1 - Solution"
 
     ```bash
     wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-11-19/2024-11-19-raspios-bookworm-arm64-lite.img.xz
-    ```
+    ``` -->
 
 Now, we want to check the checksum to ensure data integrity and avoid any problem during the download
 
@@ -31,7 +31,7 @@ Now, we want to check the checksum to ensure data integrity and avoid any proble
     2. Compute the checksum using the `sha256sum` command  
     3. Verify that the resulting code is the same as the one contained in the `.sha256` file, using `cat` to display the file's content in the shell
 
-!!! Tip "2 - Solution"
+<!-- !!! Tip "2 - Solution"
 
     First, we download the checksum file
 
@@ -49,16 +49,16 @@ Now, we want to check the checksum to ensure data integrity and avoid any proble
 
     ```bash
     cat 2024-11-19-raspios-bookworm-arm64-lite.img.xz.sha256
-    ```
+    ``` -->
 
 !!! Note "3 - Issue"
     We can now safely decrompress the image using `xz`.
 
-!!! Tip "3 - Solution"
+<!-- !!! Tip "3 - Solution"
 
     ```bash
     xz -d 2024-11-19-raspios-bookworm-arm64-lite.img.xz
-    ```
+    ``` -->
 
 We go back in the lab folder
 ```bash
