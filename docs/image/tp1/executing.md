@@ -50,17 +50,20 @@ sudo mount --bind /dev /mnt/rpi/dev/
 !!! Note "1 - Issue"
     Do the same for all the other system folders we need :
     
-    - `/sys`
-    - `/proc`
-    - `/dev/pts`
+    - `/sys`, which is an interface to the kernel
+    - `/proc`, which is a virtual file system working as an interface to ongoing processus
 
 !!! Tip "1 - Solution"
 
     ```bash
     sudo mount --bind /sys /mnt/rpi/sys/
     sudo mount --bind /proc /mnt/rpi/proc/
-    sudo mount --bind /dev/pts /mnt/rpi/dev/pts
     ```
+
+PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
+```bash
+sudo mount -t devpts devpts /mnt/rpi/dev/pts
+```
 
 !!! Note
     We need to disable some specific actions done solely on the
