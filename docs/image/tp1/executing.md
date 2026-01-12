@@ -53,16 +53,32 @@ sudo mount --bind /dev /mnt/rpi/dev/
     - `/sys`, which is an interface to the kernel
     - `/proc`, which is a virtual file system working as an interface to ongoing processes
 
-<!-- !!! Tip "1 - Solution"
+!!! Tip "1 - Solution"
 
     ```bash
     sudo mount --bind /sys /mnt/rpi/sys/
     sudo mount --bind /proc /mnt/rpi/proc/
-    ``` -->
+    ```
+
+!!! Note
+    A PTY (pseudo-terminal) is a kernel feature that lets programs behave as if they are attached to a real terminal.
+    Examples of things that require PTYs:
+
+    - interactive shells (bash, sh)
+    - sudo
+    - ssh
+    - su
+    - screen, tmux
+    - apt / dpkg (often indirectly)
+    - systemctl
+
+    So in a chroot, no PTYs = lots of weird failures.
 
 PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
 ```bash
+mkdir -p /mnt/rpi/dev/pts
 sudo mount -t devpts devpts /mnt/rpi/dev/pts
+sudo ln -sf pts/ptmx /mnt/rpi/dev/ptmx
 ```
 
 !!! Note
@@ -138,6 +154,7 @@ sudo mount --bind /dev /mnt/rpi/dev/
 sudo mount --bind /sys /mnt/rpi/sys/
 sudo mount --bind /proc /mnt/rpi/proc/
 sudo mount -t devpts devpts /mnt/rpi/dev/pts
+sudo ln -sf pts/ptmx /mnt/rpi/dev/ptmx
 sudo cp /usr/bin/qemu-arm-static /mnt/rpi/usr/bin/
 sudo cp /mnt/rpi/etc/resolv.conf /mnt/rpi/etc/resolv.conf.bck
 sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
