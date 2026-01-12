@@ -23,7 +23,7 @@ to the file system of raspios bookworm.
 
 
 !!! Note "1 - Issue"
-    Use the `fdisk` command with the correct option to display a list of partitions  
+    Use the `fdisk` command with the correct option to display a list of partitions in your img file 
     You may use `sudo` to get permission
 
 !!! Tip
