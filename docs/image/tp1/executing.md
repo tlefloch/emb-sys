@@ -62,23 +62,24 @@ sudo mount --bind /dev /mnt/rpi/dev/
     sudo mount --bind /dev/pts /mnt/rpi/dev/pts
     ```
 
-Then we need to disable some specific actions done solely on the
-real board. The `/etc/ld.so.preload` file tells what libraries should be
-loaded before the other. This does not work on the virtual
-Raspberry Pi.
+!!! Note
+    We need to disable some specific actions done solely on the
+    real board. The `/etc/ld.so.preload` file tells what libraries should be
+    loaded before the other. This does not work on the virtual
+    Raspberry Pi.
 
-On modern Debian-based systems (including Raspberry Pi OS Bookworm = Debian 12) :
+    On modern Debian-based systems (including Raspberry Pi OS Bookworm = Debian 12) :
 
-- `/etc/ld.so.preload` is optional
-- It is not created by default
-- The dynamic linker only reads it if it exists
+    - `/etc/ld.so.preload` is optional
+    - It is not created by default
+    - The dynamic linker only reads it if it exists
 
-The file `/etc/ld.so.preload` should only be executed on actual board.  
-Check if there is such a file :
-```bash
-ls /mnt/rpi/etc/ld.so.preload
-```
-It should return nothing. If it returns `/mnt/rpi/etc/ld.so.preload`, it means you are using an old version, then for safety keep a backup version and comment the content of `/mnt/rpi/etc/ld.so.preload`.
+    The file `/etc/ld.so.preload` should only be executed on actual board.  
+    Check if there is such a file :
+    ```bash
+    ls /mnt/rpi/etc/ld.so.preload
+    ```
+    It should return nothing. If it returns `/mnt/rpi/etc/ld.so.preload`, it means you are using an old version, then for safety keep a backup version and comment the content of `/mnt/rpi/etc/ld.so.preload`.
 
 We also need to add QEMU to translate ARM code to X86 64
 code so it can be executed on the host computer. QEMU is added
