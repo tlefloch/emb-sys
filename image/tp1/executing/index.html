@@ -171,12 +171,13 @@ access to all the devices : /mnt/rpi/dev must be translated to /dev
 <li><code>/proc</code>, which is a virtual file system working as an interface to ongoing processes</li>
 </ul>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">1 - Solution</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
-sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
-</code></pre></div>
-</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo mount --bind /sys /mnt/rpi/sys/
+    sudo mount --bind /proc /mnt/rpi/proc/
+    ``` -->
+
 <p>PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
 </code></pre></div></p>
@@ -253,11 +254,12 @@ sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span clas
 <p class="admonition-title">Tip</p>
 <p>The <code>/bin/bash</code> command is used to open a new bash shell</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">2 - Solution</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chroot<span class="w"> </span>/mnt/rpi<span class="w"> </span>/bin/bash
-</code></pre></div>
-</div>
+<!-- !!! Tip "2 - Solution"
+
+    ```bash
+    sudo chroot /mnt/rpi /bin/bash
+    ``` -->
+
 <p>We have now a root prompt # and we can execute commands on
 the RPI image, for example :</p>
 <ul>
@@ -287,11 +289,12 @@ questions !!! most of them can be left empty)</p>
 <p class="admonition-title">3 - Issue</p>
 <p>Use <code>adduser</code> to create the ue41 user</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">3 - Solution</p>
-<div class="highlight"><pre><span></span><code>adduser<span class="w"> </span>ue41
-</code></pre></div>
-</div>
+<!-- !!! Tip "3 - Solution"
+
+    ```bash
+    adduser ue41
+    ``` -->
+
 <p>Execute <code>visudo</code> command to give sudo permission to the
 created user
 <div class="highlight"><pre><span></span><code>visudo
@@ -349,21 +352,22 @@ Stop the loop device with RPI image
 <p class="admonition-title">4 - Issue</p>
 <p>Write a <code>stop_chroot.bash</code> script to cleanly return to the standard host configuration.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">4 - Solution</p>
-<p>Create the file <code>stop_chroot.bash</code>.
-<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>stop_chroot.bash
-</code></pre></div>
-And copy the following :
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<!-- !!! Tip "4 - Solution"
 
-<span class="c1"># usage :</span>
-<span class="c1"># source stop_chroot.bash</span>
-sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck<span class="w"> </span>/mnt/rpi/etc/resolv.conf
-sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi/<span class="o">{</span>dev/pts,dev,sys,proc,boot,<span class="o">}</span>
-sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
-</code></pre></div></p>
-</div>
+    Create the file `stop_chroot.bash`.
+    <div class="highlight"><pre><span></span><code>nano<span class="w"> </span>stop_chroot.bash
+</code></pre></div>
+    And copy the following :
+    ```bash
+    #!/bin/bash
+
+    # usage :
+    # source stop_chroot.bash
+    sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
+    sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
+    sudo losetup -d /dev/loop50
+    ``` -->
+
 <h2 id="run-apt-command-in-chroot">Run apt command in chroot</h2>
 <p>Now with the scripts you should be able to only use the following :</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>start_chroot.bash<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img

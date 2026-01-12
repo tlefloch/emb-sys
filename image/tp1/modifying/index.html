@@ -101,12 +101,13 @@
 <p class="admonition-title">1 - Issue</p>
 <p>First mount the image's root file system as you have done before using <code>losetup</code> and <code>mount</code></p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">1 - Solution</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
-</code></pre></div>
-</div>
+<!-- !!! Tip "1 - Solution"
+
+    ```bash
+    sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+    sudo mount /dev/loop50p2 /mnt/rpi
+    ``` -->
+
 <p>Now the image is mounted, we can modify it (writing files, configuring parameters, etc).</p>
 <div class="admonition note">
 <p class="admonition-title">2 - Issue</p>
@@ -120,14 +121,15 @@ sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span clas
 <p class="admonition-title">Warning</p>
 <p>Be careful not to modify your local OS' files, but those in <code>/mnt/rpi</code></p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">2 - Solution</p>
-<p>Change the name raspberry with the name you have chosen before :
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hosts
+<!-- !!! Tip "2 - Solution"
+
+    Change the name raspberry with the name you have chosen before :
+    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hosts
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hostname
-</code></pre></div></p>
-</div>
+    ```bash
+    sudo nano /mnt/rpi/etc/hostname
+    ``` -->
+
 <p>Clean end
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi
 sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
