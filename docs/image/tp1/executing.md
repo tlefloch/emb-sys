@@ -51,7 +51,7 @@ sudo mount --bind /dev /mnt/rpi/dev/
     Do the same for all the other system folders we need :
     
     - `/sys`, which is an interface to the kernel
-    - `/proc`, which is a virtual file system working as an interface to ongoing processus
+    - `/proc`, which is a virtual file system working as an interface to ongoing processes
 
 !!! Tip "1 - Solution"
 
