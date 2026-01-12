@@ -214,12 +214,11 @@ error occurs.</p>
 <p class="admonition-title">Tip</p>
 <p>Use <code>losetup -P &lt;loop_device&gt; &lt;img&gt;</code></p>
 </div>
-<!-- !!! Tip "2 - Solution"
-
-    ```bash
-    sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">2 - Solution</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div>
+</div>
 <p>The -P option find the 2 partitions and give them these names :  </p>
 <ul>
 <li>partition 1 : /dev/loop50p1 (name: boot)</li>
@@ -238,23 +237,20 @@ error occurs.</p>
 <p class="admonition-title">Tip</p>
 <p>You should use <code>sudo mount &lt;source&gt; &lt;directory&gt;</code></p>
 </div>
-<!-- !!! Tip "3 - Solution"
-
-    Create the folder to access the mount
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi
-</code></pre></div>
-
-    Then mount the file system partition (rootfs)
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
+<div class="admonition tip">
+<p class="admonition-title">3 - Solution</p>
+<p>Create the folder to access the mount
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi
+</code></pre></div></p>
+<p>Then mount the file system partition (rootfs)
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
 ls<span class="w"> </span>/mnt/rpi
-</code></pre></div>
-
-    and mount the boot partition
-    ```bash
-    sudo mount /dev/loop50p1 /mnt/rpi/boot
-    ls /mnt/rpi/boot
-    ``` -->
-
+</code></pre></div></p>
+<p>and mount the boot partition
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p1<span class="w"> </span>/mnt/rpi/boot
+ls<span class="w"> </span>/mnt/rpi/boot
+</code></pre></div></p>
+</div>
 <p>Finally, we unmount the partitions to cleanly exit
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi/boot
 sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi
