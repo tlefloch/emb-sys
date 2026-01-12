@@ -120,15 +120,14 @@ sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span clas
 <p class="admonition-title">Warning</p>
 <p>Be careful not to modify your local OS' files, but those in <code>/mnt/rpi</code></p>
 </div>
-<!-- !!! Tip "2 - Solution"
-
-    Change the name raspberry with the name you have chosen before :
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hosts
+<div class="admonition tip">
+<p class="admonition-title">2 - Solution</p>
+<p>Change the name raspberry with the name you have chosen before :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hosts
 </code></pre></div>
-    ```bash
-    sudo nano /mnt/rpi/etc/hostname
-    ``` -->
-
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/mnt/rpi/etc/hostname
+</code></pre></div></p>
+</div>
 <p>Clean end
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi
 sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50

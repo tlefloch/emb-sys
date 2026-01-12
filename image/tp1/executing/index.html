@@ -172,14 +172,13 @@ access to all the devices : /mnt/rpi/dev must be translated to /dev
 <li><code>/dev/pts</code></li>
 </ul>
 </div>
-<!-- !!! Tip "1 - Solution"
-
-    ```bash
-    sudo mount --bind /sys /mnt/rpi/sys/
-    sudo mount --bind /proc /mnt/rpi/proc/
-    sudo mount --bind /dev/pts /mnt/rpi/dev/pts
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/rpi/dev/pts
+</code></pre></div>
+</div>
 <p>Then we need to disable some specific actions done solely on the
 real board. The <code>/etc/ld.so.preload</code> file tells what libraries should be
 loaded before the other. This does not work on the virtual
