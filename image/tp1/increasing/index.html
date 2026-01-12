@@ -101,12 +101,15 @@
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>imgs
 </code></pre></div>
 <p>Extend partition 2 (rootfs) with 2 GB (choose one of the two methods)</p>
-<p><strong>method 1</strong> :
+<div class="admonition note">
+<p class="admonition-title">method 1</p>
 <div class="highlight"><pre><span></span><code>truncate<span class="w"> </span>--size<span class="o">=</span>+2G<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
-</code></pre></div></p>
-<p><strong>method 2</strong> : 
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">method 2</p>
 <div class="highlight"><pre><span></span><code>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">2048</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
-</code></pre></div></p>
+</code></pre></div>
 <p>Check that partition 2 has not been resized yet
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
 </code></pre></div></p>
@@ -119,6 +122,7 @@ resizepart<span class="w"> </span><span class="m">2</span><span class="w"> </spa
 p
 q
 </code></pre></div></p>
+</div>
 <p>Mount the image in a loop device (we use /dev/loop50 as before)
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span><span class="m">2024</span>-11-19-raspios-bookworm-arm64-lite.img
 </code></pre></div></p>
