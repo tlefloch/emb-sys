@@ -85,7 +85,7 @@ and files on the partition.
 
 We mount partition 2 with the root file system
 ```bash
-sudo mount -o loop,offset=$((532480*512)) imgs/2024-11-19-raspios-bookworm-arm64-lite.img /mnt/rpi
+sudo mount -o loop,offset=$((1056768*512)) imgs/2024-11-19-raspios-bookworm-arm64-lite.img /mnt/rpi
 ```
 
 We check that the file system of Raspberry PI OS is there :
