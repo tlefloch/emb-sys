@@ -172,11 +172,11 @@ sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
 !!! Tip
     The `/bin/bash` command is used to open a new bash shell
 
-<!-- !!! Tip "2 - Solution"
+!!! Tip "2 - Solution"
 
     ```bash
     sudo chroot /mnt/rpi /bin/bash
-    ``` -->
+    ```
 
 We have now a root prompt # and we can execute commands on
 the RPI image, for example :
@@ -207,11 +207,11 @@ questions !!! most of them can be left empty)
 !!! Note "3 - Issue"
     Use ``adduser`` to create the ue41 user
 
-<!-- !!! Tip "3 - Solution"
+!!! Tip "3 - Solution"
 
     ```bash
     adduser ue41
-    ``` -->
+    ```
 
 Execute `visudo` command to give sudo permission to the
 created user
@@ -289,7 +289,7 @@ Just like we did for starting chroot we can create a bash script to run after ch
 !!! Note "4 - Issue"
     Write a `stop_chroot.bash` script to cleanly return to the standard host configuration.
 
-<!-- !!! Tip "4 - Solution"
+!!! Tip "4 - Solution"
 
     Create the file `stop_chroot.bash`.
     ```bash
@@ -304,7 +304,7 @@ Just like we did for starting chroot we can create a bash script to run after ch
     sudo cp /mnt/rpi/etc/resolv.conf.bck /mnt/rpi/etc/resolv.conf
     sudo umount /mnt/rpi/{dev/pts,dev,sys,proc,boot,}
     sudo losetup -d /dev/loop50
-    ``` -->
+    ```
 
 
 ## Run apt command in chroot
