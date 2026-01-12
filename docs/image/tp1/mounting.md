@@ -29,11 +29,11 @@ to the file system of raspios bookworm.
 !!! Tip
     Use `fdisk -h` to learn more about the existing options
 
-<!-- !!! Tip "1 - Solution"
+!!! Tip "1 - Solution"
 
     ```bash
     sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ``` -->
+    ```
 
 
 You must get something like:
