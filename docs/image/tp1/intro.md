@@ -1,4 +1,4 @@
-# Introduction
+# Lab 1 – Setting up Raspberry Pi OS image​
 
 ## Objectives
 
