@@ -21,7 +21,7 @@ Now the image is mounted, we can modify it (writing files, configuring parameter
 !!! Warning
     Be careful not to modify your local OS' files, but those in `/mnt/rpi`
 
-<!-- !!! Tip "2 - Solution"
+!!! Tip "2 - Solution"
 
     Change the name raspberry with the name you have chosen before :
     ```bash
@@ -29,7 +29,7 @@ Now the image is mounted, we can modify it (writing files, configuring parameter
     ```
     ```bash
     sudo nano /mnt/rpi/etc/hostname
-    ``` -->
+    ```
 
 Clean end
 ```bash

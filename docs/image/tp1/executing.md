@@ -54,13 +54,13 @@ sudo mount --bind /dev /mnt/rpi/dev/
     - `/proc`
     - `/dev/pts`
 
-<!-- !!! Tip "1 - Solution"
+!!! Tip "1 - Solution"
 
     ```bash
     sudo mount --bind /sys /mnt/rpi/sys/
     sudo mount --bind /proc /mnt/rpi/proc/
     sudo mount --bind /dev/pts /mnt/rpi/dev/pts
-    ``` -->
+    ```
 
 Then we need to disable some specific actions done solely on the
 real board. The `/etc/ld.so.preload` file tells what libraries should be
