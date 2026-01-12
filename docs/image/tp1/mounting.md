@@ -29,11 +29,11 @@ to the file system of raspios bookworm.
 !!! Tip
     Use `fdisk -h` to learn more about the existing options
 
-!!! Tip "1 - Solution"
+<!-- !!! Tip "1 - Solution"
 
     ```bash
     sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ```
+    ``` -->
 
 
 You must get something like:
@@ -137,11 +137,11 @@ For example /dev/loop50 is not used on my computer, I will use it here.
 
     Use `losetup -P <loop_device> <img>`
 
-!!! Tip "2 - Solution"
+<!-- !!! Tip "2 - Solution"
 
     ```bash
     sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ```
+    ``` -->
 
 The -P option find the 2 partitions and give them these names :  
 
@@ -160,7 +160,7 @@ Check your loop devices with `lsblk`
     You should use ```sudo mount <source> <directory>```
 
 
-!!! Tip "3 - Solution"
+<!-- !!! Tip "3 - Solution"
 
     Create the folder to access the mount
     ```bash
@@ -177,7 +177,7 @@ Check your loop devices with `lsblk`
     ```bash
     sudo mount /dev/loop50p1 /mnt/rpi/boot
     ls /mnt/rpi/boot
-    ```
+    ``` -->
 
 Finally, we unmount the partitions to cleanly exit
 ```bash
