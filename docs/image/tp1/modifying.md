@@ -3,12 +3,12 @@
 !!! Note "1 - Issue"
     First mount the image's root file system as you have done before using `losetup` and `mount`
 
-<!-- !!! Tip "1 - Solution"
+!!! Tip "1 - Solution"
 
     ```bash
     sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
     sudo mount /dev/loop50p2 /mnt/rpi
-    ``` -->
+    ```
 
 Now the image is mounted, we can modify it (writing files, configuring parameters, etc).
 
