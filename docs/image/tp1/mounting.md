@@ -135,7 +135,7 @@ For example /dev/loop50 is not used on my computer, I will use it here.
 
 !!! Tip
 
-    Use `losetup -P <loop_device> <img>
+    Use `losetup -P <loop_device> <img>`
 
 <!-- !!! Tip "2 - Solution"
 
