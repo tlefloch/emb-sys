@@ -133,11 +133,15 @@ For example /dev/loop50 is not used on my computer, I will use it here.
 !!! Note "2 - Issue"
     The `losetup` command allows controlling loop devices. Learn how to use the `-P` option in order to create a partitioned loop device, say `/dev/loop50` from your Raspberry Pi OS image.
 
-!!! Tip "2 - Solution"
+!!! Tip
+
+    Use `losetup -P <loop_device> <img>
+
+<!-- !!! Tip "2 - Solution"
 
     ```bash
     sudo losetup -P /dev/loop50 imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ```
+    ``` -->
 
 The -P option find the 2 partitions and give them these names :  
 
@@ -154,7 +158,7 @@ The -P option find the 2 partitions and give them these names :
     You should use ```sudo mount <source> <directory>```
 
 
-!!! Tip "3 - Solution"
+<!-- !!! Tip "3 - Solution"
 
     Create the folder to access the mount
     ```bash
@@ -171,7 +175,7 @@ The -P option find the 2 partitions and give them these names :
     ```bash
     sudo mount /dev/loop50p1 /mnt/rpi/boot
     ls /mnt/rpi/boot
-    ```
+    ``` -->
 
 Finally, we unmount the partitions to cleanly exit
 ```bash
