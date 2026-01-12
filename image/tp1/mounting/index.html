@@ -128,12 +128,11 @@ You may use <code>sudo</code> to get permission</p>
 <p class="admonition-title">Tip</p>
 <p>Use <code>fdisk -h</code> to learn more about the existing options</p>
 </div>
-<!-- !!! Tip "1 - Solution"
-
-    ```bash
-    sudo fdisk -l imgs/2024-11-19-raspios-bookworm-arm64-lite.img
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+</code></pre></div>
+</div>
 <p>You must get something like:
 <div class="highlight"><pre><span></span><code>Disk<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img:<span class="w"> </span><span class="m">2</span>.57<span class="w"> </span>GiB,<span class="w"> </span><span class="m">2755657728</span><span class="w"> </span>bytes,<span class="w"> </span><span class="m">5382144</span><span class="w"> </span>sectors
 Units:<span class="w"> </span>sectors<span class="w"> </span>of<span class="w"> </span><span class="m">1</span><span class="w"> </span>*<span class="w"> </span><span class="nv">512</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes
@@ -210,6 +209,10 @@ error occurs.</p>
 <div class="admonition note">
 <p class="admonition-title">2 - Issue</p>
 <p>The <code>losetup</code> command allows controlling loop devices. Learn how to use the <code>-P</code> option in order to create a partitioned loop device, say <code>/dev/loop50</code> from your Raspberry Pi OS image.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use `losetup -P <loop_device> <img></p>
 </div>
 <!-- !!! Tip "2 - Solution"
 
