@@ -148,6 +148,8 @@ The -P option find the 2 partitions and give them these names :
 - partition 1 : /dev/loop50p1 (name: boot)
 - partition 2 : /dev/loop50p2 (name: rootfs)
 
+Check your loop devices with `lsblk`
+
 
 !!! Note "3 - Issue"
     1. Create a folder to access the mount (already done before in method 1 !)
