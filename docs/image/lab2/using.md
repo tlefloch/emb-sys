@@ -83,7 +83,7 @@ boot folder
 !!! Note "1 -Issue"
     Use the QEMU VM console with user pi to create the /boot/ssh file with `touch`
 
-!!! Tip "1 - Solution"
+<!-- !!! Tip "1 - Solution"
     Start QEMU with a shell :
     ```bash
     qemu-system-arm \
@@ -103,7 +103,7 @@ boot folder
     sudo touch /boot/ssh
     ```
 
-    then leave QEMU
+    then leave QEMU -->
 
 !!! Note
     You can also use chroot with your bash scripts `start_chroot.sh` and `stop_chroot.sh`
@@ -117,9 +117,9 @@ After restarting the qemu vm, the ssh command should work fine.
 !!! Tip
     The ip address is your localhost ipaddress so you can use the shortcut `pi@localhost`
 
-!!! Tip "2 - Solution"
+<!-- !!! Tip "2 - Solution"
     ```bash
     ssh -p 10022 pi@localhost
-    ```
+    ``` -->
 
 You can stop QEMU and delete the Buster image after this lab.

@@ -54,9 +54,9 @@ Now, plug the FTDI cable and check again. `dmesg` should tell you about a new co
 !!! Note
     If you are using Windows, you will need to know the COM port number connected to your USB to serial adapter, which can be found in the Device Manager
 
-!!! Tip "1 - Solution"
+<!-- !!! Tip "1 - Solution"
 
-    The name of serial port should be something like /dev/ttyUSB0
+    The name of serial port should be something like /dev/ttyUSB0 -->
 
 Check it works with :
 ```bash
@@ -92,11 +92,11 @@ the speed should be 115200 bauds
 !!! Note "2 - Issue"
     Start minicom specifying the device name and a baudrate of 115200 using the correct options
 
-!!! Tip "2 - Solution"
+<!-- !!! Tip "2 - Solution"
 
     ```bash
     minicom -b 115200 -D /dev/ttyUSB0
-    ```
+    ``` -->
 
 !!! Note
     On windows use Putty is a straight-forward solution to connect to serial ports  
