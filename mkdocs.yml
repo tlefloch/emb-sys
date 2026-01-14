@@ -13,18 +13,25 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Image:
+  - Raspberry Pi OS Labs:
     - Lab 1 - Setting-up Raspberry Pi OS Image:
-      - image/tp1/intro.md
-      - image/tp1/getting.md
-      - image/tp1/mounting.md
-      - image/tp1/increasing.md
-      - image/tp1/modifying.md
-      - image/tp1/executing.md
-    # - Lab 2 - Running the Raspberry Pi OS on a virtual machine on host:
-    #   - image/tp2/intro.md
-    #   - image/tp2/getting.md
-    #   - image/tp2/installVM.md
+      - image/lab1/intro.md
+      - image/lab1/getting.md
+      - image/lab1/mounting.md
+      - image/lab1/increasing.md
+      - image/lab1/modifying.md
+      - image/lab1/executing.md
+    - Lab 2 - Running the Raspberry Pi OS on a virtual machine on host:
+      - image/lab2/intro.md
+      - image/lab2/getting.md
+      - image/lab2/installVM.md
+      - image/lab2/using.md
+    - Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface:
+      - image/lab3/intro.md
+      - image/lab3/writing.md
+      - image/lab3/connecting.md
+      - image/lab3/setting.md
+      - image/lab3/saving.md
   - QEMU:
     - image/qemu.md
   # - Docker:
