@@ -47,7 +47,7 @@ We would like to be able to access the QEMU VM with ssh
 **Problem** : the VM has localhost IP address, same as host.  
 To solve it, we use port mapping :  
 tcp port 10022 of the host will be mapped to port 22 on the QEMU VM  
-Then ssh will work using port 10222 and localhost
+Then ssh will work using port 10022 and localhost
 
 ```bash
 qemu-system-arm \
