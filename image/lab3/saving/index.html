@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>D. Cloning the image - Embedded systems</title>
+    <title>D. Cloning the image (Optional) - Embedded systems</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "D. Cloning the image";
+        var mkdocs_page_name = "D. Cloning the image (Optional)";
         var mkdocs_page_input_path = "image/lab3/saving.md";
         var mkdocs_page_url = null;
       </script>
@@ -85,8 +85,12 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../setting/">C. Setting up network for ssh access</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">D. Cloning the image</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">D. Cloning the image (Optional)</a>
     <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#with-dd">With dd</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-balena-etcher">With Balena Etcher</a>
+    </li>
     </ul>
                 </li>
     </ul>
@@ -113,7 +117,7 @@
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
           <li class="breadcrumb-item">Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</li>
-      <li class="breadcrumb-item active">D. Cloning the image</li>
+      <li class="breadcrumb-item active">D. Cloning the image (Optional)</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -122,21 +126,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="d-cloning-the-image">D. Cloning the image</h1>
+                <h1 id="d-cloning-the-image-optional">D. Cloning the image (Optional)</h1>
 <p>To save all the changes made on the Raspberry PI image, we can clone the image from the sd-card</p>
 <p>After stopping the RPI (unplug the power supply) , we remove the
 sd-card and mount it on the computer</p>
-<!-- The sd-card may be larger than the Raspberry OS image (for example 32
-Gb sd-card for our image of 4 Gb)
-
-Use `lsblk` and look for something like `/dev/sd*`
-
-We use the fdisk command to get the actual size of the image.  
-Replace `?` in `/dev/sd?` with the right letter:
-```bash
+<h2 id="with-dd">With dd</h2>
+<p>The sd-card may be larger than the Raspberry OS image (for example 32
+Gb sd-card for our image of 4 Gb). We use the fdisk command to get
+the actual size of the image. Replace ? in /dev/sd? with the right letter:
 sudo fdisk -l /dev/sd?
-``` -->
-
+The number of blocks is given is the ”End” value for ”/dev/sd?2” (ex
+8724479). We use this count in the dd command to copy back the
+modifed Raspberry OS image on our computer.</p>
+<p>copy the image from the sd-card to the computer :
+replace ? with the appropriate drive letter</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+</div>
+<p>When using the <code>dd</code> command make sure you don't overwrite the wrong partitions or you will get big trouble !</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sdb<span class="w"> </span><span class="nv">of</span><span class="o">=</span>imgs/2024-11-19-raspios-bookworm-arm64-lite-modified-2024.img<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">8724479</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">512</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if the partition /dev/sd?2 is very large with lot of empty space,
+gparted command can be used to shrink it before doing dd (sudo gparted
+/dev/sd?2)</p>
+</div>
+<h2 id="with-balena-etcher">With Balena Etcher</h2>
 <p>On your host machine :</p>
 <ol>
 <li>Open Balena Etcher</li>

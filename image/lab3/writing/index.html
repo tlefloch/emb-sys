@@ -81,6 +81,10 @@
                 </li>
                 <li class="toctree-l2 current"><a class="reference internal current" href="#">A. Writing the Raspberry Pi OS image on the sd-card</a>
     <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#headless-raspberry-pi">Headless Raspberry Pi</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enable-serial-interface-and-login-shell-over-serial">Enable serial interface and login shell over serial</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#choose-an-imager">Choose an Imager</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#write-the-image">Write the image</a>
@@ -91,7 +95,7 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../setting/">C. Setting up network for ssh access</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../saving/">D. Cloning the image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../saving/">D. Cloning the image (Optional)</a>
                 </li>
     </ul>
                   </li>
@@ -127,7 +131,45 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="a-writing-the-raspberry-pi-os-image-on-the-sd-card">A. Writing the Raspberry Pi OS image on the sd-card</h1>
-<p>In this part, we plan to writing our Raspberry Pi OS image on a sd-card in order to use it on a real board.</p>
+<p>In this part, we plan to write our Raspberry Pi OS image on a sd-card in order to use it on a real board.</p>
+<h2 id="headless-raspberry-pi">Headless Raspberry Pi</h2>
+<p>For convenience or to save space and money, we don't want to use additional hardware components such as a monitor, keyboard, or mouse to access our Raspberry Pi, especially with a desktopless OS such as our Lite version of Raspberry Pi OS.<br />
+We call this screenless setup a headless Raspberry Pi.  </p>
+<p>There are different ways to configure a headless Raspberry Pi, here are three :</p>
+<ul>
+<li><strong>Serial Terminal</strong> - This requires extra hardware in the form of a serial-to-USB adapter, but it is by far the most robust way to connect, as you are not relying on any network setup.</li>
+<li><strong>Ethernet with Static IP Address</strong> - This method requires a Linux operating system to change some files on the Raspberry Pi image. You can give the Raspberry Pi a static IP address and then use an Ethernet cable (or WiFi) to log in.</li>
+<li><strong>WiFi with DHCP</strong> - You will need to have access to your router to find your Raspberry Pi's IP address in order to log in via SSH. As a result, this may not be the best option in school or office environments.</li>
+</ul>
+<p>If you would like to access your Raspberry Pi using the least amount of software work or without network, you will need some extra hardware. Two of the pins on the Raspberry Pi offer transmit and receive data for serial communication. With a small change to a file on the boot sector of the SD card, a command line terminal will be broadcast over this serial line, and you can enter commands to control Linux, write programs, etc.</p>
+<p>If the other methods do not work to gain access to your Raspberry Pi or you lose your video out signal, using the serial terminal is a great way to see if your Raspberry Pi is still working and to debug any problems you might have.</p>
+<p>You will need a USB to serial converter for this to work.</p>
+<p><img alt="" src="../../../img/serial-to-usb.png" /></p>
+<h2 id="enable-serial-interface-and-login-shell-over-serial">Enable serial interface and login shell over serial</h2>
+<p>In versions of the Raspberry Pi after 3 (e.g. 3 Model B, 3 Model B+, Zero W), the processor contains two hardware UARTs. One is dedicated to the Bluetooth module, while the other is a less-featured "mini UART."</p>
+<p>The serial interface is not enabled by default on the board, but we have already enabled it in Lab 1.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If Lab 1 made you use <code>raspi-config</code> to enable UART, it may have failed even if your setup was correct.<br />
+In fact, <code>raspi-config</code> needs a real Raspberry Pi kernel to work well, and QEMU is not sufficient.<br />
+But good news, most things <code>raspi-config</code> does are just file edits, so we can do it safely manually.</p>
+</div>
+<p>We will make sure the serial interface is enabled :  </p>
+<ul>
+<li>Mount the image using
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>losetup<span class="w"> </span>-P<span class="w"> </span>/dev/loop50<span class="w"> </span>imgs/2024-11-19-raspios-bookworm-arm64-lite.img
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p2<span class="w"> </span>/mnt/rpi
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop50p1<span class="w"> </span>/mnt/rpi/boot
+</code></pre></div></li>
+<li>Look for a <code>config.txt</code> file in <code>/boot</code> and open it.</li>
+<li>Now check there is the line <code>enable_uart=1</code> under the <code>[all]</code> section, if that's not the case add it, save and exit.</li>
+<li>Unmount the image :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi/boot
+sudo<span class="w"> </span>umount<span class="w"> </span>/mnt/rpi
+sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop50
+</code></pre></div></li>
+</ul>
+<p>The sd-card can now be unmounted from your computer.</p>
 <h2 id="choose-an-imager">Choose an Imager</h2>
 <p>We need to choose an imager and download it.
 Raspberry Pi Imager and Balena Etcher are the go-to imagers.</p>

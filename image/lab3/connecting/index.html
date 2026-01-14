@@ -83,10 +83,6 @@
                 </li>
                 <li class="toctree-l2 current"><a class="reference internal current" href="#">B. Accessing the headless RPI without network</a>
     <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#headless-raspberry-pi">Headless Raspberry Pi</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#enable-serial-interface-and-login-shell-over-serial">Enable serial interface and login shell over serial</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#connecting-the-debug-console">Connecting the debug console</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#set-up-the-ftdi-usb-cable-connection-on-a-serial-port-of-the-host">Set-up the FTDI USB cable connection on a serial port of the host</a>
@@ -97,7 +93,7 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../setting/">C. Setting up network for ssh access</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../saving/">D. Cloning the image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../saving/">D. Cloning the image (Optional)</a>
                 </li>
     </ul>
                   </li>
@@ -133,35 +129,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="b-accessing-the-headless-rpi-without-network">B. Accessing the headless RPI without network</h1>
-<h2 id="headless-raspberry-pi">Headless Raspberry Pi</h2>
-<p>For convenience or to save space and money, we don't want to use additional hardware components such as a monitor, keyboard, or mouse to access our Raspberry Pi, especially with a desktopless OS such as our Lite version of Raspberry Pi OS.<br />
-We call this screenless setup a headless Raspberry Pi.  </p>
-<p>There are different ways to configure a headless Raspberry Pi, here are three :</p>
-<ul>
-<li><strong>Serial Terminal</strong> - This requires extra hardware in the form of a serial-to-USB adapter, but it is by far the most robust way to connect, as you are not relying on any network setup.</li>
-<li><strong>Ethernet with Static IP Address</strong> - This method requires a Linux operating system to change some files on the Raspberry Pi image. You can give the Raspberry Pi a static IP address and then use an Ethernet cable (or WiFi) to log in.</li>
-<li><strong>WiFi with DHCP</strong> - You will need to have access to your router to find your Raspberry Pi's IP address in order to log in via SSH. As a result, this may not be the best option in school or office environments.</li>
-</ul>
-<p>If you would like to access your Raspberry Pi using the least amount of software work or without network, you will need some extra hardware. Two of the pins on the Raspberry Pi offer transmit and receive data for serial communication. With a small change to a file on the boot sector of the SD card, a command line terminal will be broadcast over this serial line, and you can enter commands to control Linux, write programs, etc.</p>
-<p>If the other methods do not work to gain access to your Raspberry Pi or you lose your video out signal, using the serial terminal is a great way to see if your Raspberry Pi is still working and to debug any problems you might have.</p>
-<p>You will need a USB to serial converter for this to work.</p>
-<p><img alt="" src="../../../img/serial-to-usb.png" /></p>
-<h2 id="enable-serial-interface-and-login-shell-over-serial">Enable serial interface and login shell over serial</h2>
-<p>In versions of the Raspberry Pi after 3 (e.g. 3 Model B, 3 Model B+, Zero W), the processor contains two hardware UARTs. One is dedicated to the Bluetooth module, while the other is a less-featured "mini UART."</p>
-<p>The serial interface is not enabled by default on the board, but we have already enabled it in Lab 1.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If Lab 1 made you use <code>raspi-config</code> to enable UART, it may have failed even if your setup was correct.<br />
-In fact, <code>raspi-config</code> needs a real Raspberry Pi kernel to work well, and QEMU is not sufficient.<br />
-But good news, most things <code>raspi-config</code> does are just file edits, so we can do it safely manually.</p>
-</div>
-<p>We will make sure the serial interface is enabled :  </p>
-<ul>
-<li>Plug your sd-card and make sure its partitions are mounted  </li>
-<li>Look for a <code>config.txt</code> file in <code>/boot</code> and open it.</li>
-<li>Now check there is the line <code>enable_uart=1</code> under the <code>[all]</code> section, if that's not the case add it, save and exit.</li>
-</ul>
-<p>The sd-card can now be unmounted from your computer.</p>
 <h2 id="connecting-the-debug-console">Connecting the debug console</h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -205,10 +172,10 @@ and list the devices :</p>
 <p class="admonition-title">Note</p>
 <p>If you are using Windows, you will need to know the COM port number connected to your USB to serial adapter, which can be found in the Device Manager</p>
 </div>
-<!-- !!! Tip "1 - Solution"
-
-    The name of serial port should be something like /dev/ttyUSB0 -->
-
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<p>The name of serial port should be something like /dev/ttyUSB0</p>
+</div>
 <p>Check it works with :
 <div class="highlight"><pre><span></span><code>stty<span class="w"> </span>-F<span class="w"> </span>&lt;serial_port_name&gt;
 </code></pre></div></p>
@@ -237,12 +204,11 @@ tools like <code>minicom</code>.</p>
 <p class="admonition-title">2 - Issue</p>
 <p>Start minicom specifying the device name and a baudrate of 115200 using the correct options</p>
 </div>
-<!-- !!! Tip "2 - Solution"
-
-    ```bash
-    minicom -b 115200 -D /dev/ttyUSB0
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">2 - Solution</p>
+<div class="highlight"><pre><span></span><code>minicom<span class="w"> </span>-b<span class="w"> </span><span class="m">115200</span><span class="w"> </span>-D<span class="w"> </span>/dev/ttyUSB0
+</code></pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On windows use Putty is a straight-forward solution to connect to serial ports<br />
@@ -250,7 +216,7 @@ If you still pefer using minicom under WSL, you need to use <code>usbipd</code> 
 </div>
 <p>The first time using minicom, the "Hardware control flow" must be disabled :</p>
 <ul>
-<li>type ctrl-A the o to access the configuration</li>
+<li>type <code>ctrl-A</code> then <code>o</code> to access the configuration</li>
 <li>select "Serial port setup"</li>
 <li>type F to disable Hardware Flow Control</li>
 <li>select "Save setup as dfl" so that next time you will not need to reconfigure</li>
