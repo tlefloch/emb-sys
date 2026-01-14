@@ -250,3 +250,7 @@ ssh ue41@<ip_addr>
 ```
 
 You should now be able to connect via ssh ! You finished the setup !
+
+**Congrats ! You ended this lab series !**  
+
+You will soon use your knowledge to configure an embedded Linux for a robot.

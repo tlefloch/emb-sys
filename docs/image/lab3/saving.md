@@ -19,7 +19,7 @@ copy the image from the sd-card to the computer :
 replace ? with the appropriate drive letter
 
 !!! Warning
-   When using the `dd` command make sure you don't overwrite the wrong partitions or you will get big trouble !
+    When using the `dd` command make sure you don't overwrite the wrong partitions or you will get big trouble
 
 ```bash
 sudo dd if=/dev/sdb of=imgs/2024-11-19-raspios-bookworm-arm64-lite-modified-2024.img count=8724479 bs=512
