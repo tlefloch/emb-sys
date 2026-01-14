@@ -50,12 +50,13 @@ First, insert the sd-card in the Raspberry Pi
 The console will be connected on the I/O ports on the RPI board
 and on an USB input of the host computer.
 
-The serial to USB adapter is a FTDI USB cable with 3 or 6 ”Arduino like” terminations
+The serial to USB adapter is a FTDI USB cable with 3, 4 or 6 ”Arduino like” terminations
 to be plugged on the RPI board, you can find some information in
 the data sheet of the cable :
 
 - The one with 3 terminations : [https://www.mouser.fr/datasheet/2/163/DS_TTL-232R_RPi-267577.pdf](https://www.mouser.fr/datasheet/2/163/DS_TTL-232R_RPi-267577.pdf)
-- The one with 5 terminations : [https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf](https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf)
+- The one with 6 terminations : [https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf](https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf)
+- The one with 4 terminations : [https://www.adafruit.com/product/954?srsltid=AfmBOoploJ4nyapeY4tQLdr9ZWopzSrvJaUvqjKPwxA8N61XxzHrdqi4](https://www.adafruit.com/product/954?srsltid=AfmBOoploJ4nyapeY4tQLdr9ZWopzSrvJaUvqjKPwxA8N61XxzHrdqi4)
 
 !!! Warning
     Caution! The GPIO pins on the Raspberry Pi are NOT 5V tolerant. That means you must use a 3.3V USB-to-serial converter.
@@ -86,7 +87,7 @@ ls /dev | grep "tty"
 ```
 
 Now, plug the FTDI cable and check again. `dmesg` should tell you about a new connection and the devices list should display a new device
-https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf
+
 !!! Note "1 - Issue"
     Find the name of the serial port. It should be something like `/dev/tty*`  
 
