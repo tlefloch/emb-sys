@@ -1,4 +1,4 @@
-# D. Cloning the image
+# D. Cloning the image (Optional)
 
 To save all the changes made on the Raspberry PI image, we can clone the image from the sd-card
 
