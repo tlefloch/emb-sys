@@ -1,4 +1,4 @@
-# D. Cloning the image (Optional)
+# D. Cloning the image (not working ...)
 
 To save all the changes made on the Raspberry PI image, we can clone the image from the sd-card
 
@@ -38,23 +38,6 @@ replace ? with the appropriate drive letter
 ```bash
 sudo dd if=/dev/sdb of=imgs/2024-11-19-raspios-bookworm-arm64-lite-modified-2024.img count=8724479 bs=512
 ```
-
-!
-
-
-## With Balena Etcher
-
-On your host machine :
-
-1. Open Balena Etcher
-2. Click “Clone drive”
-3. Select your SD card
-4. Select “Image file” as the destination
-5. Choose filename (e.g. sdcard_backup.img)
-6. Click Clone
-
-!!! Note
-    You could also use the `dd` command instead of Etcher but make sure you don't overwrite the wrong partitions or you will get big trouble !
 
 **Congrats ! You ended this lab series !**  
 
