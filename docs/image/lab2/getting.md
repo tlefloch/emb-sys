@@ -6,5 +6,6 @@
 
     However, make sure to keep your Bookworm image from Lab 1 as we will use it in Lab 3
 
-Follow the instructions in [Getting the Raspberry Pi OS image](../tp1/getting.md) from the previous lab to download and decompress
+Follow the instructions in [Getting the Raspberry Pi OS image](../lab1/getting.md)
+from the previous lab to download and decompress
 the Raspberry PI OS Lite Buster version from 2021/05/07.
