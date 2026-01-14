@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "A. Getting the Raspberry Pi OS image";
-        var mkdocs_page_input_path = "image/tp2/getting.md";
+        var mkdocs_page_input_path = "image/lab2/getting.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -45,21 +45,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Image</span></p>
-              <ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/intro/">Lab 1 – Setting up Raspberry Pi OS image​</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/intro/">Lab 1 - Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/getting/">A. Getting the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/getting/">A. Getting the Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">A. Getting the Raspberry Pi OS image</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/saving/">D. Cloning the image</a>
                 </li>
     </ul>
                   </li>
@@ -83,6 +111,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
+          <li class="breadcrumb-item">Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</li>
       <li class="breadcrumb-item active">A. Getting the Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -93,16 +123,21 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="a-getting-the-raspberry-pi-os-image">A. Getting the Raspberry Pi OS image</h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There is no need to do this again if you have done it the
-previous lab, just be sure you have cleaned the changes made in
-the image to use it in chroot.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Unfortunately, there is still no working QEMU emulation specific kernel for Bookworm at the time of this Lab
+So, in order to learn how to emulate a Raspberry Pi with QEMU VM, we will download a Buster image.  </p>
+<p>However, make sure to keep your Bookworm image from Lab 1 as we will use it in Lab 3</p>
 </div>
-<p>Follow the instructions in <a href="../../tp1/getting/">Getting the Raspberry Pi OS image</a> from the previous lab.</p>
+<p>Follow the instructions in <a href="../tp1/getting.md">Getting the Raspberry Pi OS image</a> from the previous lab to download and decompress
+the Raspberry PI OS Lite Buster version from 2021/05/07.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intro/" class="btn btn-neutral float-left" title="Lab 2 - Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../installVM/" class="btn btn-neutral float-right" title="B. Install QEMU ARM virtual machine (VM)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -124,6 +159,10 @@ the image to use it in chroot.</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../installVM/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>C. Using QEMU Virtual Machine - Embedded systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C. Using QEMU Virtual Machine";
+        var mkdocs_page_input_path = "image/lab2/using.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/intro/">Lab 1 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Using QEMU Virtual Machine</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#starting-qemu-vm">Starting QEMU VM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#executing-qemu-vm">Executing QEMU VM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-up-network-for-ssh-access">Setting up network for ssh access</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/saving/">D. Cloning the image</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
+          <li class="breadcrumb-item">Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</li>
+      <li class="breadcrumb-item active">C. Using QEMU Virtual Machine</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c-using-qemu-virtual-machine">C. Using QEMU Virtual Machine</h1>
+<h2 id="starting-qemu-vm">Starting QEMU VM</h2>
+<p>Raspberry Pi OS images do not boot directly in QEMU without:</p>
+<ul>
+<li>A custom kernel</li>
+<li>Correct DTB (a binary hardware description file that tells the Linux kernel which hardware it is running on)</li>
+<li>Proper machine type</li>
+</ul>
+<p>In <code>qemu-rpi-kernel</code> you will find kernels built specifically for QEMU emulation. As you can see, these don't go until the Bookworm version,
+this is why we use a Buster image</p>
+<p>The first time, we start with a shell (console /bin/bash) to
+configure the execution of the VM.</p>
+<div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
+-kernel<span class="w"> </span>qemu-rpi-kernel/kernel-qemu-4.19.50-buster<span class="w"> </span><span class="se">\</span>
+-cpu<span class="w"> </span>arm1176<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+-M<span class="w"> </span>versatilepb<span class="w"> </span><span class="se">\</span>
+-no-reboot<span class="w"> </span><span class="se">\</span>
+-serial<span class="w"> </span>stdio<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;root=/dev/sda2 panic=1 rootfstype=ext4 rw init=/bin/bash&quot;</span><span class="w"> </span><span class="se">\</span>
+-drive<span class="w"> </span><span class="s2">&quot;file=imgs/2021-05-07-raspios-buster-armhf-lite.img,index=0,media=disk,format=raw&quot;</span><span class="w"> </span><span class="se">\</span>
+-dtb<span class="w"> </span>qemu-rpi-kernel/versatile-pb-buster.dtb
+</code></pre></div>
+<p>We add a special rule to have the disk devices named /dev/sd?
+instead of /dev/mmcblk? (simpler naming for the disk drives)</p>
+<p>Create the file rule file /etc/udev/rules.d/90-qemu.rules
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; /etc/udev/rules.d/90-qemu.rules</span>
+<span class="s">KERNEL==&quot;sda&quot;, SYMLINK+=&quot;mmcblk0&quot; KERNEL==&quot;sda?&quot;, \</span>
+<span class="s">SYMLINK+=&quot;mmcblk0p%n&quot; KERNEL==&quot;sda2&quot;, SYMLINK+=&quot;root&quot;</span>
+<span class="s">EOF</span>
+</code></pre></div></p>
+<p>Terminate the execution of VM by typing ctrl-D</p>
+<h2 id="executing-qemu-vm">Executing QEMU VM</h2>
+<p>We would like to be able to access the QEMU VM with ssh</p>
+<p><strong>Problem</strong> : the VM has localhost IP address, same as host.<br />
+To solve it, we use port mapping :<br />
+tcp port 10022 of the host will be mapped to port 22 on the QEMU VM<br />
+Then ssh will work using port 10222 and localhost</p>
+<div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
+-kernel<span class="w"> </span>qemu-rpi-kernel/kernel-qemu-4.19.50-buster<span class="w"> </span><span class="se">\</span>
+-cpu<span class="w"> </span>arm1176<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+-M<span class="w"> </span>versatilepb<span class="w"> </span><span class="se">\</span>
+-no-reboot<span class="w"> </span><span class="se">\</span>
+-serial<span class="w"> </span>stdio<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;root=/dev/sda2 panic=1 rootfstype=ext4 rw&quot;</span><span class="w"> </span><span class="se">\</span>
+-drive<span class="w"> </span><span class="s2">&quot;file=imgs/2021-05-07-raspios-buster-armhf-lite.img,index=0,media=disk,format=raw&quot;</span><span class="w"> </span><span class="se">\</span>
+-dtb<span class="w"> </span>qemu-rpi-kernel/versatile-pb-buster.dtb<span class="w"> </span><span class="se">\</span>
+-net<span class="w"> </span>nic<span class="w"> </span>-net<span class="w"> </span>user,hostfwd<span class="o">=</span>tcp::10022-:22
+</code></pre></div>
+<p>The QEMU VM is ready to be used with 3 possible access : QEMU
+window, console and ssh.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To be untrapped in QEMU window, type ctrl-alt-g </p>
+</div>
+<p>But there is still one step missing for ssh to work.</p>
+<h2 id="setting-up-network-for-ssh-access">Setting up network for ssh access</h2>
+<p>The RPI image (even the lite one) has all softwares installed to
+access it via ssh.
+However, port 22 is not accessible by default !</p>
+<p>We can enable ssh by adding an empty file simply called ssh in the
+boot folder</p>
+<div class="admonition note">
+<p class="admonition-title">1 -Issue</p>
+<p>Use the QEMU VM console with user pi or ue41 to create the /boot/ssh file with <code>touch</code></p>
+</div>
+<!-- !!! Tip "1 - Solution"
+    Start QEMU with a shell :
+    <div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
+-kernel<span class="w"> </span>qemu-rpi-kernel/kernel-qemu-4.19.50-buster<span class="w"> </span><span class="se">\</span>
+-cpu<span class="w"> </span>arm1176<span class="w"> </span><span class="se">\</span>
+-m<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+-M<span class="w"> </span>versatilepb<span class="w"> </span><span class="se">\</span>
+-no-reboot<span class="w"> </span><span class="se">\</span>
+-serial<span class="w"> </span>stdio<span class="w"> </span><span class="se">\</span>
+-append<span class="w"> </span><span class="s2">&quot;root=/dev/sda2 panic=1 rootfstype=ext4 rw init=/bin/bash&quot;</span><span class="w"> </span><span class="se">\</span>
+-drive<span class="w"> </span><span class="s2">&quot;file=imgs/2021-05-07-raspios-buster-armhf-lite.img,index=0,media=disk,format=raw&quot;</span><span class="w"> </span><span class="se">\</span>
+-dtb<span class="w"> </span>qemu-rpi-kernel/versatile-pb-buster.dtb
+</code></pre></div>
+
+    and use 
+    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>touch<span class="w"> </span>/boot/ssh
+</code></pre></div>
+
+    then leave QEMU -->
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use chroot with your bash scripts <code>start_chroot.sh</code> and <code>stop_chroot.sh</code></p>
+</div>
+<p>After restarting the qemu vm, the ssh command should work fine.</p>
+<div class="admonition note">
+<p class="admonition-title">2 -Issue</p>
+<p>On an other terminal, connect to the QEMU VM from the host via ssh
+Look for the relevant ssh option to use the right port which is not the default 22.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The ip address is your localhost ipaddress so you can use the shortcut <code>pi@localhost</code></p>
+</div>
+<!-- !!! Tip "2 - Solution"
+    ```bash
+    ssh -p 10022 pi@localhost
+    ``` -->
+
+<p>You can stop QEMU and delete the Buster image after this lab.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installVM/" class="btn btn-neutral float-left" title="B. Install QEMU ARM virtual machine (VM)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../lab3/intro/" class="btn btn-neutral float-right" title="Lab 3 - Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../installVM/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../lab3/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "E. Executing commands on the Raspberry Pi OS image";
-        var mkdocs_page_input_path = "image/tp1/executing.md";
+        var mkdocs_page_input_path = "image/lab1/executing.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -45,11 +45,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Image</span></p>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 1 – Setting up Raspberry Pi OS image​</a>
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 1 - Introduction</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../getting/">A. Getting the Raspberry Pi OS image</a>
                 </li>
@@ -77,7 +77,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#adding-a-sudo-user-with-chroot">Adding a sudo user with chroot</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#enabling-the-rpi-console-for-debug-with-chroot">Enabling the RPI console for debug with chroot</a>
+    <li class="toctree-l3"><a class="reference internal" href="#enabling-the-serial-interface-and-rpi-console-for-debug">Enabling the Serial interface and RPI console for debug</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#clean-termination-of-chroot">Clean termination of chroot</a>
         <ul>
@@ -90,6 +90,32 @@
     <li class="toctree-l3"><a class="reference internal" href="#run-apt-command-in-chroot">Run apt command in chroot</a>
     </li>
     </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/saving/">D. Cloning the image</a>
                 </li>
     </ul>
                   </li>
@@ -113,7 +139,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Image</li>
+          <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
           <li class="breadcrumb-item">Lab 1 - Setting-up Raspberry Pi OS Image</li>
       <li class="breadcrumb-item active">E. Executing commands on the Raspberry Pi OS image</li>
     <li class="wy-breadcrumbs-aside">
@@ -195,8 +221,11 @@ Examples of things that require PTYs:</p>
 <p>PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount it using :
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi/dev/pts
 sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
-sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>pts/ptmx<span class="w"> </span>/mnt/rpi/dev/ptmx
 </code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you get a PTY error, reboot your computer and avoid the previous step</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We need to disable some specific actions done solely on the
@@ -255,7 +284,6 @@ sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> 
 sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
 sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
 sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
-sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>pts/ptmx<span class="w"> </span>/mnt/rpi/dev/ptmx
 sudo<span class="w"> </span>cp<span class="w"> </span>/usr/bin/qemu-arm-static<span class="w"> </span>/mnt/rpi/usr/bin/
 sudo<span class="w"> </span>cp<span class="w"> </span>/mnt/rpi/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf.bck
 sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
@@ -320,18 +348,21 @@ Add a line with ue41 user here :
 ue41    ALL=(ALL:ALL) ALL
 </code></pre></div></p>
 <p>Then write and save (nano commands)</p>
-<h2 id="enabling-the-rpi-console-for-debug-with-chroot">Enabling the RPI console for debug with chroot</h2>
+<h2 id="enabling-the-serial-interface-and-rpi-console-for-debug">Enabling the Serial interface and RPI console for debug</h2>
 <p>The console is an easy tool for debug, it can be connected to the host via FTDI USB
 cable and can be accessed on Ubuntu via /dev/ttyUSB0 device. Hence, it can work
 even if the network is not or badly defined.<br />
 To enable the console, Raspberry Pi OS offers several ways :</p>
 <ul>
-<li>adding the line enable uart=1 at the end of the file /mnt/rpi/boot/config.txt
+<li>adding the line <code>enable_uart=1</code> at the end of the file <code>/mnt/rpi/boot/config.txt</code>
 with standard mount of boot partition,</li>
-<li>adding the line enable uart=1 at the end of the file boot/config.txt in chroot
-mode,</li>
-<li>use raspi-config in chroot mode.</li>
+<li>adding the line <code>enable_uart=1</code> at the end of the file <code>/boot/config.txt</code> in chroot
+mode</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>UPDATE - After verification, the following does not work well even with QEMU. raspi-config needs a real Raspberry Pi kernel, so it works only on a real board</strong><br />
+<strong>To avoid any unexpected behaviour, we will prefer manual configuration (see after this warning)</strong></p>
 <p>As we have started chroot, we will use the raspi-config tool.</p>
 <p>Simply execute raspi-config under chroot prompt <code>#</code>
 <div class="highlight"><pre><span></span><code>raspi-config
@@ -342,6 +373,9 @@ mode,</li>
 <p class="admonition-title">Note</p>
 <p>raspi-config can be used to easily configure a lot of features such as the network, the locale language, etc</p>
 </div>
+</div>
+<p>As we have started chroot, we will directly modify the <code>/boot/config.txt</code> file.</p>
+<p>Add the line <code>enable_uart=1</code> in <code>/boot/config.txt</code> using nano.</p>
 <h2 id="clean-termination-of-chroot">Clean termination of chroot</h2>
 <h3 id="standard-process_1">Standard process</h3>
 <p>To exit chroot, just type <code>ctrl+D</code> or <code>exit</code>.</p>
@@ -397,7 +431,7 @@ apt<span class="w"> </span>update
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../modifying/" class="btn btn-neutral float-left" title="D. Modifying the Raspberry Pi OS image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../qemu/" class="btn btn-neutral float-right" title="Introduction to QEMU">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../lab2/intro/" class="btn btn-neutral float-right" title="Lab 2 - Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -423,7 +457,7 @@ apt<span class="w"> </span>update
       <span><a href="../modifying/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../../qemu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../lab2/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

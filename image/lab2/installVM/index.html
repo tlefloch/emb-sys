@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "B. Install QEMU ARM virtual machine (VM)";
-        var mkdocs_page_input_path = "image/tp2/installVM.md";
+        var mkdocs_page_input_path = "image/lab2/installVM.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -45,21 +45,49 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Image</span></p>
-              <ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/intro/">Lab 1 – Setting up Raspberry Pi OS image​</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/intro/">Lab 1 - Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/getting/">A. Getting the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/getting/">A. Getting the Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../tp1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">B. Install QEMU ARM virtual machine (VM)</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab3/saving/">D. Cloning the image</a>
                 </li>
     </ul>
                   </li>
@@ -83,6 +111,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
+          <li class="breadcrumb-item">Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</li>
       <li class="breadcrumb-item active">B. Install QEMU ARM virtual machine (VM)</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -95,18 +125,21 @@
                 <h1 id="b-install-qemu-arm-virtual-machine-vm">B. Install QEMU ARM virtual machine (VM)</h1>
 <p>Install require packages for QEMU virtual machine (QEMU VM).</p>
 <p>Update package manager
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div></p>
 <p>Install packages for the QEMU VM
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu-system-arm<span class="w"> </span><span class="se">\</span>
-qemu-kvm<span class="w"> </span>libvirt-clients<span class="w"> </span>libvirt-daemon-system<span class="w"> </span>bridge-utils<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qemu-system-arm<span class="w"> </span>qemu-kvm<span class="w"> </span><span class="se">\</span>
+libvirt-clients<span class="w"> </span>libvirt-daemon-system<span class="w"> </span>bridge-utils<span class="w"> </span><span class="se">\</span>
 virtinst<span class="w"> </span>libvirt-daemon<span class="w"> </span>virt-manager
-</code></pre></div>
-If problems with lmv2 during install
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>purge<span class="w"> </span>lvm2
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>lvm2
-</code></pre></div>
-When running Raspberry PI OS in the QEMU VM, we need the Linux
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get problems with lmv2 during install, run:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>purge<span class="w"> </span>lvm2
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lvm2
+</code></pre></div></p>
+</div>
+<p>When running Raspberry PI OS in the QEMU VM, we need the Linux
 kernel and drivers to be compatible with an execution on a QEMU VM
 instead of the actual RPI board. They are available here :
 https://github.com/dhruvvyas90/qemu-rpi-kernel</p>
@@ -120,6 +153,10 @@ to avoid problems of git submodules, you can remove the .git folder
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting/" class="btn btn-neutral float-left" title="A. Getting the Raspberry Pi OS image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../using/" class="btn btn-neutral float-right" title="C. Using QEMU Virtual Machine">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -141,6 +178,10 @@ to avoid problems of git submodules, you can remove the .git folder
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../getting/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../using/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
