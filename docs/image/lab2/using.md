@@ -81,7 +81,7 @@ We can enable ssh by adding an empty file simply called ssh in the
 boot folder
 
 !!! Note "1 -Issue"
-    Use the QEMU VM console with user pi or ue41 to create the /boot/ssh file with `touch`
+    Use the QEMU VM console with user pi to create the /boot/ssh file with `touch`
 
 <!-- !!! Tip "1 - Solution"
     Start QEMU with a shell :
