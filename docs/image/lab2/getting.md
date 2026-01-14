@@ -12,7 +12,7 @@ the Raspberry PI OS Lite Buster version from 2021/05/07 (or 2021/05/08).
 
 ```bash
 cd rpilab/imgs
-wget https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2021-05-28/2021-05-07-raspios-buster-arm64-lite.zip
-unzip raspios_lite_arm64-2021-05-28/2021-05-07-raspios-buster-arm64-lite.zip
+wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
+unzip 2021-05-07-raspios-buster-armhf-lite.zip
 cd ..
 ```
