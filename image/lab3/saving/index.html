@@ -132,26 +132,29 @@
 sd-card and mount it on the computer</p>
 <h2 id="with-dd">With dd</h2>
 <p>The sd-card may be larger than the Raspberry OS image (for example 32
-Gb sd-card for our image of 4 Gb). We use the fdisk command to get
-the actual size of the image. Replace ? in /dev/sd? with the right letter:
-sudo fdisk -l /dev/sd?
-The number of blocks is given is the ”End” value for ”/dev/sd?2” (ex
+Gb sd-card for our image of 4 Gb).</p>
+<p>If the partition /dev/sd?2 is very large with lot of empty space,
+gparted command can be used to shrink it before doing dd :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>gparted<span class="w"> </span>/dev/sd?2
+</code></pre></div></p>
+<p>Then resize the image to the minimum size + few space</p>
+<p>We use the fdisk command to get
+the actual size of the image.<br />
+Replace ? in /dev/sd? with the right letter:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span>/dev/sd?
+</code></pre></div></p>
+<p>The number of blocks is given is the ”End” value for ”/dev/sd?2” (ex
 8724479). We use this count in the dd command to copy back the
 modifed Raspberry OS image on our computer.</p>
 <p>copy the image from the sd-card to the computer :
 replace ? with the appropriate drive letter</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
+<p>When using the <code>dd</code> command make sure you don't overwrite the wrong partitions or you will get big trouble</p>
 </div>
-<p>When using the <code>dd</code> command make sure you don't overwrite the wrong partitions or you will get big trouble !</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/sdb<span class="w"> </span><span class="nv">of</span><span class="o">=</span>imgs/2024-11-19-raspios-bookworm-arm64-lite-modified-2024.img<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">8724479</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">512</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>if the partition /dev/sd?2 is very large with lot of empty space,
-gparted command can be used to shrink it before doing dd (sudo gparted
-/dev/sd?2)</p>
-</div>
+<p>!</p>
 <h2 id="with-balena-etcher">With Balena Etcher</h2>
 <p>On your host machine :</p>
 <ol>
