@@ -5,17 +5,6 @@ To save all the changes made on the Raspberry PI image, we can clone the image f
 After stopping the RPI (unplug the power supply) , we remove the
 sd-card and mount it on the computer
 
-<!-- The sd-card may be larger than the Raspberry OS image (for example 32
-Gb sd-card for our image of 4 Gb)
-
-Use `lsblk` and look for something like `/dev/sd*`
-
-We use the fdisk command to get the actual size of the image.  
-Replace `?` in `/dev/sd?` with the right letter:
-```bash
-sudo fdisk -l /dev/sd?
-``` -->
-
 On your host machine :
 
 1. Open Balena Etcher
