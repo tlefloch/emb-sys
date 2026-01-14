@@ -170,12 +170,13 @@ But good news, most things <code>raspi-config</code> does are just file edits, s
 <p>First, insert the sd-card in the Raspberry Pi</p>
 <p>The console will be connected on the I/O ports on the RPI board
 and on an USB input of the host computer.</p>
-<p>The serial to USB adapter is a FTDI USB cable with 3 or 6 ”Arduino like” terminations
+<p>The serial to USB adapter is a FTDI USB cable with 3, 4 or 6 ”Arduino like” terminations
 to be plugged on the RPI board, you can find some information in
 the data sheet of the cable :</p>
 <ul>
 <li>The one with 3 terminations : <a href="https://www.mouser.fr/datasheet/2/163/DS_TTL-232R_RPi-267577.pdf">https://www.mouser.fr/datasheet/2/163/DS_TTL-232R_RPi-267577.pdf</a></li>
-<li>The one with 5 terminations : <a href="https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf">https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf</a></li>
+<li>The one with 6 terminations : <a href="https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf">https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf</a></li>
+<li>The one with 4 terminations : <a href="https://www.adafruit.com/product/954?srsltid=AfmBOoploJ4nyapeY4tQLdr9ZWopzSrvJaUvqjKPwxA8N61XxzHrdqi4">https://www.adafruit.com/product/954?srsltid=AfmBOoploJ4nyapeY4tQLdr9ZWopzSrvJaUvqjKPwxA8N61XxzHrdqi4</a></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -195,8 +196,7 @@ check the system messages :</p>
 and list the devices :</p>
 <div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/dev<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;tty&quot;</span>
 </code></pre></div>
-<p>Now, plug the FTDI cable and check again. <code>dmesg</code> should tell you about a new connection and the devices list should display a new device
-https://cdn.robotshop.com/media/s/spa/rb-spa-432/pdf/ftdi-cable-schematic-dev-09718.pdf</p>
+<p>Now, plug the FTDI cable and check again. <code>dmesg</code> should tell you about a new connection and the devices list should display a new device</p>
 <div class="admonition note">
 <p class="admonition-title">1 - Issue</p>
 <p>Find the name of the serial port. It should be something like <code>/dev/tty*</code>  </p>
