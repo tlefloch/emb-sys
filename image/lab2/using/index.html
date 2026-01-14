@@ -165,7 +165,7 @@ instead of /dev/mmcblk? (simpler naming for the disk drives)</p>
 <p><strong>Problem</strong> : the VM has localhost IP address, same as host.<br />
 To solve it, we use port mapping :<br />
 tcp port 10022 of the host will be mapped to port 22 on the QEMU VM<br />
-Then ssh will work using port 10222 and localhost</p>
+Then ssh will work using port 10022 and localhost</p>
 <div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
 -kernel<span class="w"> </span>qemu-rpi-kernel/kernel-qemu-4.19.50-buster<span class="w"> </span><span class="se">\</span>
 -cpu<span class="w"> </span>arm1176<span class="w"> </span><span class="se">\</span>
