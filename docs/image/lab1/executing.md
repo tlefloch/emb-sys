@@ -78,8 +78,9 @@ PTYs (/dev/pts/*), pseudo-terminals are provided by the devpts filesystem. Mount
 ```bash
 mkdir -p /mnt/rpi/dev/pts
 sudo mount -t devpts devpts /mnt/rpi/dev/pts
-sudo ln -sf pts/ptmx /mnt/rpi/dev/ptmx
 ```
+!!! Warning
+    If you get a PTY error, reboot your computer and avoid the previous step
 
 !!! Note
     We need to disable some specific actions done solely on the
@@ -154,7 +155,6 @@ sudo mount --bind /dev /mnt/rpi/dev/
 sudo mount --bind /sys /mnt/rpi/sys/
 sudo mount --bind /proc /mnt/rpi/proc/
 sudo mount -t devpts devpts /mnt/rpi/dev/pts
-sudo ln -sf pts/ptmx /mnt/rpi/dev/ptmx
 sudo cp /usr/bin/qemu-arm-static /mnt/rpi/usr/bin/
 sudo cp /mnt/rpi/etc/resolv.conf /mnt/rpi/etc/resolv.conf.bck
 sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
@@ -227,32 +227,40 @@ ue41    ALL=(ALL:ALL) ALL
 
 Then write and save (nano commands)
 
-## Enabling the RPI console for debug with chroot
+## Enabling the Serial interface and RPI console for debug
 
 The console is an easy tool for debug, it can be connected to the host via FTDI USB
 cable and can be accessed on Ubuntu via /dev/ttyUSB0 device. Hence, it can work
 even if the network is not or badly defined.  
 To enable the console, Raspberry Pi OS offers several ways :
 
-- adding the line enable uart=1 at the end of the file /mnt/rpi/boot/config.txt
+- adding the line `enable_uart=1` at the end of the file `/mnt/rpi/boot/config.txt`
 with standard mount of boot partition,
-- adding the line enable uart=1 at the end of the file boot/config.txt in chroot
-mode,
-- use raspi-config in chroot mode.
+- adding the line `enable_uart=1` at the end of the file `/boot/config.txt` in chroot
+mode
 
-As we have started chroot, we will use the raspi-config tool.
+!!! Warning
+    **UPDATE - After verification, the following does not work well even with QEMU. raspi-config needs a real Raspberry Pi kernel, so it works only on a real board**  
+    **To avoid any unexpected behaviour, we will prefer manual configuration (see after this warning)**
 
-Simply execute raspi-config under chroot prompt `#`
-```bash
-raspi-config
-```
+    As we have started chroot, we will use the raspi-config tool.
 
-Then go in `Interface Options` and enable `Serial Port`. 
+    Simply execute raspi-config under chroot prompt `#`
+    ```bash
+    raspi-config
+    ```
 
-More details on [raspi-config Documetation](https://www.raspberrypi.com/documentation/computers/configuration.html)
+    Then go in `Interface Options` and enable `Serial Port`. 
 
-!!! Note
-    raspi-config can be used to easily configure a lot of features such as the network, the locale language, etc
+    More details on [raspi-config Documetation](https://www.raspberrypi.com/documentation/computers/configuration.html)
+
+    !!! Note
+        raspi-config can be used to easily configure a lot of features such as the network, the locale language, etc
+
+
+As we have started chroot, we will directly modify the `/boot/config.txt` file.
+
+Add the line `enable_uart=1` in `/boot/config.txt` using nano.
 
 ## Clean termination of chroot
 

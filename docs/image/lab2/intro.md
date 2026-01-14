@@ -1,6 +1,8 @@
-# Introduction
+# Lab 2 - Introduction
 
 ## Objectives
+
+**Running the Raspberry Pi OS on a virtual machine on host**
 
 1. Getting the Raspberry Pi OS (formerly Raspbian) image
 2. Installing Virtual Machine (QEMU VM) software on the host

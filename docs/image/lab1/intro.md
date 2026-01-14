@@ -1,6 +1,8 @@
-# Lab 1 – Setting up Raspberry Pi OS image​
+# Lab 1 - Introduction
 
 ## Objectives
+
+**Setting-up Raspberry Pi OS Image**
 
 1. Getting the Raspberry Pi OS (formerly Raspbian) image
 2. Modifying the image on the host OS (ex. increasing size, changing settings)
