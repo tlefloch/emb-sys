@@ -27,6 +27,9 @@ qemu-system-arm \
 -dtb qemu-rpi-kernel/versatile-pb-buster.dtb
 ```
 
+!!! Tip
+    Look for the default login and password on a Rapsberry Pi
+
 We add a special rule to have the disk devices named /dev/sd?
 instead of /dev/mmcblk? (simpler naming for the disk drives)
 
