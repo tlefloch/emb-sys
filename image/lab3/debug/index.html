@@ -144,10 +144,10 @@ If <code>dialout</code> doesn't appear, refer to the <strong>Set-up the FTDI USB
 <p>The sd-card must be plugged in the RPI in the sd port, not with a usb adapter</p>
 </li>
 <li>
-<p>Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card</p>
+<p>Make sure there is the line <code>enable_uart=1</code> at the end of the <code>/boot/config.txt</code> of your Raspberry Pi OS image. If not, refer to the <strong>Enable serial interface and login shell over serial</strong> section in <a href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a> section to solve this.</p>
 </li>
 <li>
-<p>Make sure there is the line <code>enable_uart=1</code> at the end of the <code>/boot/config.txt</code> of your Raspberry Pi OS image. If not, refer to the <strong>Enable serial interface and login shell over serial</strong> section in <a href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a> section to solve this.</p>
+<p>Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card</p>
 </li>
 </ol>
 <p>If nothing of these solves the issue, the cause is probably hardware either from your computer (ex: failing usb port) or from the RPI setup (ex: failing FTDI USB, failing sd-card, ...)</p>
