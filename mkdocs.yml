@@ -32,6 +32,7 @@ nav:
       - image/lab3/connecting.md
       - image/lab3/setting.md
       #- image/lab3/saving.md
+      - image/lab3/debug.md
   - QEMU:
     - image/qemu.md
   # - Docker:
