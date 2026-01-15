@@ -197,9 +197,10 @@ boot folder</p>
 <p class="admonition-title">1 -Issue</p>
 <p>Use the QEMU VM console with user pi to create the /boot/ssh file with <code>touch</code></p>
 </div>
-<!-- !!! Tip "1 - Solution"
-    Start QEMU with a shell :
-    <div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<p>Start QEMU with a shell :
+<div class="highlight"><pre><span></span><code>qemu-system-arm<span class="w"> </span><span class="se">\</span>
 -kernel<span class="w"> </span>qemu-rpi-kernel/kernel-qemu-4.19.50-buster<span class="w"> </span><span class="se">\</span>
 -cpu<span class="w"> </span>arm1176<span class="w"> </span><span class="se">\</span>
 -m<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
@@ -209,14 +210,12 @@ boot folder</p>
 -append<span class="w"> </span><span class="s2">&quot;root=/dev/sda2 panic=1 rootfstype=ext4 rw init=/bin/bash&quot;</span><span class="w"> </span><span class="se">\</span>
 -drive<span class="w"> </span><span class="s2">&quot;file=imgs/2021-05-07-raspios-buster-armhf-lite.img,index=0,media=disk,format=raw&quot;</span><span class="w"> </span><span class="se">\</span>
 -dtb<span class="w"> </span>qemu-rpi-kernel/versatile-pb-buster.dtb
-</code></pre></div>
-
-    and use 
-    <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>touch<span class="w"> </span>/boot/ssh
-</code></pre></div>
-
-    then leave QEMU -->
-
+</code></pre></div></p>
+<p>and use 
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>touch<span class="w"> </span>/boot/ssh
+</code></pre></div></p>
+<p>then leave QEMU</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can also use chroot with your bash scripts <code>start_chroot.sh</code> and <code>stop_chroot.sh</code></p>
@@ -231,11 +230,11 @@ Look for the relevant ssh option to use the right port which is not the default 
 <p class="admonition-title">Tip</p>
 <p>The ip address is your localhost ipaddress so you can use the shortcut <code>pi@localhost</code></p>
 </div>
-<!-- !!! Tip "2 - Solution"
-    ```bash
-    ssh -p 10022 pi@localhost
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">2 - Solution</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">10022</span><span class="w"> </span>pi@localhost
+</code></pre></div>
+</div>
 <p>You can stop QEMU and delete the Buster image after this lab.</p>
               
             </div>

@@ -170,10 +170,10 @@ and list the devices :</p>
 <p class="admonition-title">Note</p>
 <p>If you are using Windows, you will need to know the COM port number connected to your USB to serial adapter, which can be found in the Device Manager</p>
 </div>
-<!-- !!! Tip "1 - Solution"
-
-    The name of serial port should be something like /dev/ttyUSB0 -->
-
+<div class="admonition tip">
+<p class="admonition-title">1 - Solution</p>
+<p>The name of serial port should be something like /dev/ttyUSB0</p>
+</div>
 <p>Check it works with :
 <div class="highlight"><pre><span></span><code>stty<span class="w"> </span>-F<span class="w"> </span>&lt;serial_port_name&gt;
 </code></pre></div></p>
@@ -203,12 +203,11 @@ tools like <code>minicom</code>.</p>
 <p class="admonition-title">2 - Issue</p>
 <p>Start minicom specifying the device name and a baudrate of 115200 using the correct options</p>
 </div>
-<!-- !!! Tip "2 - Solution"
-
-    ```bash
-    minicom -b 115200 -D /dev/ttyUSB0
-    ``` -->
-
+<div class="admonition tip">
+<p class="admonition-title">2 - Solution</p>
+<div class="highlight"><pre><span></span><code>minicom<span class="w"> </span>-b<span class="w"> </span><span class="m">115200</span><span class="w"> </span>-D<span class="w"> </span>/dev/ttyUSB0
+</code></pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On windows use Putty is a straight-forward solution to connect to serial ports<br />
