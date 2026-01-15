@@ -127,6 +127,8 @@ wpa_passphrase <network_ssid> <password>
 
 This will return an encrypted password. Copy it in your wifi interface configuration file instead of the real password
 
+The iot network has internet connection, so you can try `sudo apt update` for example.
+
 ### Configure an ethernet interface
 
 We may want to use a ethernet cable to connect to the RPI (for example to get a higher data rate than via Wifi), in this case
