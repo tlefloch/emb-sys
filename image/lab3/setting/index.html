@@ -248,6 +248,7 @@ we would have to create and configure this file manually because <code>nmcli</co
 <div class="highlight"><pre><span></span><code>wpa_passphrase<span class="w"> </span>&lt;network_ssid&gt;<span class="w"> </span>&lt;password&gt;
 </code></pre></div>
 <p>This will return an encrypted password. Copy it in your wifi interface configuration file instead of the real password</p>
+<p>The iot network has internet connection, so you can try <code>sudo apt update</code> for example.</p>
 <h3 id="configure-an-ethernet-interface">Configure an ethernet interface</h3>
 <p>We may want to use a ethernet cable to connect to the RPI (for example to get a higher data rate than via Wifi), in this case
 we can set eth0.</p>
