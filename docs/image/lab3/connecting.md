@@ -63,7 +63,7 @@ Check it works with :
 stty -F <serial_port_name>
 ```
 
-If the command works only with sudo, you need to be added to the dialout group.  
+If the command works only with sudo, you need to be added to the dialout group, which gives full and direct access to serial ports.  
 
 First, check the groups you are member of :
 ```bash
