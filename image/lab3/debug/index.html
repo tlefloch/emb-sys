@@ -132,13 +132,13 @@
 <p>This section tries to solve some of the problems encountered with the students during the lab</p>
 <h2 id="nothing-appears-in-minicom">Nothing appears in minicom</h2>
 <ul>
-<li>Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card</li>
-<li>Make sure there is the line <code>enable_uart=1</code> at the end of the <code>/boot/config.txt</code> of your Raspberry Pi OS image</li>
-<li>The sd-card must be plugged in the RPI in the sd port, not with a usb adapter</li>
 <li>Make sure you are in the <code>dialout</code> group in the terminal from which you launch minicom<br />
 Before starting minicom, check using the following command : <code>groups</code><br />
-If <code>dialout</code> doesn't appear, refer to the <strong>Enable serial interface and login shell over serial</strong> in <a href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a> section to solve this.</li>
+If <code>dialout</code> doesn't appear, refer to the <strong>Set-up the FTDI USB cable connection on a serial port of the host</strong> section in <a href="../connecting/">B. Accessing the headless RPI without network</a> section to solve this.</li>
 <li>Make sure the wiring is correct. In UART, Rx goes on Tx and Tx on Rx.</li>
+<li>The sd-card must be plugged in the RPI in the sd port, not with a usb adapter</li>
+<li>Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card</li>
+<li>Make sure there is the line <code>enable_uart=1</code> at the end of the <code>/boot/config.txt</code> of your Raspberry Pi OS image. If not, refer to the <strong>Enable serial interface and login shell over serial</strong> section in <a href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a> section to solve this.</li>
 </ul>
 <p>If nothing of these solves the issue, the cause is probably hardware either from your computer (ex: failing usb port) or from the RPI setup (ex: failing FTDI USB, failing sd-card, ...)</p>
 <h2 id="you-cant-access-or-write-on-the-sd-card-when-it-is-plugged-on-your-computer">You can't access or write on the sd-card when it is plugged on your computer</h2>
