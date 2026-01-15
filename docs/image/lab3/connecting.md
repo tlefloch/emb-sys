@@ -74,7 +74,7 @@ If dialout is not in the list , do
 sudo usermod -a -G dialout $USER
 ```
 and restart the computer ... or not !!!  
-if you don’t want to restart the session, remember this trick :
+if you don’t want to restart the session, remember this trick (the scope of this command is only the current shell):
 ```bash
 su - $USER
 ```
