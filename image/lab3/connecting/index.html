@@ -177,23 +177,24 @@ and list the devices :</p>
 <p>Check it works with :
 <div class="highlight"><pre><span></span><code>stty<span class="w"> </span>-F<span class="w"> </span>&lt;serial_port_name&gt;
 </code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the command works only with sudo, you need to be added to the dialout group.<br />
-First, check the groups you are member of :
+<p>If the command works only with sudo, you need to be added to the dialout group.  </p>
+<p>First, check the groups you are member of :
 <div class="highlight"><pre><span></span><code>groups
 </code></pre></div>
 If dialout is not in the list , do
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
 </code></pre></div>
-and restart the computer ... or not !!!
-if you don’t want to restart the session, remember this trick
+and restart the computer ... or not !!!<br />
+if you don’t want to restart the session, remember this trick :
 <div class="highlight"><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span><span class="nv">$USER</span>
-</code></pre></div>
-now dialout should be in the group list
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful, the <code>su - $USER</code> command only add you in the dialout group for the terminal where you used it. But, when you will restart your computer, all your terminals will open with your user already in dialout group, and you will not need to use <code>su - $USER</code> again.</p>
+</div>
+<p>now dialout should be in the group list
 <div class="highlight"><pre><span></span><code>groups
 </code></pre></div></p>
-</div>
 <h2 id="access-the-rpi-from-the-host">Access the RPI from the host</h2>
 <p>Once the RPI boot has booted, we can access it from the host with
 tools like <code>minicom</code>.</p>
