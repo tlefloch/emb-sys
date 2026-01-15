@@ -4,7 +4,7 @@ This section tries to solve some of the problems encountered with the students d
 
 ## Nothing appears in minicom
 
-1. Make sure you are in the `dialout` group in the terminal from which you launch minicom  
+1. Make sure you are in the `dialout` group in the terminal from which you launch minicom, because even if you've already done the adding, it may not be effective !  
 Before starting minicom, check using the following command : `groups`  
 If `dialout` doesn't appear, refer to the **Set-up the FTDI USB cable connection on a serial port of the host** section in [B. Accessing the headless RPI without network](../lab3/connecting.md) section to solve this.
 
