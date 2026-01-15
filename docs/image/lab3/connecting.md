@@ -63,25 +63,29 @@ Check it works with :
 stty -F <serial_port_name>
 ```
 
-!!! Note
-    If the command works only with sudo, you need to be added to the dialout group.  
-    First, check the groups you are member of :
-    ```bash
-    groups
-    ```
-    If dialout is not in the list , do
-    ```bash
-    sudo usermod -a -G dialout $USER
-    ```
-    and restart the computer ... or not !!!
-    if you don’t want to restart the session, remember this trick
-    ```bash
-    su - $USER
-    ```
-    now dialout should be in the group list
-    ```bash
-    groups
-    ```
+If the command works only with sudo, you need to be added to the dialout group.  
+
+First, check the groups you are member of :
+```bash
+groups
+```
+If dialout is not in the list , do
+```bash
+sudo usermod -a -G dialout $USER
+```
+and restart the computer ... or not !!!  
+if you don’t want to restart the session, remember this trick :
+```bash
+su - $USER
+```
+!!! Warning
+    Be careful, the `su - $USER` command only add you in the dialout group for the terminal where you used it. But, when you will restart your computer, all your terminals will open with your user already in dialout group, and you will not need to use `su - $USER` again.
+
+
+now dialout should be in the group list
+```bash
+groups
+```
 
 ## Access the RPI from the host
 
