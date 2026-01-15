@@ -74,12 +74,12 @@ We configure the network with NetworkManager using the `nmcli` (Network Manager 
     Configure the Wifi connection to the **iot** (password: enstaL@b) network using `nmcli`
     Help on [https://www.raspberrypi.com/documentation/computers/configuration.html#wireless-networking-command-line](https://www.raspberrypi.com/documentation/computers/configuration.html#wireless-networking-command-line) 
 
-<!-- !!! Tip "1 - Solution"
+!!! Tip "1 - Solution"
 
     ```bash
     sudo nmcli --ask dev wifi connect iot
     ```
-    Enter password -->
+    Enter password
 
 Now check a file has been created for your wifi interface in `/etc/NetworkManager/system-connections`
 
@@ -177,11 +177,11 @@ Be carefull, on iot the network mask is 255.255.252.0 or /22
 !!! Tip
     Find the correct option to do a **Nmap Ping Scan**, which is a lot quicker than using nmap without option.
 
-<!-- !!! Tip "2 - Solution"
+!!! Tip "2 - Solution"
 
     ```bash
     nmap -sP 172.19.144.0/22
-    ``` -->
+    ```
 
 ### With the console (via minicom)
 
