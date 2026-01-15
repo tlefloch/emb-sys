@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>A. Getting the Raspberry Pi OS image - Embedded systems</title>
+    <title>Debug - Embedded systems</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "A. Getting the Raspberry Pi OS image";
-        var mkdocs_page_input_path = "image/lab2/getting.md";
+        var mkdocs_page_name = "Debug";
+        var mkdocs_page_input_path = "image/lab3/debug.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -63,31 +63,37 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 2 - Introduction</a>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/intro/">Lab 2 - Introduction</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">A. Getting the Raspberry Pi OS image</a>
-    <ul class="current">
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/getting/">A. Getting the Raspberry Pi OS image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/installVM/">B. Install QEMU ARM virtual machine (VM)</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../using/">C. Using QEMU Virtual Machine</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab2/using/">C. Using QEMU Virtual Machine</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab3/intro/">Lab 3 - Introduction</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 3 - Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                <li class="toctree-l2"><a class="reference internal" href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab3/connecting/">B. Accessing the headless RPI without network</a>
+                <li class="toctree-l2"><a class="reference internal" href="../connecting/">B. Accessing the headless RPI without network</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab3/setting/">C. Setting up network for ssh access</a>
+                <li class="toctree-l2"><a class="reference internal" href="../setting/">C. Setting up network for ssh access</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab3/debug/">Debug</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Debug</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#nothing-appears-in-minicom">Nothing appears in minicom</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-cant-access-or-write-on-the-sd-card-when-it-is-plugged-on-your-computer">You can't access or write on the sd-card when it is plugged on your computer</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-cant-use-nmcli">You can't use nmcli</a>
+    </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -112,8 +118,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Raspberry Pi OS Labs</li>
-          <li class="breadcrumb-item">Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</li>
-      <li class="breadcrumb-item active">A. Getting the Raspberry Pi OS image</li>
+          <li class="breadcrumb-item">Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</li>
+      <li class="breadcrumb-item active">Debug</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -122,33 +128,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="a-getting-the-raspberry-pi-os-image">A. Getting the Raspberry Pi OS image</h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Unfortunately, there is still no working QEMU emulation specific kernel for Bookworm at the time of this Lab
-So, in order to learn how to emulate a Raspberry Pi with QEMU VM, we will download a Buster image.  </p>
-<p>However, make sure to keep your Bookworm image from Lab 1 as we will use it in Lab 3</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">1 - Issue</p>
-<p>Follow the instructions in <a href="../../lab1/getting/">Getting the Raspberry Pi OS image</a>
-from the previous lab to download and decompress
-the Raspberry PI OS Lite Buster version from 2021/05/07 (or 2021/05/08).</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">1 - Solution</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rpilab/imgs
-wget<span class="w"> </span>https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
-unzip<span class="w"> </span><span class="m">2021</span>-05-07-raspios-buster-armhf-lite.zip
-<span class="nb">cd</span><span class="w"> </span>..
-</code></pre></div>
-</div>
+                <h1 id="debug">Debug</h1>
+<p>This section tries to solve some of the problems encountered with the students during the lab</p>
+<h2 id="nothing-appears-in-minicom">Nothing appears in minicom</h2>
+<ul>
+<li>Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card</li>
+<li>Make sure there is the line <code>enable_uart=1</code> at the end of the <code>/boot/config.txt</code> of your Raspberry Pi OS image</li>
+<li>The sd-card must be plugged in the RPI in the sd port, not with a usb adapter</li>
+<li>Make sure you are in the <code>dialout</code> group in the terminal from which you launch minicom<br />
+Before starting minicom, check using the following command : <code>groups</code><br />
+If <code>dialout</code> doesn't appear, refer to the <strong>Enable serial interface and login shell over serial</strong> in <a href="../writing/">A. Writing the Raspberry Pi OS image on the sd-card</a> section to solve this.</li>
+<li>Make sure the wiring is correct. In UART, Rx goes on Tx and Tx on Rx.</li>
+</ul>
+<p>If nothing of these solves the issue, the cause is probably hardware either from your computer (ex: failing usb port) or from the RPI setup (ex: failing FTDI USB, failing sd-card, ...)</p>
+<h2 id="you-cant-access-or-write-on-the-sd-card-when-it-is-plugged-on-your-computer">You can't access or write on the sd-card when it is plugged on your computer</h2>
+<p>Try formatting the card, if you can't don't insist, the sd card is probably dead.</p>
+<h2 id="you-cant-use-nmcli">You can't use nmcli</h2>
+<ul>
+<li>Make sure you are using the Raspberry Pi OS Bookworm (or newer) image from Lab 1 on the sd card
+Older versions of Raspberry Pi OS don't use nmcli but <code>/etc/wpa_supplicant.conf</code> and <code>/etc/dhcpch.conf</code> files.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../intro/" class="btn btn-neutral float-left" title="Lab 2 - Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../installVM/" class="btn btn-neutral float-right" title="B. Install QEMU ARM virtual machine (VM)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../setting/" class="btn btn-neutral float-left" title="C. Setting up network for ssh access"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../qemu/" class="btn btn-neutral float-right" title="Introduction to QEMU">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -171,10 +176,10 @@ unzip<span class="w"> </span><span class="m">2021</span>-05-07-raspios-buster-ar
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../setting/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../installVM/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../qemu/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
