@@ -6,13 +6,16 @@
 
     However, make sure to keep your Bookworm image from Lab 1 as we will use it in Lab 3
 
-Follow the instructions in [Getting the Raspberry Pi OS image](../lab1/getting.md)
-from the previous lab to download and decompress
-the Raspberry PI OS Lite Buster version from 2021/05/07 (or 2021/05/08).
+!!! Note "1 - Issue"
+    Follow the instructions in [Getting the Raspberry Pi OS image](../lab1/getting.md)
+    from the previous lab to download and decompress
+    the Raspberry PI OS Lite Buster version from 2021/05/07 (or 2021/05/08).
 
-```bash
-cd rpilab/imgs
-wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
-unzip 2021-05-07-raspios-buster-armhf-lite.zip
-cd ..
-```
+!!! Tip "1 - Solution"
+
+    ```bash
+    cd rpilab/imgs
+    wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
+    unzip 2021-05-07-raspios-buster-armhf-lite.zip
+    cd ..
+    ```
