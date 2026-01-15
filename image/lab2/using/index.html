@@ -149,6 +149,10 @@ configure the execution of the VM.</p>
 -drive<span class="w"> </span><span class="s2">&quot;file=imgs/2021-05-07-raspios-buster-armhf-lite.img,index=0,media=disk,format=raw&quot;</span><span class="w"> </span><span class="se">\</span>
 -dtb<span class="w"> </span>qemu-rpi-kernel/versatile-pb-buster.dtb
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Look for the default login and password on a Rapsberry Pi</p>
+</div>
 <p>We add a special rule to have the disk devices named /dev/sd?
 instead of /dev/mmcblk? (simpler naming for the disk drives)</p>
 <p>Create the file rule file /etc/udev/rules.d/90-qemu.rules
