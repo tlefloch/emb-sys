@@ -2,6 +2,9 @@
 
 In this part, we plan to write our Raspberry Pi OS image on a sd-card in order to use it on a real board.
 
+!!! Warning
+    Make sure to use the Raspberry Pi OS bookworm image you set up in Lab 1
+
 ## Headless Raspberry Pi
 
 For convenience or to save space and money, we don't want to use additional hardware components such as a monitor, keyboard, or mouse to access our Raspberry Pi, especially with a desktopless OS such as our Lite version of Raspberry Pi OS.  
