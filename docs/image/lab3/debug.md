@@ -10,11 +10,13 @@ If `dialout` doesn't appear, refer to the **Set-up the FTDI USB cable connection
 
 2. Make sure the wiring is correct. In UART, Rx goes on Tx and Tx on Rx.
 
-3. The sd-card must be plugged in the RPI in the sd port, not with a usb adapter
+3. Make sure the FTDI USB cable is 3.3V and not 5V as it can permanently damage the board
 
-4. Make sure there is the line `enable_uart=1` at the end of the `/boot/config.txt` of your Raspberry Pi OS image. If not, refer to the **Enable serial interface and login shell over serial** section in [A. Writing the Raspberry Pi OS image on the sd-card](../lab3/writing.md) section to solve this.
+4. The sd-card must be plugged in the RPI in the sd port, not with a usb adapter
 
-5. Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card
+5. Make sure there is the line `enable_uart=1` at the end of the `/boot/config.txt` of your Raspberry Pi OS image. If not, refer to the **Enable serial interface and login shell over serial** section in [A. Writing the Raspberry Pi OS image on the sd-card](../lab3/writing.md) section to solve this.
+
+6. Make sure you are using the Raspberry Pi OS Bookworm image from Lab 1 on the sd card
 
 
 
