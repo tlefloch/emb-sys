@@ -161,6 +161,9 @@ Finally, bind your host’s `/etc/resolv.conf` inside the chroot :
 sudo cp /etc/resolv.conf /mnt/rpi/etc/resolv.conf
 ```
 
+!!! Note
+    If you get a symlink error, just delete /mnt/rpi/etc/resolv.conf and try again
+
 It will allow to access internet through the host in chroot.
 
 !!! Tip
