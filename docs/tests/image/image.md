@@ -113,6 +113,7 @@ Inside fdisk:
     - Partition number: 2
     - First sector: 1050624 (must be same as before!)
     - Last sector: accept default (fill the image)
+    - Keep `ext4` signature
 
 - Press w → write changes
 
