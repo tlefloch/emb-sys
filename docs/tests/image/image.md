@@ -89,7 +89,7 @@ Later, we will install ROS2 on our image but we see that our img is only a bit l
 Let's increase it to 8G :
 
 ```bash
-sudo truncate -s 8G ubuntu-24.04.3-preinstalled-server-arm64+raspi.img
+sudo truncate -s 8G <your_.img_file>
 ```
 
 !!! Warning
