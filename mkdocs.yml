@@ -37,3 +37,17 @@ nav:
     - image/qemu.md
   # - Docker:
   #   - docker
+  - Tests:
+    - Test 1 - Configuring an AUV's embedded Linux:
+      - tests/image/intro.md
+      - tests/image/git.md
+      - tests/image/image.md
+      - tests/image/modif.md
+      - tests/image/hostname.md
+      - tests/image/user.md
+      - tests/image/network.md
+      - tests/image/ros2.md
+      - tests/image/udev.md
+      - tests/image/service.md
+      - tests/image/clean.md
+      - tests/image/qemu.md
