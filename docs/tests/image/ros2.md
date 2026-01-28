@@ -22,5 +22,6 @@ You will have to choose between the **Desktop Install** and the **ROS-Base Insta
 Since we are setting up a headless Raspberry Pi, GUI tools are not required, so select the **minimal ROS-Base install**.
 
 !!! Warning
-    You might get uninstallable packages errors. That's a reported issue on Ubuntu 24.04.3 still to be solved.
-    If this occurs try this solution from github : [https://github.com/ros2/ros2/issues/1621#issuecomment-3716728427](https://github.com/ros2/ros2/issues/1621#issuecomment-3716728427) or try building ros from source.
+    You might get uninstallable packages errors. That's a reported issue with Jazzy on Ubuntu 24.04.3.
+    If this occurs try this [solution](https://github.com/ros2/ros2/issues/1621#issuecomment-3716728427) from github (not tested), but you might need to extend your image size a bit more  
+    Or try building ros from source.
