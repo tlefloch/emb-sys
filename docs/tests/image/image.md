@@ -117,3 +117,7 @@ Inside fdisk:
 - Press w → write changes
 
 Check your partitions sizes again. It must have increased.
+
+
+!!! Tip
+    You can delete the .img file after you completely finished the lab
