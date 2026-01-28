@@ -159,18 +159,19 @@
 <p>For example, update the package index:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </code></pre></div>
-<p>We will install ROS 2 binary packages inside the chroot. This is simpler and faster than building from source.</p>
-<div class="admonition note">
-<p class="admonition-title">Question 1</p>
-<p>Follow the ROS 2 documentation corresponding to your chosen ROS 2 distribution to install ROS 2 using <strong>deb packages</strong>.  </p>
-<p>You will have to choose between the <strong>Desktop Install</strong> and the <strong>ROS-Base Install</strong>.<br />
-Since we are setting up a headless Raspberry Pi, GUI tools are not required, so select the <strong>minimal ROS-Base install</strong>.</p>
-<p>Copy the commands you used in your answer file.</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>As we are emulating an arm64 archietcture from an x86_64 architecure, these steps may be quite long.<br />
-Skip it if it takes too much time.</p>
+Skip the nex ROS2 installation to save time.</p>
+</div>
+<p>We will install ROS 2 binary packages inside the chroot. This is simpler and faster than building from source.</p>
+<p>Follow the ROS 2 documentation corresponding to your chosen ROS 2 distribution to install ROS 2 using <strong>deb packages</strong>.  </p>
+<p>You will have to choose between the <strong>Desktop Install</strong> and the <strong>ROS-Base Install</strong>.<br />
+Since we are setting up a headless Raspberry Pi, GUI tools are not required, so select the <strong>minimal ROS-Base install</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You might get uninstallable packages errors. That's a reported issue on Ubuntu 24.04.3 still to be solved.
+If this occurs try this solution from github : <a href="https://github.com/ros2/ros2/issues/1621#issuecomment-3716728427">https://github.com/ros2/ros2/issues/1621#issuecomment-3716728427</a> or try building ros from source.</p>
 </div>
               
             </div>
