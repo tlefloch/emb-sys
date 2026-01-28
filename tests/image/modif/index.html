@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>C. Modifying the Image - Embedded systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C. Modifying the Image";
+        var mkdocs_page_input_path = "tests/image/modif.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/intro/">Lab 1 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/debug/">Debug</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../image/qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tests</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Test 1 - Configuring an AUV's embedded Linux</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../git/">A. Git Repository</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../image/">B. Get the OS Image</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Modifying the Image</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#1-method-choice">1. Method Choice</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#method-1-modify-the-image-using-chroot-qemu-lightweight-fast">Method 1 — Modify the Image Using chroot + QEMU (Lightweight, Fast)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#method-2-boot-the-image-in-a-full-qemu-virtual-machine-heavier-more-realistic">Method 2 — Boot the Image in a Full QEMU Virtual Machine (Heavier, More Realistic)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-setup-the-image-for-chroot">2. Setup the Image for chroot</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../hostname/">D. System Identity Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../user/">E. User configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../network/">F. Network Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ros2/">G. ROS 2 Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../udev/">H. Udev Rules — Hardware Access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../service/">I. Systemd service</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../clean/">J. Clean chroot</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../qemu/">H. Use QEMU VM (optionnal)</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Tests</li>
+          <li class="breadcrumb-item">Test 1 - Configuring an AUV's embedded Linux</li>
+      <li class="breadcrumb-item active">C. Modifying the Image</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c-modifying-the-image">C. Modifying the Image</h1>
+<h2 id="1-method-choice">1. Method Choice</h2>
+<p>You downloaded a preinstalled Ubuntu Server image for Raspberry Pi:<br />
+<code>ubuntu-&lt;version_number&gt;-preinstalled-server-arm64+raspi.img</code></p>
+<p>This image is built for an <strong>ARM64 processor</strong>, while your computer likely uses an <strong>x86_64 (amd64)</strong> CPU.<br />
+Because of this architecture difference, the image cannot run natively on your PC.</p>
+<p>To configure it anyway, we must emulate an ARM system.</p>
+<p>There are two main methods:</p>
+<hr />
+<h3 id="method-1-modify-the-image-using-chroot-qemu-lightweight-fast">Method 1 — Modify the Image Using <strong>chroot + QEMU</strong> (Lightweight, Fast)</h3>
+<p>This method allows you to enter the Raspberry Pi filesystem directly from your PC and run ARM programs using CPU emulation.</p>
+<p><strong>Principle:</strong></p>
+<ul>
+<li>Mount the <code>.img</code> file as a disk  </li>
+<li>Access its Linux filesystem  </li>
+<li>Use QEMU user emulation to run ARM binaries  </li>
+<li>Enter the system using <code>chroot</code>  </li>
+<li>Configure it like a real Raspberry Pi OS  </li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Fast — no full system boot  </li>
+<li>Lightweight — no virtual machine overhead  </li>
+<li>Directly edits the real SD card image  </li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Not a fully booted system  </li>
+<li>Hardware-related services will not function  </li>
+</ul>
+<p>For headless Raspberry Pi preparation, this method is ideal.<br />
+It is the most realistic embedded Linux preparation workflow used in robotics and industry.</p>
+<hr />
+<h3 id="method-2-boot-the-image-in-a-full-qemu-virtual-machine-heavier-more-realistic">Method 2 — Boot the Image in a Full QEMU Virtual Machine (Heavier, More Realistic)</h3>
+<p>Instead of modifying files directly, you can emulate a full Raspberry Pi–like machine and boot the image.</p>
+<p><strong>Principle:</strong></p>
+<ul>
+<li>QEMU emulates ARM hardware  </li>
+<li>The <code>.img</code> file is used as the virtual SD card  </li>
+<li>You interact with the system as if it were a real Pi (terminal login)</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Real boot process  </li>
+<li><code>systemd</code> runs normally  </li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Slow  </li>
+<li>Complex setup  </li>
+<li>Raspberry Pi images do not always boot cleanly in generic QEMU without kernel modifications  </li>
+<li>The emulated hardware may not exactly match the real device  </li>
+</ul>
+<p>We use a QEMU VM when we need a fully booted system, for example to test:</p>
+<ul>
+<li>Boot errors  </li>
+<li>Service startup issues  </li>
+<li>Login behavior  </li>
+<li>Networking configuration  </li>
+</ul>
+<hr />
+<h2 id="2-setup-the-image-for-chroot">2. Setup the Image for chroot</h2>
+<p>The following steps are similar to those performed in Lab 1.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do <strong>not</strong> reuse your <code>start_chroot.sh</code> and <code>stop_chroot.sh</code> scripts from Lab 1.<br />
+Some steps differ in this lab, and using the old scripts may cause errors.</p>
+</div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Question 1</p>
+<p><strong>Attach the image as a loop device using <code>losetup</code></strong>, using options that allow you to:</p>
+<ul>
+<li>Create a partitioned loop device  </li>
+<li>Automatically select the first free loop device  </li>
+<li>Print the device name after setup  </li>
+</ul>
+</div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Question 2</p>
+<p><strong>Mount the root filesystem partition</strong></p>
+<ol>
+<li>Use <code>lsblk</code> to identify which partition from your newly created loop device is the largest — this is the root filesystem (copy the output in your answer file).<br />
+   It will look like <code>/dev/loopXp1</code> or <code>/dev/loopXp2</code>.  </li>
+<li>Create a mount point:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi
+</code></pre></div></li>
+<li>Mount the root filesystem partition at <code>/mnt/rpi</code>.</li>
+</ol>
+</div>
+<hr />
+<p>On Ubuntu for Raspberry Pi, the FAT boot partition is mounted at <code>/boot/firmware</code>, not <code>/boot</code>.</p>
+<p>Ubuntu separates:</p>
+<ul>
+<li><code>/boot</code> → Linux kernel, initrd, and bootloader files managed by Ubuntu packages  </li>
+<li><code>/boot/firmware</code> → Raspberry Pi firmware partition (FAT) containing files such as <code>config.txt</code>, <code>cmdline.txt</code>, <code>start*.elf</code>, etc.</li>
+</ul>
+<p>When preparing the image offline, mount the boot partition at <code>/mnt/rpi/boot/firmware</code> so it matches the layout expected at runtime.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the <code>firmware</code> folder does not exist inside <code>/mnt/rpi/boot</code>, create it:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/rpi/boot/firmware
+</code></pre></div>
+</div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Question 3</p>
+<p><strong>Mount the boot partition</strong> at <code>/mnt/rpi/boot/firmware</code>.</p>
+</div>
+<hr />
+<p>Do not forget to mount system directories (required for <code>chroot</code>):</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev<span class="w"> </span>/mnt/rpi/dev
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev/pts<span class="w"> </span>/mnt/rpi/dev/pts
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get PTY errors, restart your PC and try instead :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/dev<span class="w"> </span>/mnt/rpi/dev/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/sys<span class="w"> </span>/mnt/rpi/sys/
+sudo<span class="w"> </span>mount<span class="w"> </span>--bind<span class="w"> </span>/proc<span class="w"> </span>/mnt/rpi/proc/
+sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>devpts<span class="w"> </span>devpts<span class="w"> </span>/mnt/rpi/dev/pts
+</code></pre></div>
+<p>If the error persists, try omitting the <code>/mnt/rpi/dev/pts</code> mount.</p>
+</div>
+<p>Then, <strong>Enable ARM emulation inside the image with QEMU</strong> :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/bin/qemu-aarch64-static<span class="w"> </span>/mnt/rpi/usr/bin/
+</code></pre></div>
+<p>Finally, bind your host’s <code>/etc/resolv.conf</code> inside the chroot :</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
+</code></pre></div>
+<p>It will allow to access internet through the host in chroot.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You may want to group the previous steps into a bash script to execute them in a single command, as you did in Lab 1.</p>
+</div>
+<p>Finally, the setup is done and we are ready to run <code>chroot</code></p>
+<div class="admonition note">
+<p class="admonition-title">Question 4</p>
+<p><strong>Enter the Raspberry Pi system using <code>chroot</code></strong></p>
+</div>
+<p>Test the emulation is working using
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-m
+</code></pre></div></p>
+<p>It should return <code>aarch64</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../image/" class="btn btn-neutral float-left" title="B. Get the OS Image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../hostname/" class="btn btn-neutral float-right" title="D. System Identity Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../image/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../hostname/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
