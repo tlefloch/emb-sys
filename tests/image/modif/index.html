@@ -296,6 +296,10 @@ sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </sp
 <p>Finally, bind your host’s <code>/etc/resolv.conf</code> inside the chroot :</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/rpi/etc/resolv.conf
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get a symlink error, just delete /mnt/rpi/etc/resolv.conf and try again</p>
+</div>
 <p>It will allow to access internet through the host in chroot.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
