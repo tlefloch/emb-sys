@@ -81,7 +81,7 @@ Move the file in `ubuntulab`
 
 ## 4. Increase the size of the .img file
 
-!!! Note "Question 4"
+!!! Note "Question 5"
     Check your image and partitions sizes with `fdisk -l`
 
 Later, we will install ROS2 on our image but we see that our img is only a bit larger than 3G which is too small for system files and ROS2 installation.
