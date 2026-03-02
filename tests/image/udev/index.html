@@ -207,6 +207,11 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <p class="admonition-title">Question 1</p>
 <p>Create a <code>99-seabot.rules</code> udev file</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 1</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/udev/rules.d/99-seabot.rules
+</code></pre></div>
+</div>
 <h3 id="step-3-add-a-rule">Step 3: Add a rule</h3>
 <p>Every time the Raspberry Pi detects a device with the echosounder’s vendor and product IDs, it will:
 - Give users in the dialout group access to it
@@ -253,6 +258,11 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <p class="admonition-title">Question 2</p>
 <p>Edit the udev file to create the rule for the echosounder.</p>
 <p>Show your line in your answers.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 2</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SUBSYSTEM</span><span class="o">==</span><span class="s2">&quot;tty&quot;</span>,<span class="w"> </span>ATTRS<span class="o">{</span>idVendor<span class="o">}==</span><span class="s2">&quot;4896&quot;</span>,<span class="w"> </span>ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2">&quot;7912&quot;</span>,<span class="w"> </span><span class="nv">SYMLINK</span><span class="o">+=</span><span class="s2">&quot;ping1D&quot;</span>,<span class="w"> </span><span class="nv">GROUP</span><span class="o">=</span><span class="s2">&quot;dialout&quot;</span>,<span class="w"> </span><span class="nv">MODE</span><span class="o">=</span><span class="s2">&quot;0666&quot;</span>
+</code></pre></div>
 </div>
               
             </div>

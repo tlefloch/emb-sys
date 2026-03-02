@@ -178,6 +178,10 @@
 <p class="admonition-title">Tip</p>
 <p>Running ROS 2 in Docker on an embedded controller is not the preferred solution, as it adds extra software layers (which can be heavy). It is typically used when Ubuntu cannot be installed directly, or when multiple ROS versions must run side-by-side.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 1</p>
+<p>The fastest and simplest way to use ROS 2 is to use a Tier 1 supported configuration such as <strong>64 bit Ubuntu</strong></p>
+</div>
 <p>There are multiple ROS 2 distributions (versioned sets of ROS packages). How do we choose between them?<br />
 We do not always select the newest distribution, as it may still be in active development. Instead, we usually choose a <strong>LTS (Long-Term Support)</strong> distribution.</p>
 <div class="admonition note">
@@ -185,6 +189,11 @@ We do not always select the newest distribution, as it may still be in active de
 <p>Unless our application has specific requirements, we choose the LTS distribution with the <strong>latest EOL (End Of Life)</strong> date.<br />
 <strong>Which ROS 2 distribution should we use?</strong><br />
 See: <a href="https://docs.ros.org/en/rolling/Releases.html">ROS 2 Distributions</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 2</p>
+<p>We choose <strong>ROS2 Jazzy Jallisco</strong><br />
+EOL date: May 2029</p>
 </div>
 <hr />
 <h2 id="2-choose-the-os">2. Choose the OS</h2>
@@ -214,6 +223,10 @@ Find this information on the installation page for your ROS 2 distribution.</p>
 <p class="admonition-title">Tip</p>
 <p><strong>Ubuntu 20.04, 22.04, 24.04, 25.10</strong></p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 3</p>
+<p><strong>Ubuntu 24.04 Noble Numbat</strong></p>
+</div>
 <hr />
 <h2 id="3-download-the-os-image">3. Download the OS Image</h2>
 <p>Place yourself in the <code>ubuntulab</code> folder</p>
@@ -233,10 +246,20 @@ Move the file in <code>ubuntulab</code></p>
 <p class="admonition-title">Question 4</p>
 <p><strong>Decompress the xz file with the <code>xz</code> command</strong></p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 4</p>
+<div class="highlight"><pre><span></span><code>xz<span class="w"> </span>-d<span class="w"> </span>ubuntu-24.04.3-preinstalled-server-arm64+raspi.img.xz
+</code></pre></div>
+</div>
 <h2 id="4-increase-the-size-of-the-img-file">4. Increase the size of the .img file</h2>
 <div class="admonition note">
 <p class="admonition-title">Question 5</p>
 <p>Check your image and partitions sizes with <code>fdisk -l</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 5</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>fdisk<span class="w"> </span>-l<span class="w"> </span>ubuntu-24.04.3-preinstalled-server-arm64+raspi.img
+</code></pre></div>
 </div>
 <p>Later, we will install ROS2 on our image but we see that our img is only a bit larger than 3G which is too small for system files and ROS2 installation.</p>
 <p>Let's increase it to 8G :</p>

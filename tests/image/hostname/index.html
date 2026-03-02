@@ -165,6 +165,11 @@
 <p>Choose a meaningful hostname and replace the default one in <code>/etc/hostname</code>.<br />
 What is the default hostname?</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 1</p>
+<p>The default hostname is <strong>ubuntu</strong><br />
+Let's modify <code>/etc/hostname</code> with <strong>seabot</strong> instead of <strong>ubuntu</strong></p>
+</div>
 <p><code>/etc/hostname</code> defines the system’s hostname, but many programs also rely on <code>/etc/hosts</code> for local name resolution.</p>
 <p>Edit <code>/etc/hosts</code> and make sure the line containing <code>127.0.1.1</code> matches your hostname.<br />
 If no such line exists, add one below the <code>127.0.0.1   localhost</code> line.</p>
@@ -178,6 +183,14 @@ If no such line exists, add one below the <code>127.0.0.1   localhost</code> lin
 </code></pre></div>
 Select the correct geographic area and city.<br />
 Include a copy of the output in your answers.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 2</p>
+<p>Output :</p>
+<div class="highlight"><pre><span></span><code>Current<span class="w"> </span>default<span class="w"> </span><span class="nb">time</span><span class="w"> </span>zone:<span class="w"> </span><span class="s1">&#39;Europe/Paris&#39;</span>
+Local<span class="w"> </span><span class="nb">time</span><span class="w"> </span>is<span class="w"> </span>now:<span class="w">      </span>Mon<span class="w"> </span>Feb<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">10</span>:42:02<span class="w"> </span>CET<span class="w"> </span><span class="m">2026</span>.
+Universal<span class="w"> </span>Time<span class="w"> </span>is<span class="w"> </span>now:<span class="w">  </span>Mon<span class="w"> </span>Feb<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">09</span>:42:02<span class="w"> </span>UTC<span class="w"> </span><span class="m">2026</span>.
+</code></pre></div>
 </div>
               
             </div>

@@ -170,10 +170,26 @@
 To avoid it, we want the robot to launch its program automatically at boot.</p>
 <p>For this lab we will launch a simple python script, but with ROS2 you could launch all your nodes at boot !</p>
 <h2 id="1-create-a-simple-python-script">1. Create a simple python script</h2>
-<div class="admonition question 1">
-<p class="admonition-title">Question</p>
+<div class="admonition note">
+<p class="admonition-title">Question 1</p>
 <p>Create a python script named <code>boot_script.py</code> in the user’s home directory, that simply prints "Seabot operating" every 2s.<br />
 Execute it with <code>python3</code> to check it works.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 1</p>
+<p>Create the python script in <code>/home/pi</code> :</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/home/pi/boot_script.py
+</code></pre></div>
+<p>Then write :</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Seabot Operating&quot;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p>Check it works with :</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/home/pi/boot_script.py
+</code></pre></div>
 </div>
 <h2 id="2-create-a-systemd-service-file">2. Create a systemd service file</h2>
 <p><code>systemd</code> is the init system in modern Linux. It manages:</p>
@@ -198,6 +214,11 @@ Execute it with <code>python3</code> to check it works.</p>
 <div class="admonition note">
 <p class="admonition-title">Question 2</p>
 <p>Create a <code>boot_script.service</code> file in <code>/etc/systemd/system/</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Answer 2</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/systemd/system/boot_script.service
+</code></pre></div>
 </div>
 <p>Put this content in the file :</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>Unit<span class="o">]</span>
