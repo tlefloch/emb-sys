@@ -72,4 +72,32 @@ Add the following Ethernet configuration to the same Netplan file:
 !!! Note "Question 1"
     Edit the netplan file for seabot number `12`:
 
+!!! Tip "Answer 1"
+
+  ```bash
+  network:
+    version: 2
+    renderer: networkd
+
+    wifis:
+      wlan0:
+        dhcp4: no
+        addresses:
+          - 192.168.0.112/24
+        routes:
+          - to: default
+            via: 192.168.0.1
+        nameservers:
+          addresses: [8.8.8.8, 1.1.1.1]
+        access-points:
+          "seabot-ap":
+            password: ""
+
+    ethernets:
+      eth0:
+        dhcp4: no
+        addresses:
+          - 192.168.1.112/24
+  ```
+
 The configuration will be applied automatically when the Raspberry Pi boots.

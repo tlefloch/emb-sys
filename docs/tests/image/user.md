@@ -16,6 +16,12 @@ f this command returns nothing, there is no default user.
     Create a new user with a name of your choice and set a password.
     You may leave the optional user information fields empty.
 
+!!! Tip "Answer 1"
+
+    ```bash
+    adduser pi
+    ```
+
 !!! Tip
     Make sure you remember the password you choose.
     You may use a simple password for the lab, but never do this on a real robot connected to a network.
@@ -42,3 +48,9 @@ The GNSS module is connected to a serial port on the Raspberry Pi. To allow your
 
 !!! Tip
     The command is very similar to the one used for adding a user to the `sudo` group.
+
+!!! Tip "Answer 2"
+
+    ```bash
+    usermod -aG dialout pi
+    ```

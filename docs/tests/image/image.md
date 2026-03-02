@@ -15,6 +15,9 @@ First, we need to choose the proper operating system for our application. Let’
 !!! Tip
     Running ROS 2 in Docker on an embedded controller is not the preferred solution, as it adds extra software layers (which can be heavy). It is typically used when Ubuntu cannot be installed directly, or when multiple ROS versions must run side-by-side.
 
+!!! Tip "Answer 1"
+    The fastest and simplest way to use ROS 2 is to use a Tier 1 supported configuration such as **64 bit Ubuntu**
+
 There are multiple ROS 2 distributions (versioned sets of ROS packages). How do we choose between them?  
 We do not always select the newest distribution, as it may still be in active development. Instead, we usually choose a **LTS (Long-Term Support)** distribution.
 
@@ -23,6 +26,9 @@ We do not always select the newest distribution, as it may still be in active de
     **Which ROS 2 distribution should we use?**  
     See: [ROS 2 Distributions](https://docs.ros.org/en/rolling/Releases.html)
 
+!!! Tip "Answer 2"
+    We choose **ROS2 Jazzy Jallisco**  
+    EOL date: May 2029
 ---
 
 ## 2. Choose the OS
@@ -55,6 +61,9 @@ However, ROS 2 binary packages are only provided for specific Ubuntu versions.
 !!! Tip
     **Ubuntu 20.04, 22.04, 24.04, 25.10**
 
+!!! Tip "Answer 3"
+    **Ubuntu 24.04 Noble Numbat**
+
 ---
 
 ## 3. Download the OS Image
@@ -78,11 +87,21 @@ Move the file in `ubuntulab`
 !!! Note "Question 4"
     **Decompress the xz file with the `xz` command**
 
+!!! Tip "Answer 4"
+
+    ```bash
+    xz -d ubuntu-24.04.3-preinstalled-server-arm64+raspi.img.xz
+    ```
 
 ## 4. Increase the size of the .img file
 
 !!! Note "Question 5"
     Check your image and partitions sizes with `fdisk -l`
+
+!!! Tip "Answer 5"
+    ```bash
+    sudo fdisk -l ubuntu-24.04.3-preinstalled-server-arm64+raspi.img
+    ```
 
 Later, we will install ROS2 on our image but we see that our img is only a bit larger than 3G which is too small for system files and ROS2 installation.
 

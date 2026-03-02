@@ -7,9 +7,33 @@ For this lab we will launch a simple python script, but with ROS2 you could laun
 
 ## 1. Create a simple python script
 
-!!! Question 1
+!!! Note "Question 1"
     Create a python script named `boot_script.py` in the user’s home directory, that simply prints "Seabot operating" every 2s.  
     Execute it with `python3` to check it works.
+
+!!! Tip "Answer 1"
+
+    Create the python script in `/home/pi` :
+
+    ```bash
+    nano /home/pi/boot_script.py
+    ```
+
+    Then write :
+
+    ```python
+    import time
+
+    while True:
+            print("Seabot Operating")
+            time.sleep(2)
+    ```
+
+    Check it works with :
+
+    ```bash
+    python3 /home/pi/boot_script.py
+    ```
 
 ## 2. Create a systemd service file
 
@@ -40,6 +64,12 @@ Systemd service files go in `/etc/systemd/system/`
 
 !!! Note "Question 2"
     Create a `boot_script.service` file in `/etc/systemd/system/`
+
+!!! Tip "Answer 2"
+    
+    ```bash
+    nano /etc/systemd/system/boot_script.service
+    ```
 
 Put this content in the file :
 

@@ -58,6 +58,12 @@ udev rules files are stored in `/etc/udev/rules.d/`
 !!! Note "Question 1"
     Create a `99-seabot.rules` udev file
 
+!!! Tip "Answer 1"
+
+    ```bash
+    nano /etc/udev/rules.d/99-seabot.rules
+    ```
+
 ### Step 3: Add a rule
 
 Every time the Raspberry Pi detects a device with the echosounder’s vendor and product IDs, it will:
@@ -84,4 +90,10 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="<vendor_id>", ATTRS{idProduct}=="<product_id
     Edit the udev file to create the rule for the echosounder.
 
     Show your line in your answers.
+
+!!! Tip "Answer 2"
+
+    ```bash
+    SUBSYSTEM=="tty", ATTRS{idVendor}=="4896", ATTRS{idProduct}=="7912", SYMLINK+="ping1D", GROUP="dialout", MODE="0666"
+    ```
 
