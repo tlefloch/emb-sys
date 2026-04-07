@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>C. Creating my own image - Embedded systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C. Creating my own image";
+        var mkdocs_page_input_path = "docker/lab4/creating.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/intro/">Lab 1 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab2/using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../image/lab3/debug/">Debug</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../image/qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker Labs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 4 - Getting started with Docker</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 4 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../hello/">A. Hello world</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../modifying/">B. Modifying a docker image</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Creating my own image</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#introduction-to-dockerfile">Introduction to Dockerfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#docker-build-instructions">Docker build instructions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#write-a-simple-dockerfile">Write a simple Dockerfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#install-ros2-foxy-on-your-new-image">Install ROS2 Foxy on your new image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test-the-newly-created-image">Test the newly created image</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#create-a-user">Create a user</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sharing-ros2-between-host-and-container">Sharing ROS2 between host and container</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../exec/">D. Executing a container</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sharing/">E. Sharing resources with containers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../exercise/">F. Exercise (work due)</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tests</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Test 1 - Configuring an AUV's embedded Linux</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/git/">A. Git Repository</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/image/">B. Get the OS Image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/modif/">C. Modifying the Image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/hostname/">D. System Identity Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/user/">E. User configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/network/">F. Network Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/ros2/">G. ROS 2 Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/udev/">H. Udev Rules — Hardware Access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/service/">I. Systemd service</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/clean/">J. Clean chroot</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tests/image/qemu/">K. Use QEMU VM (optionnal)</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Docker Labs</li>
+          <li class="breadcrumb-item">Lab 4 - Getting started with Docker</li>
+      <li class="breadcrumb-item active">C. Creating my own image</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c-creating-my-own-image">C. Creating my own image</h1>
+<h2 id="introduction-to-dockerfile">Introduction to Dockerfile</h2>
+<p>To create our own image we need to put instructions in a file called <strong>Dockerfile</strong>.</p>
+<p>Our image will be called <code>simple</code>.</p>
+<p>Create a folder, go into it:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>simple
+<span class="nb">cd</span><span class="w"> </span>simple
+</code></pre></div>
+<p>Create an empty Dockerfile</p>
+<div class="highlight"><pre><span></span><code>touch<span class="w"> </span>Dockerfile
+</code></pre></div>
+<p>Our simple image will run ROS2 foxy in Ubuntu 20.04 and the
+console will be executed as user level instead of root.</p>
+<h2 id="docker-build-instructions">Docker build instructions</h2>
+<p>The docker instruction starts with a keyword :</p>
+<p><span style="color:purple">FROM</span> <span style="color:blue">image</span> : defines the starting image<br />
+<span style="color:purple">LABEL</span> <span style="color:blue">name=”val”</span> : some meta information (version, maintainer, description, ...)<br />
+<span style="color:purple">ARG</span> <span style="color:blue">name=val</span> : define variable name with value val (can be changed at execution with –build-arg nam=val)<br />
+<span style="color:purple">ENV</span> <span style="color:blue">name=val</span> : define environment variable name with value val<br />
+<span style="color:purple">RUN</span> <span style="color:blue">cmd</span> cmd : execute command cmd<br />
+<span style="color:purple">USER</span> <span style="color:blue">username</span> : change the executing user to username, note
+that RUN is executed by default as root<br />
+<span style="color:purple">WORKDIR</span> <span style="color:blue">path</span> : change the path of the working directory  </p>
+<p><em>From : https://docs.docker.com/engine/reference/builder</em></p>
+<h2 id="write-a-simple-dockerfile">Write a simple Dockerfile</h2>
+<p>First we need to specify the base image using <code>FROM</code>, then we add following instructions defining how the base image is modified.</p>
+<p>Copy the following content in your Dockerfile as a first test to use Ubuntu 20.04 LTS :</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#Download base image ubuntu 20.04</span>
+FROM<span class="w"> </span>ubuntu:20.04
+
+<span class="c1"># LABEL about the custom image</span>
+LABEL<span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;Dupond&quot;</span>
+LABEL<span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span>
+LABEL<span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;This is custom Docker Image for \</span>
+<span class="s2">student lab purpose&quot;</span>
+
+<span class="c1"># Disable Prompt During Packages Installation</span>
+ARG<span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+
+<span class="c1"># Update Ubuntu Software repository</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>update
+</code></pre></div>
+<p>Then we can create and test our image :</p>
+<p>Build the image (do not forget the dot . at the end)
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>simple<span class="w"> </span>.
+</code></pre></div></p>
+<p>Check it exists</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
+</code></pre></div>
+<p>Test if it works
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>simple:latest<span class="w"> </span>cat<span class="w"> </span>/etc/lsb-release
+</code></pre></div></p>
+<h2 id="install-ros2-foxy-on-your-new-image">Install ROS2 Foxy on your new image</h2>
+<div class="admonition note">
+<p class="admonition-title">Issue 1</p>
+<p>Add commands in your Dockerfile to install ROS2 foxy minimal version (we don't need Desktop tools), so your Dockerfile looks like :</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#Download base image ubuntu 20.04</span>
+FROM<span class="w"> </span>ubuntu:20.04
+
+<span class="c1"># LABEL about the custom image</span>
+LABEL<span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;Dupond&quot;</span>
+LABEL<span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span>
+LABEL<span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;This is custom Docker Image for \</span>
+<span class="s2">student lab purpose&quot;</span>
+
+<span class="c1"># Update Ubuntu Software repository</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>update
+
+<span class="c1"># Install ROS2 Foxy minimal version</span>
+<span class="c1"># TODO</span>
+
+<span class="c1"># add required packages</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ros-foxy-teleop-twist-keyboard
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Solution 1</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#Download base image ubuntu 20.04</span>
+FROM<span class="w"> </span>ubuntu:20.04
+
+<span class="c1"># LABEL about the custom image</span>
+LABEL<span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;Dupond&quot;</span>
+LABEL<span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span>
+LABEL<span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;This is custom Docker Image for \</span>
+<span class="s2">student lab purpose&quot;</span>
+
+<span class="c1"># Update Ubuntu Software repository</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>update
+
+<span class="c1"># Install ROS2 foxy minimal version</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>software-properties-common
+RUN<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
+RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl
+RUN<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span><span class="se">\</span>
+-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
+RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \</span>
+<span class="s2">http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$UBUNTU_CODENAME</span><span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/ros2.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>-y<span class="w"> </span>upgrade
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ros-foxy-ros-base
+
+<span class="c1"># add required packages</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ros-foxy-teleop-twist-keyboard
+</code></pre></div>
+</div>
+<p>Build your image, it will automatically replace your previously created <code>simple</code> image.</p>
+<h2 id="test-the-newly-created-image">Test the newly created image</h2>
+<p>We will now test if ROS2 Foxy is working in the container using <strong>2</strong> terminals connected to the container.  </p>
+<p>In the first terminal, run the container with :
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>simple:latest<span class="w"> </span>/bin/bash
+</code></pre></div></p>
+<p>do :
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/foxy/setup.bash
+</code></pre></div></p>
+<p>and execute:
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
+</code></pre></div></p>
+<p>In a second terminal, get the container ID with <code>docker ps</code><br />
+Connect with the second terminal to the same container with :
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;Container_ID&gt;<span class="w"> </span>/bin/bash
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The docker exec command runs a new command in a running container</p>
+</div>
+<p>do :
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/opt/ros/foxy/setup.bash
+</code></pre></div>
+and execute :
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+and
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/cmd_vel
+</code></pre></div></p>
+<p>Press keys to move the robot in terminal 1 and check that messages are published on the <code>/cmd_vel</code> topic in terminal 2.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice you are now using ROS2 Foxy on Ubuntu 20.04 as a lightweight application container from your host machine's OS (probably not Ubuntu 20.04)</p>
+</div>
+<h2 id="create-a-user">Create a user</h2>
+<p>Add last commands in Dockerfile to create a user (rosuser) and to initialize ROS2 Foxy</p>
+<p><div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">#Download base image ubuntu 20.04</span>
+<span class="w">    </span>FROM<span class="w"> </span>ubuntu:20.04
+<span class="w">    </span>...
+<span class="w">    </span>...
+<span class="w">    </span>...
+<span class="w">    </span>...
+
+<span class="w">    </span><span class="c1"># define a user</span>
+<span class="w">    </span>ENV<span class="w"> </span><span class="nv">newuser</span><span class="o">=</span>rosuser
+<span class="w">    </span>RUN<span class="w"> </span>useradd<span class="w"> </span>-ms<span class="w"> </span>/bin/bash<span class="w"> </span><span class="si">${</span><span class="nv">newuser</span><span class="si">}</span>
+<span class="w">    </span>USER<span class="w"> </span><span class="si">${</span><span class="nv">newuser</span><span class="si">}</span>
+<span class="w">    </span>WORKDIR<span class="w"> </span>/home/<span class="si">${</span><span class="nv">newuser</span><span class="si">}</span>
+
+<span class="w">    </span><span class="c1"># add ROS2 setup</span>
+<span class="w">    </span>RUN<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;source /opt/ros/foxy/setup.bash&quot; &gt;&gt; /home/${newuser}/.bashrc&#39;</span>
+</code></pre></div>
+If everything goes fine, ROS2 commands can be executed without
+doing <code>source /opt/ros/foxy/setup.bash</code> and the prompt should be
+at user level instead of root level.</p>
+<h2 id="sharing-ros2-between-host-and-container">Sharing ROS2 between host and container</h2>
+<p>In this example a ROS2 topic is published in the container, and it
+will be displayed on the host computer.</p>
+<p>In a first terminal, start the ROS container in interactive mode :
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>simple:latest<span class="w"> </span>/bin/bash
+</code></pre></div></p>
+<p>then publish /hi topic at 1 Hz
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span><span class="w"> </span>/hi<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">&quot;{data: &#39;Hi&#39;}&quot;</span>
+</code></pre></div></p>
+<p>Open a second terminal on the host (not in the container)</p>
+<div class="admonition note">
+<p class="admonition-title">Issue 2</p>
+<p>Display the messages published on the /hi topic sent by the container</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Set <code>ROS_DOMAIN_ID</code> to appropriate value and <code>ROS_AUTOMATIC_DISCOVERY_RANGE</code> to <code>LOCALHOST</code> to avoid conflicts on the network.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Solution 2</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>list
+ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/hi
+</code></pre></div>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../modifying/" class="btn btn-neutral float-left" title="B. Modifying a docker image"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exec/" class="btn btn-neutral float-right" title="D. Executing a container">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../modifying/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exec/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
