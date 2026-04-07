@@ -35,8 +35,15 @@ nav:
       - image/lab3/debug.md
   - QEMU:
     - image/qemu.md
-  # - Docker:
-  #   - docker
+  - Docker Labs:
+    - Lab 4 - Getting started with Docker:
+      - docker/lab4/intro.md
+      - docker/lab4/hello.md
+      - docker/lab4/modifying.md
+      - docker/lab4/creating.md
+      - docker/lab4/exec.md
+      - docker/lab4/sharing.md
+      - docker/lab4/exercise.md
   - Tests:
     - Test 1 - Configuring an AUV's embedded Linux:
       - tests/image/intro.md
