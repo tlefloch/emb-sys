@@ -24,6 +24,15 @@ touch /home/$USER/tmp/blabla.txt
     Check it contains `blabla.txt`.
 
 
+!!! Tip "Solution"
+    ```bash
+    docker run --name simple -it -v /home/$USER/tmp:/home/rosuser/shared simple:latest /bin/bash
+    ```
+    
+    ``` bash
+    ls shared
+    ```
+
 Exit the container.
 
 Clear the tmp foler
