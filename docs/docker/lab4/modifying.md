@@ -26,9 +26,6 @@ interact with the container using a tty terminal.
     - Make the container interactive  
     - Allocate a pseudo-tty
 
-
-
-
 !!! Note
     Notice you are now at the root of your image. In fact, `docker run` uses `chroot` which you already know. 
 
@@ -89,7 +86,6 @@ First we need to know the container ID used when doing the install of iproute2 a
     Show all containers and find the container ID
 
 
-
 Let’s say the container ID is `bd5c83e5ce7c` and `debian-network` is the name of the new (modified) image.  
 We save our modifications on the image from the container into a new image :
 ```bash
@@ -133,3 +129,4 @@ docker rm ContainerID1 ContainerID2 ...
 !!! Note "Issue 4"
     If we want to delete the container just after its execution, we can use a certain option of `docker run`  
     Find this option and try it.
+

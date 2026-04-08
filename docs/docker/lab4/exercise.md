@@ -1,4 +1,4 @@
-# F. Exercise (work due)
+# G. Exercise (work due)
 
 Exercise: **Create a simple Dockerfile to generate an image that executes python2.7 programs in Ubuntu 14.04.**
 

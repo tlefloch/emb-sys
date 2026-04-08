@@ -104,6 +104,7 @@ docker run --rm simple:latest cat /etc/lsb-release
     ```
 
 
+
 Build your image, it will automatically replace your previously created `simple` image.
 
 ## Test the newly created image
@@ -200,3 +201,4 @@ Open a second terminal on the host (not in the container)
 
 !!! Tip
     Set `ROS_DOMAIN_ID` to appropriate value and `ROS_AUTOMATIC_DISCOVERY_RANGE` to `LOCALHOST` to avoid conflicts on the network.
+

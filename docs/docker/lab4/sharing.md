@@ -1,4 +1,4 @@
-# E. Sharing resources with containers
+# F. Sharing resources with containers
 
 Containers are, by definition, isolated from the host operating system  
 However, it can be useful to share some resources between the host and the container  
@@ -22,7 +22,6 @@ touch /home/$USER/tmp/blabla.txt
 !!! Note "Issue"
     Run a container that shares folder `/home/$USER/tmp` on host with folder `/shared` in the container.  
     Check it contains `blabla.txt`.
-
 
 
 Exit the container.
