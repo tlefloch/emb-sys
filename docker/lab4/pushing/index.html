@@ -214,6 +214,12 @@ You must specify a name and its visibility.</p>
 </code></pre></div>
 </div>
 <h2 id="push-the-image">Push the image</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can authenticate to any public or private registry for which you have credentials.<br />
+Authentication may be required for pulling and pushing images.
+Use <code>docker login</code> to authenticate to a registry.</p>
+</div>
 <p>Finally there is just to push the image on the online repository :</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>push<span class="w"> </span>&lt;your-docker-username&gt;/lab4-simple:init
 </code></pre></div>
