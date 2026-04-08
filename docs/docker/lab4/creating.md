@@ -106,7 +106,36 @@ docker run --rm simple:latest cat /etc/lsb-release
 !!! Tip
     The building process is not interactive, so don't forget to use the `-y` option when necessary, to automatically accept changes.
 
+!!! Tip "Solution 1"
 
+    ```bash
+    #Download base image ubuntu 20.04
+    FROM ubuntu:20.04
+
+    # LABEL about the custom image
+    LABEL maintainer="Dupond"
+    LABEL version="0.1"
+    LABEL description="This is custom Docker Image for \
+    student lab purpose"
+
+    # Update Ubuntu Software repository
+    RUN apt update
+
+    # Install ROS2 foxy minimal version
+    RUN apt install -y software-properties-common
+    RUN add-apt-repository universe
+    RUN apt update && apt install -y curl
+    RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+    -o /usr/share/keyrings/ros-archive-keyring.gpg
+    RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+    http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
+    | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+    RUN apt update && apt -y upgrade
+    RUN apt install -y ros-foxy-ros-base
+
+    # add required packages
+    RUN apt install -y ros-foxy-teleop-twist-keyboard
+    ```
 
 Build your image, it will automatically replace your previously created `simple` image.
 
@@ -205,3 +234,9 @@ Open a second terminal on the host (not in the container)
 !!! Tip
     Set `ROS_DOMAIN_ID` to appropriate value and `ROS_AUTOMATIC_DISCOVERY_RANGE` to `LOCALHOST` to avoid conflicts on the network.
 
+!!! Tip "Solution 2"
+
+    ```bash
+    ros2 topic list
+    ros2 topic echo /hi
+    ```
