@@ -103,6 +103,9 @@ docker run --rm simple:latest cat /etc/lsb-release
     RUN apt install -y ros-foxy-teleop-twist-keyboard
     ```
 
+!!! Tip
+    The building process is not interactive, so don't forget to use the `-y` option when necessary, to automatically accept changes.
+
 
 
 Build your image, it will automatically replace your previously created `simple` image.
