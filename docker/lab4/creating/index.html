@@ -269,6 +269,36 @@ RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </
 <p class="admonition-title">Tip</p>
 <p>The building process is not interactive, so don't forget to use the <code>-y</code> option when necessary, to automatically accept changes.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Solution 1</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#Download base image ubuntu 20.04</span>
+FROM<span class="w"> </span>ubuntu:20.04
+
+<span class="c1"># LABEL about the custom image</span>
+LABEL<span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;Dupond&quot;</span>
+LABEL<span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span>
+LABEL<span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">&quot;This is custom Docker Image for \</span>
+<span class="s2">student lab purpose&quot;</span>
+
+<span class="c1"># Update Ubuntu Software repository</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>update
+
+<span class="c1"># Install ROS2 foxy minimal version</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>software-properties-common
+RUN<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
+RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl
+RUN<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<span class="w"> </span><span class="se">\</span>
+-o<span class="w"> </span>/usr/share/keyrings/ros-archive-keyring.gpg
+RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \</span>
+<span class="s2">http://packages.ros.org/ros2/ubuntu </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$UBUNTU_CODENAME</span><span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/ros2.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>-y<span class="w"> </span>upgrade
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ros-foxy-ros-base
+
+<span class="c1"># add required packages</span>
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ros-foxy-teleop-twist-keyboard
+</code></pre></div>
+</div>
 <p>Build your image, it will automatically replace your previously created <code>simple</code> image.</p>
 <h2 id="test-the-newly-created-image">Test the newly created image</h2>
 <p>We will now test if ROS2 Foxy is working in the container using <strong>2</strong> terminals connected to the container.  </p>
@@ -341,6 +371,12 @@ will be displayed on the host computer.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Set <code>ROS_DOMAIN_ID</code> to appropriate value and <code>ROS_AUTOMATIC_DISCOVERY_RANGE</code> to <code>LOCALHOST</code> to avoid conflicts on the network.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Solution 2</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>list
+ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/hi
+</code></pre></div>
 </div>
               
             </div>
