@@ -207,12 +207,6 @@ interact with the container using a tty terminal.</p>
 <li>Allocate a pseudo-tty</li>
 </ul>
 </div>
-<!-- !!! Tip "Solution 1"
-
-    ``` bash
-    docker run -it debian:stable
-    ``` -->
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Notice you are now at the root of your image. In fact, <code>docker run</code> uses <code>chroot</code> which you already know. </p>
@@ -255,11 +249,6 @@ and nmap commands will not work !!!</strong></p>
 <p class="admonition-title">Issue 2</p>
 <p>Show all containers and find the container ID</p>
 </div>
-<!-- !!! Tip "Solution 2"
-    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
-</code></pre></div>
-    The ID is given in the column `CONTAINER ID` -->
-
 <p>Let’s say the container ID is <code>bd5c83e5ce7c</code> and <code>debian-network</code> is the name of the new (modified) image.<br />
 We save our modifications on the image from the container into a new image :
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>commit<span class="w"> </span>bd5c83e5ce7c<span class="w"> </span>debian-network
@@ -278,14 +267,6 @@ We save our modifications on the image from the container into a new image :
 <p>Try using nmap to scan the robotic subnetwork 172.20.25.0/24
 and try to get the date using the container.</p>
 </div>
-<!-- !!! Tip "Solution 3"
-    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>debian-network:latest<span class="w"> </span>nmap<span class="w"> </span>-sP<span class="w"> </span><span class="m">172</span>.20.25.0/24
-</code></pre></div>
-
-    ```bash
-    docker run debian-network:latest date
-    ``` -->
-
 <h2 id="cleaning">Cleaning</h2>
 <p>A copy of the container is kept every time we run it. We can see it with :
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
@@ -298,11 +279,6 @@ and try to get the date using the container.</p>
 <p>If we want to delete the container just after its execution, we can use a certain option of <code>docker run</code><br />
 Find this option and try it.</p>
 </div>
-<!-- !!! Tip "Solution 4"
-    Just add `--rm` when we run the container :
-    ```bash
-    docker run --rm -it debian:stable /bin/bash
-    ``` -->
               
             </div>
           </div><footer>
