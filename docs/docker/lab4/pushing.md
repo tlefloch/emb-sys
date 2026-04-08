@@ -44,6 +44,11 @@ Check your image has been re-tagged
 
 ## Push the image
 
+!!! Note
+    You can authenticate to any public or private registry for which you have credentials.  
+    Authentication may be required for pulling and pushing images.
+    Use `docker login` to authenticate to a registry.
+
 Finally there is just to push the image on the online repository :
 
 ```bash
