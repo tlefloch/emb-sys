@@ -197,6 +197,8 @@ Check it contains <code>blabla.txt</code>.</p>
 <p class="admonition-title">Solution</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>simple<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span>/home/<span class="nv">$USER</span>/tmp:/home/rosuser/shared<span class="w"> </span>simple:latest<span class="w"> </span>/bin/bash
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>shared
+</code></pre></div>
 </div>
 <p>Exit the container.</p>
 <p>Clear the tmp foler</p>
