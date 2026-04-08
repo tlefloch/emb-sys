@@ -26,4 +26,4 @@ host and that executes the Python command.
 !!! Warning "Work due"
     The Dockerfile and the commands to build and run the
     container must be uploaded in an archive (ZIP) file on
-    MOODLE before 09 april 2026 (23:59).
+    MOODLE before 10 april 2026 (23:59).
