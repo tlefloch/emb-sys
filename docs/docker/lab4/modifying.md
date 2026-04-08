@@ -26,6 +26,12 @@ interact with the container using a tty terminal.
     - Make the container interactive  
     - Allocate a pseudo-tty
 
+!!! Tip "Solution 1"
+
+    ``` bash
+    docker run -it debian:stable
+    ```
+
 !!! Note
     Notice you are now at the root of your image. In fact, `docker run` uses `chroot` which you already know. 
 
@@ -85,6 +91,12 @@ First we need to know the container ID used when doing the install of iproute2 a
 !!! Note "Issue 2"
     Show all containers and find the container ID
 
+!!! Tip "Solution 2"
+    ```bash
+    docker ps -a
+    ```
+    The ID is given in the column `CONTAINER ID`
+
 
 Let’s say the container ID is `bd5c83e5ce7c` and `debian-network` is the name of the new (modified) image.  
 We save our modifications on the image from the container into a new image :
@@ -112,6 +124,14 @@ docker run debian:stable ip addr
     Try using nmap to scan the robotic subnetwork 172.20.25.0/24
     and try to get the date using the container.
 
+!!! Tip "Solution 3"
+    ```bash
+    docker run debian-network:latest nmap -sP 172.20.25.0/24
+    ```
+
+    ```bash
+    docker run debian-network:latest date
+    ```
 
 
 ## Cleaning
@@ -130,3 +150,8 @@ docker rm ContainerID1 ContainerID2 ...
     If we want to delete the container just after its execution, we can use a certain option of `docker run`  
     Find this option and try it.
 
+!!! Tip "Solution 4"
+    Just add `--rm` when we run the container :
+    ```bash
+    docker run --rm -it debian:stable /bin/bash
+    ```
