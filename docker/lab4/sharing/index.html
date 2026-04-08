@@ -191,11 +191,11 @@ A practical example is to allow the container to work in a folder of the host fi
 <p>Run a container that shares folder <code>/home/$USER/tmp</code> on host with folder <code>/shared</code> in the container.<br />
 Check it contains <code>blabla.txt</code>.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Solution</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>simple<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span>/home/<span class="nv">$USER</span>/tmp:/home/rosuser/shared<span class="w"> </span>simple:latest<span class="w"> </span>/bin/bash
-</code></pre></div>
-</div>
+<!-- !!! Tip "Solution"
+    ```bash
+    docker run --name simple -it -v /home/$USER/tmp:/home/rosuser/shared simple:latest /bin/bash
+    ``` -->
+
 <p>Exit the container.</p>
 <p>Clear the tmp foler</p>
 <div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-r<span class="w"> </span>/home/<span class="nv">$USER</span>/tmp
