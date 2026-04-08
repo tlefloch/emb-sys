@@ -41,6 +41,7 @@ nav:
       - docker/lab4/hello.md
       - docker/lab4/modifying.md
       - docker/lab4/creating.md
+      - docker/lab4/pushing.md
       - docker/lab4/exec.md
       - docker/lab4/sharing.md
       - docker/lab4/exercise.md
