@@ -54,7 +54,7 @@ The host computer must allow the docker container to display graphical applicati
 xhost +local:docker
 ```
 
-!!! Note "Issue 3
+!!! Note "Issue 3"
     Share X11 graphical user interface using `-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​` in `docker run`
 
 Now a window should open at the start of the container.
