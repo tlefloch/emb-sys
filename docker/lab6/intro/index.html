@@ -239,8 +239,10 @@ image so that a simple GUI window is automatically opened.</p>
 <p>The host computer must allow the docker container to display graphical application, this permission is given by
 <div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+local:docker
 </code></pre></div></p>
-<p>!!! Note "Issue 3
-    Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code> in <code>docker run</code></p>
+<div class="admonition note">
+<p class="admonition-title">Issue 3</p>
+<p>Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code> in <code>docker run</code></p>
+</div>
 <p>Now a window should open at the start of the container.</p>
               
             </div>
