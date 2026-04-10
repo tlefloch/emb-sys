@@ -131,7 +131,7 @@ docker run --rm simple:latest cat /etc/lsb-release
     http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
     | tee /etc/apt/sources.list.d/ros2.list > /dev/null
     RUN apt update && apt -y upgrade
-    RUN apt install -y ros-foxy-ros-base
+    RUN apt install -y ros-foxy-ros-base python3-argcomplete
 
     # add required packages
     RUN apt install -y ros-foxy-teleop-twist-keyboard

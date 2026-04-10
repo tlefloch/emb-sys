@@ -45,6 +45,14 @@ nav:
       - docker/lab4/exec.md
       - docker/lab4/sharing.md
       - docker/lab4/exercise.md
+    - Lab 5 - Cross-compilation:
+      - docker/lab5/intro.md
+      - docker/lab5/setup.md
+      - docker/lab5/config.md
+      - docker/lab5/build.md
+      - docker/lab5/cross.md
+    # - docker/lab6/intro.md
+      
   - Tests:
     - Test 1 - Configuring an AUV's embedded Linux:
       - tests/image/intro.md
