@@ -202,6 +202,10 @@
 <p>Multi-platform images require the <strong>containerd</strong> image store. Docker Desktop and Docker Engine 29.0+ use the <strong>containerd</strong> image store by default, which supports multi-platform images out of the box. If you're using one of these versions, no additional setup is needed.</p>
 <p>Check your docker version.</p>
 <p>If it is lower than 29.0, update Docker Engine or follow instructions on <a href="https://docs.docker.com/engine/storage/containerd/">https://docs.docker.com/engine/storage/containerd/</a> to enable containerd.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don't create a custom builder</p>
+</div>
 <h2 id="qemu">QEMU</h2>
 <p>In this lab, we will use emulation via <strong>QEMU</strong> to build and run multiplatform images.  </p>
 <p>QEMU is the easiest way to get started for multiplatform building. It requires no changes to your Dockerfile and the secondary architectures that are available are automatically detected.</p>
