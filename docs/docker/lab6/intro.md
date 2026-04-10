@@ -1,4 +1,4 @@
-# Lab 6 - Develop a container application
+# Lab 6 - Develop a container GUI application
 
 !!! Warning
     LINUX ONLY
