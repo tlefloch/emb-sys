@@ -9,6 +9,9 @@ Our target computer is a Raspberry Pi with Ubuntu 20.04.
 
 !!! Tip
     `linux/amd64`, `linux/arm64`, `windows/amd64` ?
+
+!!! Tip "Solution 1"
+    The target platform is `linux/arm64`
     
 
 ## Dockerfile
@@ -44,6 +47,45 @@ It is enough to run nodes but compilers aren't installed so we can't build packa
     You can install them all at once with the `ros-dev-tools` apt repository.  
     See **Development Tools** in the installation tutorial : [https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
 
+!!! Tip "Solution 2"
+    Dockerfile :
+    ``` bash
+    FROM ubuntu:20.04
+
+    # LABEL about the custom image
+    LABEL maintainer="Dupond"
+    LABEL version="0.1"
+    LABEL description="This is custom Docker Image for \
+    student lab purpose"
+
+    # Update Ubuntu Software repository
+    RUN apt update
+
+    # Install ROS2 foxy minimal version
+    RUN apt install -y software-properties-common
+    RUN add-apt-repository universe
+    RUN apt update && apt install -y curl
+    RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+    RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+    http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
+    | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+    RUN apt update && apt -y upgrade
+    RUN apt install -y ros-foxy-ros-base python3-argcomplete
+    RUN apt install -y ros-dev-tools
+
+    # add required packages
+    RUN apt install -y ros-foxy-teleop-twist-keyboard
+
+
+    # define a user
+    ENV newuser=rosuser
+    RUN useradd -ms /bin/bash ${newuser}
+    USER ${newuser}
+    WORKDIR /home/${newuser}
+
+    # add ROS2 setup
+    RUN /bin/bash -c 'echo "source /opt/ros/foxy/setup.bash" >> /home/${newuser}/.bashrc'
+    ```
 
 
 ## Build
@@ -56,6 +98,11 @@ Our image is ready to be built.
 !!! Tip
     The command is very similar to a simple platform build.
     Just add the `--platform <platform1>,<platform2>,...` option
+
+!!! Tip "Solution 3"
+    ```bash
+    docker build --platform linux/amd64,linux/arm64 -t multiplatform .
+    ```
 
 !!! Warning
     Building on an emulated architecture is far slower than building on the native architecture.  

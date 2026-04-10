@@ -10,6 +10,9 @@ Check your docker version.
 
 If it is lower than 29.0, update Docker Engine or follow instructions on [https://docs.docker.com/engine/storage/containerd/](https://docs.docker.com/engine/storage/containerd/) to enable containerd.
 
+!!! Warning
+    Don't create a custom builder
+
 ## QEMU
 
 In this lab, we will use emulation via **QEMU** to build and run multiplatform images.  

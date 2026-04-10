@@ -25,6 +25,17 @@ Let's cross-compile our ROS2 package now.
     - Run the container with the newly built multiplatform image
     - At the container execution, in a single bash command : `source /opt/ros/foxy/setup.bash`, go to the `arm64` directory, copy the `src` folder here, run `colcon build`.
 
+!!! Tip "Solution"
+    ```bash
+    docker run \
+        --rm \
+        --platform linux/arm64 \
+        -v <path-to-your-lab-folder>/ros2-ws:/home/ros2-ws \
+        -w /home/ros2-ws \
+        multiplatform:latest \
+        bash -c "cd arm64 && cp -r /home/ros2-ws/src . && source /opt/ros/foxy/setup.bash && colcon build"
+    ```
+
 If the cross-compilation cleanly executed, check your compiled files are, as expected, targeted for `arm64` :
 
 ```bash

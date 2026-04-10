@@ -40,8 +40,27 @@ image so that a simple GUI window is automatically opened.
     - Ubuntu 20.04 as the base image
     - x11-apps installed
 
+!!! Tip "Solution 1"
+    Dockerfile :
+
+    ```bash
+    FROM ubuntu:20.04
+
+    RUN apt update -y
+    RUN apt install -y x11-apps
+    ```
+
+    ``` bash
+    docker build -t displayer . 
+    ```
+
 !!! Note "Issue 2"
     Use `docker run` to run your container and execute the `xeyes` command at the start of the container, as usual, without sharing display.
+
+!!! Tip "Solution 2"
+    ```bash
+    docker run --rm displayer:latest bash -c "xeyes"
+    ```
 
 You should get an error: `Error: Can't open display:`
 
@@ -56,5 +75,10 @@ xhost +local:docker
 
 !!! Note "Issue 3"
     Share X11 graphical user interface using `-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​` in `docker run`
+
+!!! Tip "Solution 3"
+    ```bash
+    docker run --rm -e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix displayer:latest bash -c "xeyes"
+
 
 Now a window should open at the start of the container.
