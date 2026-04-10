@@ -96,7 +96,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Docker Labs</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" >Lab 4 - Getting started with Docker</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../lab4/intro/">Lab 4 - Introduction</a>
@@ -129,6 +129,18 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../lab5/cross/">D. Cross-compile</a>
                 </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Lab 6 - Develop a container application</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#check-if-x11-is-installed">Check if X11 is installed</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#switch-from-wayland-to-x11-if-needed">Switch from Wayland to X11 (if needed)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#application">Application</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#share-the-display">Share the display</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -177,6 +189,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Docker Labs</li>
       <li class="breadcrumb-item active">Lab 6 - Develop a container application</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -192,43 +205,43 @@
 <p>LINUX ONLY</p>
 </div>
 <p><strong>Goal of the lab</strong> : Learn how to share the host's display with a container</p>
-<p>Create the following python script:
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pyqtgraph</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pg</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
-</code></pre></div></p>
+<h2 id="check-if-x11-is-installed">Check if X11 is installed</h2>
+<p>Most Ubuntu installations come with X11 pre-installed. To verify, run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$XDG_SESSION_TYPE</span>
+</code></pre></div>
+<p>If it returns x11, you’re already using X11.
+If it returns wayland, you’ll need to switch to X11.</p>
+<h2 id="switch-from-wayland-to-x11-if-needed">Switch from Wayland to X11 (if needed)</h2>
+<p>First, Log out of your current session.</p>
+<p>Then, select Xorg (X11) Session :<br />
+On the login screen, click the gear icon next to the "Sign In" button.<br />
+Select "Ubuntu on Xorg" (or similar, depending on your Ubuntu version).<br />
+Log in as usual</p>
+<h2 id="application">Application</h2>
 <p><strong>Application</strong> :<br />
-Build an image from Ubuntu 20.04 with python3 and pyqtgraph. Then executes the container with this
-image so that python3 automatically launch a python code showing a plot.</p>
-<p>Create a container with :</p>
+Build an image from Ubuntu 20.04 with simple GUI examples. Then executes the container with this
+image so that a simple GUI window is automatically opened.</p>
+<p>Create an image with :</p>
 <ul>
-<li>Ubuntu 20.04</li>
-<li>python3</li>
-<li>python3-pip</li>
-<li>pyqtgraph</li>
-<li>pyside6</li>
-<li>numpy</li>
-<li>Shared folder with the python script</li>
+<li>Ubuntu 20.04 as the base image</li>
+<li>x11-apps installed</li>
 </ul>
-<p>Execute the python script and show the plot at the start of the container.</p>
-<p>You should see the container executing normally but nothing appears.</p>
-<p>Now, try sharing the host's display with the container.</p>
+<p>Use <code>docker run</code> to run your container and execute the <code>xeyes</code> command at the start of the container, as usual, without sharing display.</p>
+<p>You should get an error: <code>Error: Can't open display:</code></p>
+<p>Indeed, the container is an isolated environnment, so your application can't access your host machine's display. Let's share it.</p>
+<h2 id="share-the-display">Share the display</h2>
 <p>The host computer must allow the docker container to display graphical application, this permission is given by
 <div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+local:docker
 </code></pre></div></p>
-<p>Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code></p>
+<p>Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code> in <code>docker run</code></p>
 <p>Now a window should open at the start of the container.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>On Ubuntu, your display server might be Wayland by default, but this kind of application requires Xorg.<br />
-You can switch from your user connection interface using the settings gear near "Sign in" before starting the session.</p>
-</div>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab5/cross/" class="btn btn-neutral float-left" title="D. Cross-compile"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../tests/image/intro/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -250,6 +263,10 @@ You can switch from your user connection interface using the settings gear near 
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../../lab5/cross/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../tests/image/intro/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
