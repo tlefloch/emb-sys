@@ -14,7 +14,7 @@ Most Ubuntu installations come with X11 pre-installed. To verify, run:
 echo $XDG_SESSION_TYPE
 ```
 
-If it returns x11, you’re already using X11.
+If it returns x11, you’re already using X11.  
 If it returns wayland, you’ll need to switch to X11.
 
 ## Switch from Wayland to X11 (if needed)
@@ -33,12 +33,15 @@ Log in as usual
 Build an image from Ubuntu 20.04 with simple GUI examples. Then executes the container with this
 image so that a simple GUI window is automatically opened.
 
-Create an image with :
+!!! Note "Issue 1"
 
-- Ubuntu 20.04 as the base image
-- x11-apps installed
+    Create an image from a Dockerfile with :
 
-Use `docker run` to run your container and execute the `xeyes` command at the start of the container, as usual, without sharing display.
+    - Ubuntu 20.04 as the base image
+    - x11-apps installed
+
+!!! Note "Issue 2"
+    Use `docker run` to run your container and execute the `xeyes` command at the start of the container, as usual, without sharing display.
 
 You should get an error: `Error: Can't open display:`
 
@@ -51,6 +54,7 @@ The host computer must allow the docker container to display graphical applicati
 xhost +local:docker
 ```
 
-Share X11 graphical user interface using `-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​` in `docker run`
+!!! Note "Issue 3
+    Share X11 graphical user interface using `-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​` in `docker run`
 
 Now a window should open at the start of the container.
