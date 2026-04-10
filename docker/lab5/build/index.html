@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>A. Hello world - Embedded systems</title>
+    <title>C. Build a multiplatform image - Embedded systems</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "A. Hello world";
-        var mkdocs_page_input_path = "docker/lab4/hello.md";
+        var mkdocs_page_name = "C. Build a multiplatform image";
+        var mkdocs_page_input_path = "docker/lab5/build.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -97,43 +97,45 @@
               </ul>
               <p class="caption"><span class="caption-text">Docker Labs</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 4 - Getting started with Docker</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 4 - Introduction</a>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 4 - Getting started with Docker</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/intro/">Lab 4 - Introduction</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">A. Hello world</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#show-existing-images-and-containers">Show existing images and containers</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#run-hello-world-container">Run Hello World container</a>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/hello/">A. Hello world</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../modifying/">B. Modifying a docker image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/modifying/">B. Modifying a docker image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../creating/">C. Creating my own image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/creating/">C. Creating my own image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../pushing/">D. Pushing a new image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/pushing/">D. Pushing a new image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../exec/">E. Executing a container</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/exec/">E. Executing a container</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../sharing/">F. Sharing resources with containers</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/sharing/">F. Sharing resources with containers</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../exercise/">G. Exercise (work due)</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/exercise/">G. Exercise (work due)</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Lab 5 - Cross-compilation</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab5/intro/">Lab 5 - Introduction</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 5 - Cross-compilation</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 5 - Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab5/setup/">A. Setup a ROS2 workspace</a>
+                <li class="toctree-l2"><a class="reference internal" href="../setup/">A. Setup a ROS2 workspace</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab5/config/">B. Configure Docker for multiplatform images</a>
+                <li class="toctree-l2"><a class="reference internal" href="../config/">B. Configure Docker for multiplatform images</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab5/build/">C. Build a multiplatform image</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Build a multiplatform image</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#target">Target</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dockerfile">Dockerfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#build">Build</a>
+    </li>
+    </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../lab5/cross/">D. Cross-compile</a>
+                <li class="toctree-l2"><a class="reference internal" href="../cross/">D. Cross-compile</a>
                 </li>
     </ul>
                   </li>
@@ -184,8 +186,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Docker Labs</li>
-          <li class="breadcrumb-item">Lab 4 - Getting started with Docker</li>
-      <li class="breadcrumb-item active">A. Hello world</li>
+          <li class="breadcrumb-item">Lab 5 - Cross-compilation</li>
+      <li class="breadcrumb-item active">C. Build a multiplatform image</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -194,54 +196,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="a-hello-world">A. Hello world</h1>
-<h2 id="show-existing-images-and-containers">Show existing images and containers</h2>
-<p>Show containers
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
-</code></pre></div></p>
-<p>Show images
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
-</code></pre></div></p>
+                <h1 id="c-build-a-multiplatform-image">C. Build a multiplatform image</h1>
+<h2 id="target">Target</h2>
+<p>Our target computer is a Raspberry Pi with Ubuntu 20.04.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If these commands fail, it means they require to be run as
-root (sudo).<br />
-To allow the user to execute Docker we need to add it in the docker group and restart the session :</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
-</code></pre></div>
-<p><strong>Now you will have to restart your computer ...</strong></p>
-<p>After restart, check the previous commands work.</p>
+<p class="admonition-title">Issue 1</p>
+<p>Find the target platform</p>
 </div>
-<h2 id="run-hello-world-container">Run Hello World container</h2>
-<p>Now we can execute our first container (it just says ”Hello World”
-plus some blah-blah)</p>
-<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>linux/amd64</code>, <code>linux/arm64</code>, <code>windows/amd64</code> ?</p>
+</div>
+<h2 id="dockerfile">Dockerfile</h2>
+<p>We will use the same Dockerfile used for the <strong>simple</strong> image in Lab 4.</p>
+<p>Create a new folder <code>multiplatform</code> next to <code>simple</code></p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>multiplatform
+<span class="nb">cd</span><span class="w"> </span>multiplatform
 </code></pre></div>
-After the execution, we can check the images and the container
-status :</p>
-<ol>
-<li>
-<p>Show running containers (nothing should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
-</code></pre></div></p>
-</li>
-<li>
-<p>Show all containers (the execution of hello-world container should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
-</code></pre></div></p>
-</li>
-<li>
-<p>Show images (the locally stored image of hello-world should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
-</code></pre></div></p>
-</li>
-</ol>
+<p>Copy the Dockerfile</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>../simple/Dockerfile<span class="w"> </span>.
+</code></pre></div>
+<p>Currently our Dockerfile is set up to install a minimal version of ROS2 Foxy.<br />
+It is enough to run nodes but compilers aren't installed so we can't build packages. </p>
+<div class="admonition note">
+<p class="admonition-title">Issue 2</p>
+<p>We need :</p>
+<ul>
+<li><code>colcon</code> to build ROS2 packages</li>
+<li>a C++ compiler such as <code>g++</code></li>
+<li><code>cmake</code></li>
+</ul>
+<p>Install them in the Dockerfile.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can install them all at once with the <code>ros-dev-tools</code> apt repository.<br />
+See <strong>Development Tools</strong> in the installation tutorial : <a href="https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html">https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html</a></p>
+</div>
+<h2 id="build">Build</h2>
+<p>Our image is ready to be built.</p>
+<div class="admonition note">
+<p class="admonition-title">Issue 3</p>
+<p>Build the image using <code>docker build</code> for two platforms in one single command: your host and our target Raspberry Pi.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The command is very similar to a simple platform build.
+Just add the <code>--platform &lt;platform1&gt;,&lt;platform2&gt;,...</code> option</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Building on an emulated architecture is far slower than building on the native architecture.<br />
+So the multiplatform building process can take a significant amount of time...<br />
+Time to take a break ?</p>
+</div>
+<p>Now you have a multiplatform image, which can run on multiple platforms !</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../intro/" class="btn btn-neutral float-left" title="Lab 4 - Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../modifying/" class="btn btn-neutral float-right" title="B. Modifying a docker image">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../config/" class="btn btn-neutral float-left" title="B. Configure Docker for multiplatform images"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cross/" class="btn btn-neutral float-right" title="D. Cross-compile">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -264,10 +279,10 @@ status :</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../config/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../modifying/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../cross/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

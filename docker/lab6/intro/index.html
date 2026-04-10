@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>A. Hello world - Embedded systems</title>
+    <title>Lab 6 - Develop a container application - Embedded systems</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "A. Hello world";
-        var mkdocs_page_input_path = "docker/lab4/hello.md";
+        var mkdocs_page_name = "Lab 6 - Develop a container application";
+        var mkdocs_page_input_path = "docker/lab6/intro.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -96,30 +96,24 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Docker Labs</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" >Lab 4 - Getting started with Docker</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../intro/">Lab 4 - Introduction</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 4 - Getting started with Docker</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/intro/">Lab 4 - Introduction</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">A. Hello world</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#show-existing-images-and-containers">Show existing images and containers</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#run-hello-world-container">Run Hello World container</a>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/hello/">A. Hello world</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../modifying/">B. Modifying a docker image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/modifying/">B. Modifying a docker image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../creating/">C. Creating my own image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/creating/">C. Creating my own image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../pushing/">D. Pushing a new image</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/pushing/">D. Pushing a new image</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../exec/">E. Executing a container</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/exec/">E. Executing a container</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../sharing/">F. Sharing resources with containers</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/sharing/">F. Sharing resources with containers</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../exercise/">G. Exercise (work due)</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../lab4/exercise/">G. Exercise (work due)</a>
                 </li>
     </ul>
                   </li>
@@ -183,9 +177,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Docker Labs</li>
-          <li class="breadcrumb-item">Lab 4 - Getting started with Docker</li>
-      <li class="breadcrumb-item active">A. Hello world</li>
+      <li class="breadcrumb-item active">Lab 6 - Develop a container application</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -194,55 +186,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="a-hello-world">A. Hello world</h1>
-<h2 id="show-existing-images-and-containers">Show existing images and containers</h2>
-<p>Show containers
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
-</code></pre></div></p>
-<p>Show images
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
-</code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If these commands fail, it means they require to be run as
-root (sudo).<br />
-To allow the user to execute Docker we need to add it in the docker group and restart the session :</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
-</code></pre></div>
-<p><strong>Now you will have to restart your computer ...</strong></p>
-<p>After restart, check the previous commands work.</p>
+                <h1 id="lab-6-develop-a-container-application">Lab 6 - Develop a container application</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>LINUX ONLY</p>
 </div>
-<h2 id="run-hello-world-container">Run Hello World container</h2>
-<p>Now we can execute our first container (it just says ”Hello World”
-plus some blah-blah)</p>
-<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
-</code></pre></div>
-After the execution, we can check the images and the container
-status :</p>
-<ol>
-<li>
-<p>Show running containers (nothing should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+<p><strong>Goal of the lab</strong> : Learn how to share the host's display with a container</p>
+<p>Create the following python script:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pyqtgraph</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
 </code></pre></div></p>
-</li>
-<li>
-<p>Show all containers (the execution of hello-world container should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
+<p><strong>Application</strong> :<br />
+Build an image from Ubuntu 20.04 with python3 and pyqtgraph. Then executes the container with this
+image so that python3 automatically launch a python code showing a plot.</p>
+<p>Create a container with :</p>
+<ul>
+<li>Ubuntu 20.04</li>
+<li>python3</li>
+<li>python3-pip</li>
+<li>pyqtgraph</li>
+<li>pyside6</li>
+<li>numpy</li>
+<li>Shared folder with the python script</li>
+</ul>
+<p>Execute the python script and show the plot at the start of the container.</p>
+<p>You should see the container executing normally but nothing appears.</p>
+<p>Now, try sharing the host's display with the container.</p>
+<p>The host computer must allow the docker container to display graphical application, this permission is given by
+<div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+local:docker
 </code></pre></div></p>
-</li>
-<li>
-<p>Show images (the locally stored image of hello-world should appear)
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
-</code></pre></div></p>
-</li>
-</ol>
+<p>Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code></p>
+<p>Now a window should open at the start of the container.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On Ubuntu, your display server might be Wayland by default, but this kind of application requires Xorg.<br />
+You can switch from your user connection interface using the settings gear near "Sign in" before starting the session.</p>
+</div>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../intro/" class="btn btn-neutral float-left" title="Lab 4 - Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../modifying/" class="btn btn-neutral float-right" title="B. Modifying a docker image">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -264,10 +250,6 @@ status :</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../modifying/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
