@@ -221,19 +221,26 @@ Log in as usual</p>
 <p><strong>Application</strong> :<br />
 Build an image from Ubuntu 20.04 with simple GUI examples. Then executes the container with this
 image so that a simple GUI window is automatically opened.</p>
-<p>Create an image with :</p>
+<div class="admonition note">
+<p class="admonition-title">Issue 1</p>
+<p>Create an image from a Dockerfile with :</p>
 <ul>
 <li>Ubuntu 20.04 as the base image</li>
 <li>x11-apps installed</li>
 </ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Issue 2</p>
 <p>Use <code>docker run</code> to run your container and execute the <code>xeyes</code> command at the start of the container, as usual, without sharing display.</p>
+</div>
 <p>You should get an error: <code>Error: Can't open display:</code></p>
 <p>Indeed, the container is an isolated environnment, so your application can't access your host machine's display. Let's share it.</p>
 <h2 id="share-the-display">Share the display</h2>
 <p>The host computer must allow the docker container to display graphical application, this permission is given by
 <div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+local:docker
 </code></pre></div></p>
-<p>Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code> in <code>docker run</code></p>
+<p>!!! Note "Issue 3
+    Share X11 graphical user interface using <code>-e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix​</code> in <code>docker run</code></p>
 <p>Now a window should open at the start of the container.</p>
               
             </div>
