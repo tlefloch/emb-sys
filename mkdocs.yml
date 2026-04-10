@@ -51,7 +51,7 @@ nav:
       - docker/lab5/config.md
       - docker/lab5/build.md
       - docker/lab5/cross.md
-    # - docker/lab6/intro.md
+    - docker/lab6/intro.md
       
   - Tests:
     - Test 1 - Configuring an AUV's embedded Linux:
