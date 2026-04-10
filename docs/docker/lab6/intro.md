@@ -79,6 +79,6 @@ xhost +local:docker
 !!! Tip "Solution 3"
     ```bash
     docker run --rm -e DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix displayer:latest bash -c "xeyes"
-
+    ```
 
 Now a window should open at the start of the container.
