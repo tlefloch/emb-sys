@@ -226,7 +226,7 @@ La commande executant le controle manuel du robot dans le conteneur actif.</p>
 </div>
 <h2 id="filtrage-des-mesures-de-pression">Filtrage des mesures de pression</h2>
 <div class="admonition note">
-<p class="admonition-title">Problème n°4 (2 points)</p>
+<p class="admonition-title">Problème n°4 (1 points)</p>
 <p>Les mesures du capteur de pression sont bruitées. Afin d'obtenir une bonne régulation de la profondeur nous souhaitons filtrer ces valeurs.</p>
 <p>Créez un nouveau package <code>depth_filter</code> définissant un noeud de filtrage des mesures de pression publiées par le noeud de simulation.</p>
 <p>Deux bonnes pratiques pour les projets et codes ROS2 volumineux sont:</p>
@@ -267,7 +267,7 @@ Ainsi, vous pouvez tester votre algorithme indépendamment de la simulation.</p>
 </div>
 <h2 id="controle-de-la-profondeur">Controle de la profondeur</h2>
 <div class="admonition note">
-<p class="admonition-title">Problème n°5 (2 points)</p>
+<p class="admonition-title">Problème n°5 (1 points)</p>
 <p>De la même manière que précédemment, créez un nouveau package <code>depth_control</code> définissant un noeud de controle de la profondeur qui reçoit les mesures de pression filtrées et publient les consignes du piston.</p>
 <p>Ainsi, dans le package <code>depth_control</code> on suivra la structure suivante :
 <div class="highlight"><pre><span></span><code>src/depth_control
@@ -283,6 +283,7 @@ Ainsi, vous pouvez tester votre algorithme indépendamment de la simulation.</p>
 </code></pre></div></p>
 <p>Optez pour la loi de controle de votre choix. (bang-bang, PID, linéarisation par retour d'état, ...)<br />
 La performance de celle-ci n'entre pas dans la notation.</p>
+<p>Pour information, le volume max du piston sorti est de 522 cm3.</p>
 <p><strong>Rendu attendu :</strong><br />
 Code source du package <code>depth_control</code>.</p>
 </div>
