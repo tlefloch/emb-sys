@@ -67,6 +67,7 @@ Vous recevez quelques informations clés de la part de votre collègue:
 !!! Tip
     Eigen est une bibliothèque dite "header-only".  
     Pour utiliser Eigen, il suffit de télécharger et d'extraire son code source (consultez le wiki pour les instructions de téléchargement). En réalité, les fichiers headers de Eigen sont les seuls nécessaires à la compilation des programmes. Ces fichiers headers sont identiques pour toutes les plateformes.
+    [https://libeigen.gitlab.io/](https://libeigen.gitlab.io/)
 
     Pour une utilisation avec cmake, il faut spécifier le chemin d'inclusion des headers dans le CMakeLists.txt
 
