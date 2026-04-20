@@ -46,6 +46,9 @@ Vous recevez quelques informations clés de la part de votre collègue:
     - la commande `docker build` utilisé
     - la commande `docker run` permettant de build le code source
 
+!!! Warning
+    Il existe plusieurs images qui fournissent ROS2.  
+    Attention à bien prendre la version humble, et une version minimale certes, mais qui contient les outils de compilation ROS2.
 
 !!! Tip
     N'oubliez pas d'utiliser l'option `--rm` avec `docker run` pour éviter de conserver les conteneurs après exécution.
