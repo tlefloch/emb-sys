@@ -8,7 +8,7 @@ Il faut donc compiler le code source en ciblant l'architecture du robot, puis t�
     Cross-compilez le code du seabot pour une architecture `arm64` à la manière dont ça a été fait dans le lab 5.
 
     Nous ne voulons pas obtenir les binaires compilés pour arm64 au même endroit que nous obtenons ceux de l'architecture hôte.  
-    Faites en sorte que le code source soit compilé dans le dossier `arm64`.
+    Faites en sorte que le code source soit compilé dans le dossier `lab-seabot-ros/arm64` et qu'il n'écrase pas les résultats de la compilation simple.
 
     Utilisez un script bash `build_arm64` pour exécuter la série de commande dans le conteneur.
 
