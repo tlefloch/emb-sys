@@ -1,7 +1,7 @@
 # Lab 6 - Develop a container GUI application
 
 !!! Warning
-    LINUX ONLY
+    Not testes on Windows and MacOS. You may need to install a X11 server.
 
 **Goal of the lab** : Learn how to share the host's display with a container
 

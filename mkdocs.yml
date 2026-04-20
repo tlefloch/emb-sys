@@ -33,6 +33,19 @@ nav:
       - image/lab3/setting.md
       #- image/lab3/saving.md
       - image/lab3/debug.md
+    - Test 1 - Configuring an AUV's embedded Linux:
+      - tests/image/intro.md
+      - tests/image/git.md
+      - tests/image/image.md
+      - tests/image/modif.md
+      - tests/image/hostname.md
+      - tests/image/user.md
+      - tests/image/network.md
+      - tests/image/ros2.md
+      - tests/image/udev.md
+      - tests/image/service.md
+      - tests/image/clean.md
+      - tests/image/qemu.md
   - QEMU:
     - image/qemu.md
   - Docker Labs:
@@ -52,18 +65,8 @@ nav:
       - docker/lab5/build.md
       - docker/lab5/cross.md
     - docker/lab6/intro.md
-      
-  - Tests:
-    - Test 1 - Configuring an AUV's embedded Linux:
-      - tests/image/intro.md
-      - tests/image/git.md
-      - tests/image/image.md
-      - tests/image/modif.md
-      - tests/image/hostname.md
-      - tests/image/user.md
-      - tests/image/network.md
-      - tests/image/ros2.md
-      - tests/image/udev.md
-      - tests/image/service.md
-      - tests/image/clean.md
-      - tests/image/qemu.md
+    - Test2 - Seabot Lab (French):
+      - seabot-lab/intro.md
+      - seabot-lab/image.md
+      - seabot-lab/dev.md
+      - seabot-lab/cross.md

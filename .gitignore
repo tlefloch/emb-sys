@@ -7,3 +7,4 @@ cross-compile-lab/ros2-ws/build
 cross-compile-lab/ros2-ws/install
 cross-compile-lab/ros2-ws/log
 .vscode/
+qcm/
