@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>C. Développement des algorithmes du Seabot - Embedded systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C. D\u00e9veloppement des algorithmes du Seabot";
+        var mkdocs_page_input_path = "seabot-lab/dev.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../img/tux-logo.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Raspberry Pi OS Labs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 1 - Setting-up Raspberry Pi OS Image</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/intro/">Lab 1 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/mounting/">B. Mounting the Raspberry Pi OS image on the host</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/increasing/">C. Increasing size of Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/modifying/">D. Modifying the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab1/executing/">E. Executing commands on the Raspberry Pi OS image</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 2 - Running the Raspberry Pi OS on a virtual machine on host</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab2/intro/">Lab 2 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab2/getting/">A. Getting the Raspberry Pi OS image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab2/installVM/">B. Install QEMU ARM virtual machine (VM)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab2/using/">C. Using QEMU Virtual Machine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 3 - Setting-up and working with the Raspberry Pi OS without graphical user interface</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab3/intro/">Lab 3 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab3/writing/">A. Writing the Raspberry Pi OS image on the sd-card</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab3/connecting/">B. Accessing the headless RPI without network</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab3/setting/">C. Setting up network for ssh access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../image/lab3/debug/">Debug</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Test 1 - Configuring an AUV's embedded Linux</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/intro/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/git/">A. Git Repository</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/image/">B. Get the OS Image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/modif/">C. Modifying the Image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/hostname/">D. System Identity Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/user/">E. User configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/network/">F. Network Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/ros2/">G. ROS 2 Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/udev/">H. Udev Rules — Hardware Access</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/service/">I. Systemd service</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/clean/">J. Clean chroot</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tests/image/qemu/">K. Use QEMU VM (optionnal)</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">QEMU</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../image/qemu/">Introduction to QEMU</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Docker Labs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" >Lab 4 - Getting started with Docker</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/intro/">Lab 4 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/hello/">A. Hello world</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/modifying/">B. Modifying a docker image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/creating/">C. Creating my own image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/pushing/">D. Pushing a new image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/exec/">E. Executing a container</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/sharing/">F. Sharing resources with containers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab4/exercise/">G. Exercise (work due)</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Lab 5 - Cross-compilation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab5/intro/">Lab 5 - Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab5/setup/">A. Setup a ROS2 workspace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab5/config/">B. Configure Docker for multiplatform images</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab5/build/">C. Build a multiplatform image</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../docker/lab5/cross/">D. Cross-compile</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../docker/lab6/intro/">Lab 6 - Develop a container GUI application</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Test2 - Seabot Lab (French)</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../intro/">A. Seabot Lab</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../image/">B. Résolution des dépendances</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">C. Développement des algorithmes du Seabot</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#simulation">Simulation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filtrage-des-mesures-de-pression">Filtrage des mesures de pression</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#controle-de-la-profondeur">Controle de la profondeur</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#launch">Launch</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../cross/">D. Cross-compilation</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Embedded systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Docker Labs</li>
+          <li class="breadcrumb-item">Test2 - Seabot Lab (French)</li>
+      <li class="breadcrumb-item active">C. Développement des algorithmes du Seabot</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="c-developpement-des-algorithmes-du-seabot">C. Développement des algorithmes du Seabot</h1>
+<h2 id="simulation">Simulation</h2>
+<p>Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :</p>
+<p><img alt="" src="../../img/simu-seabot.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Problème n°3</p>
+<p>La simulation a été pensée pour que la position du piston puisse être controlée manuellement. Essayons.</p>
+<ol>
+<li>Dans le code source du noeud de simulation, trouvez à quels topics est abonné le noeud ROS de simulation et lequel permet de transmettre des consignes de commande manuelle du piston.</li>
+<li>Dans un premier terminal, lancez la simulation dans un conteneur. </li>
+<li>Dans un second terminal, exécutez dans le même conteneur une commande permettant de controler la position du piston grâce au package ROS2 <strong>teleop_twist_keyboard</strong>.</li>
+</ol>
+<p><strong>Rendu attendu :</strong><br />
+La commande executant le controle manuel du robot dans le conteneur actif.</p>
+</div>
+<h2 id="filtrage-des-mesures-de-pression">Filtrage des mesures de pression</h2>
+<div class="admonition note">
+<p class="admonition-title">Problème n°4</p>
+<p>Les mesures du capteur de pression sont bruitées. Afin d'obtenir une bonne régulation de la profondeur nous souhaitons filtrer ces valeurs.</p>
+<p>Créez un nouveau package <code>depth_filter</code> définissant un noeud de filtrage des mesures de pression publiées par le noeud de simulation.</p>
+<p>Deux bonnes pratiques pour les projets et codes ROS2 volumineux sont:</p>
+<ul>
+<li>Définir la classe dans un fichier d'en-tête (header) <code>.h</code> ou <code>.hpp</code> et définir les méthodes de classe dans un fichier <code>.cpp</code></li>
+<li>Séparer les algorithmes des interfaces ROS2 : une classe qui définit l'algorithme et une classe qui définit le noeud ROS ayant elle même une instance de la classe précédente pour attribut.</li>
+</ul>
+<p>Le package <code>simulation</code> suit ces deux principes.<br />
+Ainsi, dans le package <code>depth_filter</code> on suivra la structure suivante :
+<div class="highlight"><pre><span></span><code>src/depth_filter
+├──<span class="w"> </span>CMakeLists.txt
+├──<span class="w"> </span>include
+│<span class="w">   </span>└──<span class="w"> </span>depth_filter
+│<span class="w">       </span>├──<span class="w"> </span>depth_filter.hpp
+│<span class="w">       </span>└──<span class="w"> </span>depth_filter_node.hpp
+├──<span class="w"> </span>package.xml
+└──<span class="w"> </span>src
+<span class="w">    </span>├──<span class="w"> </span>depth_filter.cpp
+<span class="w">    </span>└──<span class="w"> </span>depth_filter_node.cpp
+</code></pre></div></p>
+<p><strong>TODO :</strong><br />
+Un squelette de code du package <code>depth_filter</code> est fourni. Il ne reste qu'à implémenter l'algorithme de filtrage. Un simple filtre moyenneur suffira.<br />
+Vous créerez aussi un nouveau message personnalisé <code>DepthPose</code> contenant les valeurs de profondeur et vitesse verticale filtrées.</p>
+<p><strong>Rendu attendu :</strong><br />
+Code source du package <code>depth_filter</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Le filtre moyenneur entraîne un retard sur la mesure filtrée.
+Notons la taille de la fenêtre de filtrage: <strong>N</strong>, et le temps entre chaque mesure: <strong>dt</strong>.<br />
+La mesure filtrée obtenu au temps <strong>t_k</strong> est la moyenne des N mesures précédentes. Elle aura un retard de <strong>N/2*dt</strong>.
+Il faut donc trouver un compromis sur la taille de la fenêtre entre la qualité du filtrage et le retard apporté.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>L'avantage de séparer en deux classes le filtre en lui-même et les interfaces ROS2, c'est que nous pouvons utiliser le filtre indépendamment de ROS2.<br />
+Ainsi, vous pouvez tester votre algorithme indépendamment de la simulation.</p>
+</div>
+<h2 id="controle-de-la-profondeur">Controle de la profondeur</h2>
+<div class="admonition note">
+<p class="admonition-title">Problème n°5</p>
+<p>De la même manière que précédemment, créez un nouveau package <code>depth_control</code> définissant un noeud de controle de la profondeur qui reçoit les mesures de pression filtrées et publient les consignes du piston.</p>
+<p>Ainsi, dans le package <code>depth_control</code> on suivra la structure suivante :
+<div class="highlight"><pre><span></span><code>src/depth_control
+├──<span class="w"> </span>CMakeLists.txt
+├──<span class="w"> </span>include
+│<span class="w">   </span>└──<span class="w"> </span>depth_control
+│<span class="w">       </span>├──<span class="w"> </span>depth_control.hpp
+│<span class="w">       </span>└──<span class="w"> </span>depth_control_node.hpp
+├──<span class="w"> </span>package.xml
+└──<span class="w"> </span>src
+<span class="w">    </span>├──<span class="w"> </span>depth_control.cpp
+<span class="w">    </span>└──<span class="w"> </span>depth_control_node.cpp
+</code></pre></div></p>
+<p>Optez pour la loi de controle de votre choix. (bang-bang, PID, linéarisation par retour d'état, ...)<br />
+La performance de celle-ci n'entre pas dans la notation.</p>
+<p><strong>Rendu attendu :</strong><br />
+Code source du package <code>depth_control</code>.</p>
+</div>
+<h2 id="launch">Launch</h2>
+<div class="admonition note">
+<p class="admonition-title">Problème n°6</p>
+<p>Créez dans le package <code>seabot</code> un nouveau fichier launch <strong>seabot_launch.py</strong> pour lancer la simulation ET les algorithmes de filtrage et controle en même temps.</p>
+<p>Lancez les noeuds dans un conteneur.<br />
+Vous devriez observer le robot se stabiliser à sa consigne (définie par vous-même dans <code>depth_contol</code>, par exemple 10 m)</p>
+<p><strong>Rendus attendus :</strong>  </p>
+<ul>
+<li>le fichier launch</li>
+<li>la commande <code>docker run</code> utilisée pour exécuter le launch dans un conteneur.</li>
+</ul>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../image/" class="btn btn-neutral float-left" title="B. Résolution des dépendances"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cross/" class="btn btn-neutral float-right" title="D. Cross-compilation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../image/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cross/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
