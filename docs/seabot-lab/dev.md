@@ -84,7 +84,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
     Optez pour la loi de controle de votre choix. (bang-bang, PID, linéarisation par retour d'état, ...)  
     La performance de celle-ci n'entre pas dans la notation.
 
-    Pour information, le volume max du piston sorti est de 522 cm3.
+    Pour information, le volume max du piston sorti est de 522 cm3, et le robot est dimensionné pour être neutre lorsque la moitié du piston est sorti.
 
     **Rendu attendu :**  
     Code source du package `depth_control`.
