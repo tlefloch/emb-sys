@@ -16,7 +16,7 @@ Le robot, nommé **seabot** est un flotteur régulé uniquement en profondeur. I
 ## Rendus
 
 A chaque problème posé, vous seront précisés les rendus attendus.
-Au final vous rendrez, compressé dans un fichier zip, un dossier structuré contenant **les rendus demandés pour chaque problème**.
+Au final vous rendrez sur moodle, compressé dans un fichier zip, un dossier structuré contenant **les rendus demandés pour chaque problème**.
 
 ## Contexte
 
