@@ -214,7 +214,7 @@
 <p>Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :</p>
 <p><img alt="" src="../../img/simu-seabot.png" /></p>
 <div class="admonition note">
-<p class="admonition-title">Problème n°3</p>
+<p class="admonition-title">Problème n°3 (2 points)</p>
 <p>La simulation a été pensée pour que la position du piston puisse être controlée manuellement. Essayons.</p>
 <ol>
 <li>Dans le code source du noeud de simulation, trouvez à quels topics est abonné le noeud ROS de simulation et lequel permet de transmettre des consignes de commande manuelle du piston.</li>
@@ -226,7 +226,7 @@ La commande executant le controle manuel du robot dans le conteneur actif.</p>
 </div>
 <h2 id="filtrage-des-mesures-de-pression">Filtrage des mesures de pression</h2>
 <div class="admonition note">
-<p class="admonition-title">Problème n°4</p>
+<p class="admonition-title">Problème n°4 (2 points)</p>
 <p>Les mesures du capteur de pression sont bruitées. Afin d'obtenir une bonne régulation de la profondeur nous souhaitons filtrer ces valeurs.</p>
 <p>Créez un nouveau package <code>depth_filter</code> définissant un noeud de filtrage des mesures de pression publiées par le noeud de simulation.</p>
 <p>Deux bonnes pratiques pour les projets et codes ROS2 volumineux sont:</p>
@@ -267,7 +267,7 @@ Ainsi, vous pouvez tester votre algorithme indépendamment de la simulation.</p>
 </div>
 <h2 id="controle-de-la-profondeur">Controle de la profondeur</h2>
 <div class="admonition note">
-<p class="admonition-title">Problème n°5</p>
+<p class="admonition-title">Problème n°5 (2 points)</p>
 <p>De la même manière que précédemment, créez un nouveau package <code>depth_control</code> définissant un noeud de controle de la profondeur qui reçoit les mesures de pression filtrées et publient les consignes du piston.</p>
 <p>Ainsi, dans le package <code>depth_control</code> on suivra la structure suivante :
 <div class="highlight"><pre><span></span><code>src/depth_control
@@ -288,7 +288,7 @@ Code source du package <code>depth_control</code>.</p>
 </div>
 <h2 id="launch">Launch</h2>
 <div class="admonition note">
-<p class="admonition-title">Problème n°6</p>
+<p class="admonition-title">Problème n°6 (2 points)</p>
 <p>Créez dans le package <code>seabot</code> un nouveau fichier launch <strong>seabot_launch.py</strong> pour lancer la simulation ET les algorithmes de filtrage et controle en même temps.</p>
 <p>Lancez les noeuds dans un conteneur.<br />
 Vous devriez observer le robot se stabiliser à sa consigne (définie par vous-même dans <code>depth_contol</code>, par exemple 10 m)</p>
