@@ -18,7 +18,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ## Filtrage des mesures de pression
 
-!!! Note "Problème n°4 (2 points)"
+!!! Note "Problème n°4 (1 points)"
     Les mesures du capteur de pression sont bruitées. Afin d'obtenir une bonne régulation de la profondeur nous souhaitons filtrer ces valeurs.
 
     Créez un nouveau package `depth_filter` définissant un noeud de filtrage des mesures de pression publiées par le noeud de simulation.
@@ -63,7 +63,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ## Controle de la profondeur
 
-!!! Note "Problème n°5 (2 points)"
+!!! Note "Problème n°5 (1 points)"
 
     De la même manière que précédemment, créez un nouveau package `depth_control` définissant un noeud de controle de la profondeur qui reçoit les mesures de pression filtrées et publient les consignes du piston.
 
@@ -83,6 +83,8 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
     Optez pour la loi de controle de votre choix. (bang-bang, PID, linéarisation par retour d'état, ...)  
     La performance de celle-ci n'entre pas dans la notation.
+
+    Pour information, le volume max du piston sorti est de 522 cm3.
 
     **Rendu attendu :**  
     Code source du package `depth_control`.
