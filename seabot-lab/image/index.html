@@ -279,7 +279,10 @@ Pour utiliser Eigen, il suffit de télécharger et d'extraire son code source (c
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Vous aurez besoin de partager votre environnement d'affichage avec le conteneur, comme vous l'avez fait dans le <strong>Lab 6</strong>.<br />
-Pour les utilisateurs de Windows ou MacOS, vous devez installer un serveur X11 sur votre machine.</p>
+Attention à bien donner la permission d'affichage à docker :<br />
+<div class="highlight"><pre><span></span><code>xhost<span class="w"> </span>+local:docker
+</code></pre></div></p>
+<p>Pour les utilisateurs de Windows ou MacOS, vous devez installer un serveur X11 sur votre machine.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Problème n°2 (2 points)</p>
