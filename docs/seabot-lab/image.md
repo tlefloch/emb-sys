@@ -84,7 +84,8 @@ Vous recevez quelques informations clés de la part de votre collègue:
 !!! Note "Problème n°2 (2 points)"
 
     Afin d'éviter de taper une série de commande dans le conteneur ou d'exécuter une commande à rallonge remplie de `&&`, il convient d'utiliser un script bash.  
-    Dans le script `scripts/launch_simu.sh` vous écrivez les commandes à exécuter dans le conteneur pour lancer la simu. Ainsi il vous suffit d'exécuter ce script au démarrage du conteneur pour lancer la simulation.
+    Dans le script `scripts/launch_simu.sh` vous écrivez les commandes à exécuter dans le conteneur pour lancer la simu. Ainsi il vous suffit d'exécuter ce script au démarrage du conteneur pour lancer la simulation.  
+    Le script n'est pas exécutable par défaut, trouvez comment lui donner la permission d'exécution.
 
     **Rendus attendus :**  
 
