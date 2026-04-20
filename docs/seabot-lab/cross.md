@@ -3,7 +3,7 @@
 L'objectif final reste de faire fonctionner nos alforithmes sur le robot réel.  
 Il faut donc compiler le code source en ciblant l'architecture du robot, puis téléverser les binaires compilés sur le robot.
 
-!!! Note "Problème n°7"
+!!! Note "Problème n°7 (2 points)"
 
     Cross-compilez le code du seabot pour une architecture `arm64` à la manière dont ça a été fait dans le lab 5.
 

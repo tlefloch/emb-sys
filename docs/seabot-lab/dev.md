@@ -6,7 +6,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ![](../../img/simu-seabot.png)
 
-!!! Note "Problème n°3" 
+!!! Note "Problème n°3 (2 points)" 
     La simulation a été pensée pour que la position du piston puisse être controlée manuellement. Essayons.
 
     1. Dans le code source du noeud de simulation, trouvez à quels topics est abonné le noeud ROS de simulation et lequel permet de transmettre des consignes de commande manuelle du piston.
@@ -18,7 +18,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ## Filtrage des mesures de pression
 
-!!! Note "Problème n°4"
+!!! Note "Problème n°4 (2 points)"
     Les mesures du capteur de pression sont bruitées. Afin d'obtenir une bonne régulation de la profondeur nous souhaitons filtrer ces valeurs.
 
     Créez un nouveau package `depth_filter` définissant un noeud de filtrage des mesures de pression publiées par le noeud de simulation.
@@ -63,7 +63,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ## Controle de la profondeur
 
-!!! Note "Problème n°5"
+!!! Note "Problème n°5 (2 points)"
 
     De la même manière que précédemment, créez un nouveau package `depth_control` définissant un noeud de controle de la profondeur qui reçoit les mesures de pression filtrées et publient les consignes du piston.
 
@@ -89,7 +89,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
 
 ## Launch
 
-!!! Note "Problème n°6"
+!!! Note "Problème n°6 (2 points)"
 
     Créez dans le package `seabot` un nouveau fichier launch **seabot_launch.py** pour lancer la simulation ET les algorithmes de filtrage et controle en même temps.
 
@@ -97,7 +97,7 @@ Si votre simulation fonctionne vous devriez observer une fenêtre de la sorte :
     Vous devriez observer le robot se stabiliser à sa consigne (définie par vous-même dans `depth_contol`, par exemple 10 m)
 
     **Rendus attendus :**  
-    
+
     - le fichier launch
     - la commande `docker run` utilisée pour exécuter le launch dans un conteneur.
 

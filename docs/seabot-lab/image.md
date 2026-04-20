@@ -28,7 +28,7 @@ Vous recevez quelques informations clés de la part de votre collègue:
 - l'animation de visualisation de la simulation se fait dans une fenêtre matplotlib
 - une fois le code source compilé, les noeuds ROS2 nécessairesà la simulation peuvent être lancés grâce au script `simulation_launch.py`
 
-!!! Note "Problème n°1"
+!!! Note "Problème n°1 (8 points)"
     Créez une nouvelle image Docker via un **Dockerfile** regroupant les dépendances de la simulation et permettant de la faire fonctionner.  
     Procédez comme suit :
 
@@ -75,7 +75,7 @@ Vous recevez quelques informations clés de la part de votre collègue:
     Pour les utilisateurs de Windows ou MacOS, vous devez installer un serveur X11 sur votre machine.
 
 
-!!! Note "Problème n°2"
+!!! Note "Problème n°2 (2 points)"
 
     Afin d'éviter de taper une série de commande dans le conteneur ou d'exécuter une commande à rallonge remplie de `&&`, il convient d'utiliser un script bash.  
     Dans le script `scripts/launch_simu.sh` vous écrivez les commandes à exécuter dans le conteneur pour lancer la simu. Ainsi il vous suffit d'exécuter ce script au démarrage du conteneur pour lancer la simulation.

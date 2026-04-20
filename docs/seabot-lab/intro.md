@@ -18,6 +18,9 @@ Le robot, nommé **seabot** est un flotteur régulé uniquement en profondeur. I
 A chaque problème posé, vous seront précisés les rendus attendus.
 Au final vous rendrez sur moodle, compressé dans un fichier zip, un dossier structuré contenant **les rendus demandés pour chaque problème**.
 
+!!! Note
+    Le rendu du Lab 4 compte comme points bonus dans la note de ce mini-projet
+
 ## Contexte
 
 Le robot est en phase de conception mécanique mais vous souhaitez déjà avancer sur l'intelligence embarquée sur le flotteur, en particulier sur les algorithmes haut-niveau.
