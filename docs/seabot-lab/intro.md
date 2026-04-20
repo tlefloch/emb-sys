@@ -46,6 +46,7 @@ Vous constatez que le workspace contient 4 packages, il vous explique le rôle d
 - `seabot` : contient les scripts de launch et les fichiers de paramètres
 - `seabot_msgs` : définit les messages personnalisés utiles au seabot
 - `simulation` : simule la dynamique du robot
+- `depth_filter`: un template de package pour filtrer des mesures de pression (à compléter par la suite)
 
 
 Vous ne disposez que du code source, il faut donc le compiler.  
