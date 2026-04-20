@@ -73,6 +73,11 @@ Vous recevez quelques informations clés de la part de votre collègue:
 
 !!! Tip
     Vous aurez besoin de partager votre environnement d'affichage avec le conteneur, comme vous l'avez fait dans le **Lab 6**.  
+    Attention à bien donner la permission d'affichage à docker :  
+    ```bash
+    xhost +local:docker
+    ```
+
     Pour les utilisateurs de Windows ou MacOS, vous devez installer un serveur X11 sur votre machine.
 
 
