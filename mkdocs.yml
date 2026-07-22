@@ -1,7 +1,7 @@
 site_name: Embedded systems
 
 theme:
-  name: material
+  name: readthedocs
   logo: img/tux-logo.png
 
 markdown_extensions:
